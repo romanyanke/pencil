@@ -1,0 +1,17 @@
+.Map {
+  background: #f8f8f8;
+}
+.Map-block {
+  display: block;
+  margin: 0 auto;
+}
+
+.Map .rsm-svg {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 50vh;
+}
+
+@media screen and (max-width: 900px) {
+}

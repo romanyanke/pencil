@@ -1,0 +1,68 @@
+{
+  "name": "pencil",
+  "version": "0.1.0",
+  "homepage": "https://pencil.yanke.ru",
+  "dependencies": {
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "@material-ui/pickers": "^3.1.1",
+    "@types/classnames": "^2.2.8",
+    "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.134",
+    "@types/node": "^12.0.8",
+    "@types/qs": "^6.5.3",
+    "@types/react": "16.8.20",
+    "@types/react-dom": "^16.8.4",
+    "@types/react-intl": "^2.3.18",
+    "@types/react-redux": "^7.1.0",
+    "@types/react-router-dom": "^4.3.4",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11",
+    "qs": "^6.7.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-intl": "^2.9.0",
+    "react-redux": "^7.1.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.0.1",
+    "react-simple-maps": "^0.12.1",
+    "react-window-infinite-loader": "^1.0.3",
+    "redux": "^4.0.1",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-observable": "^1.1.0",
+    "rxjs": "^6.5.2",
+    "tslint": "^5.17.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typesafe-actions": "^4.4.1",
+    "typescript": "^3.5.2"
+  },
+  "scripts": {
+    "start": "BROWSER=none react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "deploy": "REACT_APP_API_URL=https://romanyanke.github.io/pencilbox-static npm run build && gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-simple-maps": "^0.12.2",
+    "@typescript-eslint/eslint-plugin": "^1.10.2",
+    "gh-pages": "^2.0.1",
+    "tslint-react-hooks": "^2.1.1"
+  }
+}

@@ -1,0 +1,18 @@
+.Loader {
+  display: inline-block;
+  font-size: 36px;
+  opacity: 0;
+  animation: bounce 1s ease-in-out infinite, appear 0.1s linear 0.2s forwards;
+}
+
+@keyframes bounce {
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
