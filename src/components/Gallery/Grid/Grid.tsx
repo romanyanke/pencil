@@ -5,12 +5,15 @@ import { GridProps } from './Grid.interface'
 
 const Grid: SFC<GridProps> = ({ pencils }) => {
   const [, setFilter] = useFilter()
+
   return (
     <div className="Grid">
       {pencils.map(pencil => {
         return (
-          <button
-            onClick={() => {
+          <a
+            href={`?display=${pencil.id}`}
+            onClick={e => {
+              e.preventDefault()
               setFilter({ display: pencil.id })
             }}
             className={classNames('GridItem', {
@@ -18,9 +21,10 @@ const Grid: SFC<GridProps> = ({ pencils }) => {
               size3: pencil.grid === 3,
             })}
             key={pencil.id}
+            title={pencil.title}
           >
-            <img alt={pencil.id} src={pencil.grid === 1 ? pencil.preview : pencil.photos[0]} />
-          </button>
+            <img alt={pencil.title} src={pencil.grid === 1 ? pencil.preview : pencil.photos[0]} />
+          </a>
         )
       })}
     </div>

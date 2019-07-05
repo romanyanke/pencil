@@ -7,6 +7,7 @@ import { PencilInfoProps } from './PencilInfo.interface'
 const PencilInfo: SFC<PencilInfoProps> = () => {
   const [filter, setFilter] = useFilter()
   const closePencilInfo = () => setFilter({ display: '' })
+
   if (filter.display) {
     return (
       <Pencil id={filter.display}>

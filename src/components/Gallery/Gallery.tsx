@@ -10,19 +10,20 @@ import Grid from './Grid'
 
 const Gallery: FC = () => {
   const [filter] = useFilter()
-  const [queries, setQueries] = useState<PencilQuery[]>([requestFirstPage(filter)])
+  const [queries, setQueries] = useState<PencilQuery[]>([])
   const [loading, setLoading] = useState(false)
   const lastQuery = queries[queries.length - 1]
   const cached = useCached(lastQuery)
   const nextPageNumber = cached ? getNextPageNumberFromPages(cached.pages) : null
+  const { country, tag, page } = filter
 
   useEffect(() => {
-    setQueries([requestFirstPage(filter)])
-  }, [filter])
+    setQueries([requestFirstPage({ country, tag, page })])
+  }, [country, tag, page])
   useEffect(() => setLoading(false), [nextPageNumber])
   useEffect(() => {
-    const loadNextPage = (page: number) => {
-      setQueries([...queries, { page, ...filter }])
+    const loadNextPage = (nextpage: number) => {
+      setQueries([...queries, { page: nextpage, ...filter }])
     }
     const onScroll = throttle(() => {
       if (nextPageNumber && !loading) {

@@ -1,7 +1,3 @@
-body.no-scroll {
-  overflow: hidden;
-}
-
 .Info {
   position: fixed;
   top: 2rem;

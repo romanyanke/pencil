@@ -1,4 +1,4 @@
-import React, { SFC, useCallback, useEffect } from 'react'
+import React, { SFC, useCallback } from 'react'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
 import { InfoProps } from './Info.interface'
@@ -6,12 +6,6 @@ import { getFilterFromLink } from './Info.utils'
 
 const Info: SFC<InfoProps> = ({ pencil }) => {
   const [, setFilter] = useFilter()
-  useEffect(() => {
-    document.body.classList.add('no-scroll')
-    return () => {
-      document.body.classList.remove('no-scroll')
-    }
-  }, [])
 
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {

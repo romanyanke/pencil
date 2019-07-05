@@ -29,8 +29,6 @@
 }
 
 .GridItem {
-  border: none;
-  background: transparent;
   position: relative;
   z-index: 1;
   cursor: pointer;
