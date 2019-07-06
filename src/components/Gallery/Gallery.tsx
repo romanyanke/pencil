@@ -21,17 +21,15 @@ const Gallery: FC = () => {
   useEffect(() => {
     setQueries([requestFirstPage({ country, tag, page })])
   }, [country, tag, page])
-  useEffect(() => setLoading(false), [nextPageNumber])
   useEffect(() => {
     const loadNextPage = (nextpage: number) => {
       setQueries([...queries, { page: nextpage, ...filter }])
     }
     const onScroll = throttle(() => {
-      if (nextPageNumber && !loading) {
+      if (nextPageNumber) {
         const scrollBottomLine = window.pageYOffset + window.innerHeight
         const total = document.body.clientHeight
         if (total * 0.6 < scrollBottomLine) {
-          setLoading(true)
           loadNextPage(nextPageNumber)
         }
       }
