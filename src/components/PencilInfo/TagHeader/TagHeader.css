@@ -4,7 +4,3 @@
   font-size: 18px;
   cursor: pointer;
 }
-.TagHeader-drop:hover {
-  text-decoration: line-through;
-  opacity: 0.6;
-}

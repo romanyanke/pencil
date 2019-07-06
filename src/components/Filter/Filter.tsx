@@ -2,6 +2,7 @@ import { Location } from 'history'
 import React, { ChangeEvent, SFC, useEffect, useRef } from 'react'
 import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { appMessages } from '../App/App.messages'
 import { useCached } from '../Pencil/Pancil.hooks'
 import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
 import { useFilter } from './Filter.hooks'
@@ -9,7 +10,6 @@ import { FilterProps } from './Filter.interface'
 import messages from './Filter.messages'
 import { mapFilterToQueryString, mapQueryStringToFilter } from './Filter.utils'
 import Globe from './Globe'
-import { appMessages } from '../App/App.messages'
 
 const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ history, intl }) => {
   const { countries, pencilCount } = useTaxonomy()
@@ -54,9 +54,15 @@ const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ hi
           <FormattedMessage
             {...messages.title}
             values={{
-              pencils: <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />,
+              pencils: (
+                <span className="Filter-span">
+                  <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />
+                </span>
+              ),
               countries: (
-                <FormattedMessage {...appMessages.country} values={{ count: countries.length }} />
+                <span className="Filter-span">
+                  <FormattedMessage {...appMessages.country} values={{ count: countries.length }} />
+                </span>
               ),
             }}
           />

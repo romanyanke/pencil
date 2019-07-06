@@ -1,16 +1,16 @@
 .Info {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
-  bottom: 2rem;
-  left: 2rem;
+  top: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
   z-index: 6;
   background: #fff;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  box-sizing: 'border-box';
   padding: 1rem;
   box-shadow: var(--shadow);
+  border-radius: 1rem;
   animation: fadeIn 0.2s ease-in 0.2s forwards;
   opacity: 0;
 }
@@ -35,4 +35,10 @@
 
 .Info-tags {
   text-transform: lowercase;
+  line-height: 1.7em;
+  white-space: normal;
+}
+
+.Info-tags a {
+  display: inline-block;
 }

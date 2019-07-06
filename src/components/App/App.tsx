@@ -19,7 +19,11 @@ const App: React.FC = () => {
     <Taxonomy>
       {({ requestStatus: { pending, fulfilled, rejected } }) => {
         if (rejected) {
-          return <b>Не могу загрузить</b>
+          return (
+            <div className="App-loading">
+              <button onClick={() => window.location.reload()}>не могу загрузить</button>
+            </div>
+          )
         }
         return pending ? (
           <div className="App-loading">
@@ -30,18 +34,11 @@ const App: React.FC = () => {
             <IntlProvider locale="ru" defaultLocale="ru" textComponent={Fragment}>
               <BrowserRouter>
                 <PencilInfo />
-
                 <section className="App-block">
                   <Filter />
                 </section>
 
-                {filter.tag ? (
-                  <section className="App-block">
-                    <TagHeader />
-                  </section>
-                ) : (
-                  <Map />
-                )}
+                <section className="App-block">{filter.tag ? <TagHeader /> : <Map />}</section>
 
                 <section className="App-block">
                   <Gallery />

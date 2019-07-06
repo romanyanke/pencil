@@ -9,6 +9,9 @@ const Grid: SFC<GridProps> = ({ pencils }) => {
   return (
     <div className="Grid">
       {pencils.map(pencil => {
+        const thumbSize = pencil.preview
+        const fullSize = pencil.photos[0]
+        const useSize = pencil.grid === 1 ? thumbSize : fullSize
         return (
           <a
             href={`?display=${pencil.id}`}
@@ -23,7 +26,7 @@ const Grid: SFC<GridProps> = ({ pencils }) => {
             key={pencil.id}
             title={pencil.title}
           >
-            <img alt={pencil.title} src={pencil.grid === 1 ? pencil.preview : pencil.photos[0]} />
+            <img srcSet={`${useSize}, ${fullSize} 2x`} alt={pencil.title} src={useSize} />
           </a>
         )
       })}

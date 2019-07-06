@@ -14,9 +14,13 @@ const PencilInfo: SFC<PencilInfoProps> = () => {
         {({ pencil }) => {
           if (pencil) {
             return (
-              <div className="PencilInfo-backdrop" onClick={closePencilInfo}>
+              <>
+                <div className="PencilInfo-backdrop" onClick={closePencilInfo} />
                 <Info pencil={pencil} />
-              </div>
+                <button onClick={closePencilInfo} className="PencilInfo-close">
+                  ⓧ
+                </button>
+              </>
             )
           }
           return null

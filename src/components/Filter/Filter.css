@@ -9,6 +9,18 @@
   white-space: nowrap;
 }
 
+.Filter-Globe {
+  padding-right: 0.6rem;
+}
+
+.Filter-clear-button {
+  font-size: 24px;
+  background-color: transparent;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 900px) {
   .Filter {
     flex-direction: column;
@@ -17,6 +29,14 @@
   .Filter-control {
     white-space: normal;
     flex: 1 1 auto;
+    width: 100%;
+  }
+  .Filter-Globe {
+    padding: 0;
+    display: block;
+  }
+  .Filter-clear-button {
+    text-align: center;
     width: 100%;
   }
 }
@@ -32,14 +52,6 @@
   width: 100%;
 }
 
-.Filter-clear-button {
-  font-size: 24px;
-  background-color: transparent;
-  text-align: left;
-  border: none;
-  cursor: pointer;
-}
-
-.Filter-Globe {
-  padding-right: 0.6rem;
+.Filter-span {
+  white-space: nowrap;
 }

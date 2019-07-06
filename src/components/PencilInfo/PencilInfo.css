@@ -7,3 +7,25 @@
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.PencilInfo-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 7;
+  font-size: 30px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  animation: PencilInfo-close-appear 0.2s ease-in 1s forwards;
+  opacity: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes PencilInfo-close-appear {
+  to {
+    opacity: 1;
+  }
+}

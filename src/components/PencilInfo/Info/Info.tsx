@@ -9,10 +9,10 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
 
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+      e.stopPropagation()
       const targetElement = e.target as HTMLElement
 
       if (targetElement.tagName === 'A') {
-        e.stopPropagation()
         const link = targetElement.getAttribute('href')
         if (link) {
           const filterFromLink = getFilterFromLink(link)
@@ -33,32 +33,34 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
         {pencil.country.name}, {pencil.city}
       </h2>
 
-      <p className="Info-tags">
-        {pencil.tags.map((tag, index) => {
-          return (
-            <span key={`${index}/${tag}`}>
-              #
-              <a
-                href={`?tag=${tag}`}
-                onClick={e => {
-                  e.preventDefault()
-                  setFilter({ tag, display: '', country: '' })
-                }}
-              >
-                {tag}
-              </a>{' '}
-            </span>
-          )
-        })}
-      </p>
       <article
         className="Pencil-content"
         dangerouslySetInnerHTML={{ __html: pencil.content }}
         onClick={handlePseudoLink}
       />
       <p>
-        {pencil.photos.map(src => {
-          return <img className="Info-photo" alt={pencil.title} key={src} src={src} />
+        {pencil.photos.map(src => (
+          <img key={src} className="Info-photo" alt={pencil.title} src={src} />
+        ))}
+      </p>
+
+      <hr />
+      <p className="Info-tags">
+        {pencil.tags.map((tag, index) => {
+          return (
+            <span key={`${index}/${tag}`}>
+              <a
+                className="Info-tag"
+                href={`?tag=${tag}`}
+                onClick={e => {
+                  e.preventDefault()
+                  setFilter({ ...getEmptyFilter(), tag })
+                }}
+              >
+                #{tag}
+              </a>{' '}
+            </span>
+          )
         })}
       </p>
     </div>

@@ -12,7 +12,6 @@ import Grid from './Grid'
 const Gallery: FC = () => {
   const [filter] = useFilter()
   const [queries, setQueries] = useState<PencilQuery[]>([])
-  const [loading, setLoading] = useState(false)
   const lastQuery = queries[queries.length - 1]
   const cached = useCached(lastQuery)
   const nextPageNumber = cached ? getNextPageNumberFromPages(cached.pages) : null
@@ -40,7 +39,7 @@ const Gallery: FC = () => {
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [queries, nextPageNumber, loading, filter])
+  }, [queries, nextPageNumber, filter])
 
   return (
     <Pencil queries={queries}>

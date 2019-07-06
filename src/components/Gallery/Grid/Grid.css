@@ -15,7 +15,7 @@
   grid-row-end: span 3;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
   .Grid {
     grid-template-columns: repeat(auto-fill, minmax(30vh, 1fr));
     grid-auto-rows: minmax(30vh, auto);
@@ -29,8 +29,6 @@
 }
 
 .GridItem {
-  position: relative;
-  z-index: 1;
   cursor: pointer;
   transition: transform 0.15s ease-in;
 }
