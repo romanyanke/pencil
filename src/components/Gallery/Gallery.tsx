@@ -1,6 +1,7 @@
 import { throttle } from 'lodash'
 import React, { FC, useEffect, useState } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
+import Loader from '../Loader'
 import Pencil from '../Pencil'
 import { useCached } from '../Pencil/Pancil.hooks'
 import { PencilQuery } from '../Pencil/Pencil.interface'
@@ -43,7 +44,21 @@ const Gallery: FC = () => {
     }
   }, [queries, nextPageNumber, loading, filter])
 
-  return <Pencil queries={queries}>{({ pencils }) => <Grid pencils={pencils} />}</Pencil>
+  return (
+    <Pencil queries={queries}>
+      {({ pencils }) => (
+        <>
+          <Grid pencils={pencils} />
+
+          {nextPageNumber ? (
+            <div className="Gallery-loading">
+              <Loader />
+            </div>
+          ) : null}
+        </>
+      )}
+    </Pencil>
+  )
 }
 
 export default Gallery

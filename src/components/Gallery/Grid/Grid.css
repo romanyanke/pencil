@@ -51,3 +51,8 @@
   transform: scale(1.02);
   z-index: 3;
 }
+
+.Gallery-loading {
+  margin: 10rem auto;
+  text-align: center;
+}

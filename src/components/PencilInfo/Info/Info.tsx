@@ -33,7 +33,7 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
         {pencil.country.name}, {pencil.city}
       </h2>
 
-      <p>
+      <p className="Info-tags">
         {pencil.tags.map((tag, index) => {
           return (
             <span key={`${index}/${tag}`}>
