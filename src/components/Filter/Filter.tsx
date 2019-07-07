@@ -15,6 +15,8 @@ const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ hi
   const { countries, pencilCount } = useTaxonomy()
   const [filter, setFilter] = useFilter()
   const cached = useCached()
+  const isCountryFiltered = Boolean(filter.country)
+  const select = useRef<HTMLSelectElement>(null)
 
   useEffect(() => {
     if (mapFilterToQueryString(filter) !== window.location.search) {
@@ -30,9 +32,6 @@ const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ hi
     })
     return unlisten
   }, [filter, history, setFilter])
-
-  const isCountryFiltered = Boolean(filter.country)
-  const select = useRef<HTMLSelectElement>(null)
 
   return (
     <div className="Filter">
@@ -61,7 +60,10 @@ const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ hi
               ),
               countries: (
                 <span className="Filter-span">
-                  <FormattedMessage {...appMessages.country} values={{ count: countries.length }} />
+                  <FormattedMessage
+                    {...appMessages.country}
+                    values={{ count: countries.length + 1 }}
+                  />
                 </span>
               ),
             }}

@@ -25,7 +25,6 @@ export default createReducer<StoreTaxonomy, Actions>(initialState)
     requestStatus: getRequestStatus().pending,
   }))
   .handleAction(requestTaxonomy.success, (state, { payload }) => ({
-    ...state,
     countries: payload.taxonomy.countries,
     requestStatus: getRequestStatus().fulfilled,
     tags: payload.taxonomy.tags,
