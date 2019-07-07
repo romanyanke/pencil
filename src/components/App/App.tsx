@@ -38,7 +38,13 @@ const App: React.FC = () => {
                   <Filter />
                 </section>
 
-                <section className="App-block">{filter.tag ? <TagHeader /> : <Map />}</section>
+                {filter.tag ? (
+                  <section className="App-block">
+                    <TagHeader />
+                  </section>
+                ) : (
+                  <Map />
+                )}
 
                 <section className="App-block">
                   <Gallery />
