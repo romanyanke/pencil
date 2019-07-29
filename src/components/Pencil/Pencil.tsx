@@ -1,8 +1,8 @@
 import { isUndefined } from 'lodash'
 import React, { SFC, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNormalizedPencils, usePecnilRequestStatus, usePencilCache } from './Pancil.hooks'
 import { requestPencilList, requestSinglePencil } from './Pencil.actions'
+import { useNormalizedPencils, usePecnilRequestStatus, usePencilCache } from './Pencil.hooks'
 import { Pencil as PencilInterface, PencilProps, PencilQuery } from './Pencil.interface'
 import { getPencilsFromCacheByQuery, mapRequestToCacheId } from './Pencil.utils'
 

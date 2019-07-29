@@ -1,44 +1,9 @@
-.Info {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  left: 1rem;
-  z-index: 6;
-  background: #fff;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 1rem;
-  box-shadow: var(--shadow);
-  border-radius: 1rem;
-  animation: fadeIn 0.2s ease-in 0.2s forwards;
-  opacity: 0;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 .Info-photo {
   display: block;
   margin: 0 auto;
-  max-height: calc(100vh - 4rem);
   max-width: 100%;
 }
 
-.Info-tags {
-  text-transform: lowercase;
-  line-height: 1.7em;
-  white-space: normal;
-}
-
-.Info-tags a {
-  display: inline-block;
+.Info-content {
+  padding: 1rem;
 }

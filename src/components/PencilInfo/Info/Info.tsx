@@ -6,7 +6,6 @@ import { getFilterFromLink } from './Info.utils'
 
 const Info: SFC<InfoProps> = ({ pencil }) => {
   const [, setFilter] = useFilter()
-
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation()
@@ -28,40 +27,18 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
 
   return (
     <div className="Info">
-      <h1>{pencil.title}</h1>
-      <h2>
-        {pencil.country.name}, {pencil.city}
-      </h2>
+      <div className="Info-content">
+        <h1>{pencil.title}</h1>
+        <h2>
+          {pencil.country.name}, {pencil.city}
+        </h2>
 
-      <article
-        className="Pencil-content"
-        dangerouslySetInnerHTML={{ __html: pencil.content }}
-        onClick={handlePseudoLink}
-      />
+        <article dangerouslySetInnerHTML={{ __html: pencil.content }} onClick={handlePseudoLink} />
+      </div>
       <p>
         {pencil.photos.map(src => (
           <img key={src} className="Info-photo" alt={pencil.title} src={src} />
         ))}
-      </p>
-
-      <hr />
-      <p className="Info-tags">
-        {pencil.tags.map((tag, index) => {
-          return (
-            <span key={`${index}/${tag}`}>
-              <a
-                className="Info-tag"
-                href={`?tag=${tag}`}
-                onClick={e => {
-                  e.preventDefault()
-                  setFilter({ ...getEmptyFilter(), tag })
-                }}
-              >
-                #{tag}
-              </a>{' '}
-            </span>
-          )
-        })}
       </p>
     </div>
   )

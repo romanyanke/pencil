@@ -2,7 +2,7 @@ import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import { appMessages } from '../../App/App.messages'
 import { useFilter } from '../../Filter/Filter.hooks'
-import { useCached } from '../../Pencil/Pancil.hooks'
+import { useCached } from '../../Pencil/Pencil.hooks'
 import messages from './TagHeader.messages'
 
 const TagHeader = () => {
