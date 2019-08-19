@@ -35,11 +35,11 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
 
         <article dangerouslySetInnerHTML={{ __html: pencil.content }} onClick={handlePseudoLink} />
       </div>
-      <p>
-        {pencil.photos.map(src => (
-          <img key={src} className="Info-photo" alt={pencil.title} src={src} />
-        ))}
-      </p>
+      {pencil.photos.map(src => (
+        <div key={src} className="Info-frame">
+          <img className="Info-photo" alt={pencil.title} src={src} />
+        </div>
+      ))}
     </div>
   )
 }

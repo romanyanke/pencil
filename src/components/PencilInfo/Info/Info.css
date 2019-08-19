@@ -1,7 +1,13 @@
+.Info-frame {
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+
 .Info-photo {
+  position: absolute;
   display: block;
-  margin: 0 auto;
-  max-width: 100%;
+  width: 100%;
 }
 
 .Info-content {
