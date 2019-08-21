@@ -1,6 +1,6 @@
 import { Location } from 'history'
 import React, { ChangeEvent, SFC, useEffect, useRef } from 'react'
-import { FormattedMessage, InjectedIntlProps, injectIntl } from 'react-intl'
+import { FormattedMessage, useIntl } from 'react-intl'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { appMessages } from '../App/App.messages'
 import { useCached } from '../Pencil/Pencil.hooks'
@@ -11,8 +11,9 @@ import messages from './Filter.messages'
 import { mapFilterToQueryString, mapQueryStringToFilter } from './Filter.utils'
 import Globe from './Globe'
 
-const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ history, intl }) => {
+const Filter: SFC<FilterProps & RouteComponentProps> = ({ history }) => {
   const { countries, pencilCount } = useTaxonomy()
+  const intl = useIntl()
   const [filter, setFilter] = useFilter()
   const cached = useCached()
   const isCountryFiltered = Boolean(filter.country)
@@ -104,4 +105,4 @@ const Filter: SFC<FilterProps & RouteComponentProps & InjectedIntlProps> = ({ hi
   )
 }
 
-export default injectIntl(withRouter(Filter))
+export default withRouter(Filter)

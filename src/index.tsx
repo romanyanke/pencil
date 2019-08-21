@@ -5,6 +5,11 @@ import App from './components/App'
 import './index.css'
 import store from './store'
 
+if (!Intl.PluralRules) {
+  // tslint:disable-next-line: no-var-requires
+  require('intl-pluralrules')
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
