@@ -1,5 +1,5 @@
 import React from 'react'
-import { IntlProvider } from 'react-intl'
+import { FormattedMessage, IntlProvider } from 'react-intl'
 import { BrowserRouter } from 'react-router-dom'
 import Filter from '../Filter'
 import { useFilter } from '../Filter/Filter.hooks'
@@ -9,28 +9,32 @@ import Map from '../Map'
 import PencilInfo from '../PencilInfo'
 import TagHeader from '../PencilInfo/TagHeader'
 import Taxonomy from '../Taxonomy'
+import { appMessages } from './App.messages'
 
 const App: React.FC = () => {
   const [filter] = useFilter()
   return (
-    <Taxonomy>
-      {({ requestStatus: { pending, fulfilled, rejected } }) => {
-        if (rejected) {
-          return (
+    <IntlProvider locale="ru" defaultLocale="ru">
+      <Taxonomy>
+        {({ requestStatus: { pending, fulfilled, rejected } }) => {
+          if (rejected) {
+            return (
+              <div className="App-loading">
+                <button onClick={() => window.location.reload()}>
+                  <FormattedMessage {...appMessages.error} />
+                </button>
+              </div>
+            )
+          }
+          return pending ? (
             <div className="App-loading">
-              <button onClick={() => window.location.reload()}>не могу загрузить</button>
+              <Loader />
             </div>
-          )
-        }
-        return pending ? (
-          <div className="App-loading">
-            <Loader />
-          </div>
-        ) : fulfilled ? (
-          <div className="App">
-            <IntlProvider locale="ru" defaultLocale="ru">
+          ) : fulfilled ? (
+            <div className="App">
               <BrowserRouter>
                 <PencilInfo />
+
                 <section className="App-block">
                   <Filter />
                 </section>
@@ -47,11 +51,11 @@ const App: React.FC = () => {
                   <Gallery />
                 </section>
               </BrowserRouter>
-            </IntlProvider>
-          </div>
-        ) : null
-      }}
-    </Taxonomy>
+            </div>
+          ) : null
+        }}
+      </Taxonomy>
+    </IntlProvider>
   )
 }
 

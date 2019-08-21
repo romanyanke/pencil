@@ -81,7 +81,7 @@ const Filter: SFC<FilterProps & RouteComponentProps> = ({ history }) => {
           }
         >
           <option key="empty-country" value="">
-            Все страны
+            {intl.formatMessage(messages.all)}
           </option>
           {countries.map(country => {
             const isCurrent = filter.country === country.name

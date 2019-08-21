@@ -10,4 +10,9 @@ export default defineMessages({
     defaultMessage: `{country}: {pencils}`,
     id: 'Filter.current',
   },
+
+  all: {
+    defaultMessage: 'Все страны',
+    id: 'Filter.all',
+  },
 })

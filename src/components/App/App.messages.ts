@@ -18,4 +18,9 @@ export const appMessages = defineMessages({
     }`,
     id: 'App.country',
   },
+
+  error: {
+    defaultMessage: 'не могу загрузить',
+    id: 'App.error',
+  },
 })
