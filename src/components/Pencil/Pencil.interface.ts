@@ -73,7 +73,7 @@ export interface Pencil {
   content: string
   count: number
   grid: 1 | 2 | 3
-  country: PencilCountry
+  country: Pick<PencilCountry, 'id' | 'name'>
   geo: string
   id: string
   map: PencilMap | null
