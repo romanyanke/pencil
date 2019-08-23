@@ -6,6 +6,7 @@ import { useFilter } from '../Filter/Filter.hooks'
 import Gallery from '../Gallery'
 import Loader from '../Loader'
 import Map from '../Map'
+import PageTitle from '../PageTitle'
 import PencilInfo from '../PencilInfo'
 import TagHeader from '../PencilInfo/TagHeader'
 import Taxonomy from '../Taxonomy'
@@ -33,6 +34,8 @@ const App: React.FC = () => {
           ) : fulfilled ? (
             <div className="App">
               <BrowserRouter>
+                <PageTitle />
+
                 <PencilInfo />
 
                 <section className="App-block">

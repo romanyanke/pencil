@@ -1,27 +1,23 @@
+import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { AppStore } from '../../store'
+import { PencilCountry } from './../Pencil/Pencil.interface'
 import { TaxonomyAppStore } from './Taxonomy.interface'
 
 export const useTaxonomy = () => useSelector<AppStore, TaxonomyAppStore>(store => store.taxonomy)
 export const useTaxonomyRequestStatus = () => useTaxonomy().requestStatus
-export const useCountries = () => useTaxonomy().countries
 
-export const useCountriesNormalizedByGeoId = () =>
-  useCountries().reduce<Record<string, string>>(
-    (normalized, country) => ({
-      ...normalized,
-      [country.id]: country.name,
-    }),
-    {},
+export const useCountriesNormalizedBy = <K extends keyof PencilCountry>(field: K) => {
+  const { countries } = useTaxonomy()
+  return useMemo(
+    () =>
+      countries.reduce<Record<string, PencilCountry>>(
+        (normalized, country) => ({
+          ...normalized,
+          [country[field]]: country,
+        }),
+        {},
+      ),
+    [countries, field],
   )
-
-export const useCountriesNormalizedByName = () =>
-  useCountries().reduce<Record<string, string>>(
-    (normalized, country) => ({
-      ...normalized,
-      [country.name]: country.id,
-    }),
-    {},
-  )
-
-export const useTags = () => useTaxonomy().tags
+}

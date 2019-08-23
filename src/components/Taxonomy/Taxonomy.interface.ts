@@ -4,11 +4,11 @@ import { PencilCountry } from '../Pencil/Pencil.interface'
 
 export type TaxonomyProps = TaxonomyOwnProps
 
-export interface TaxonomyOwnProps {
+interface TaxonomyOwnProps {
   children(injectedProps: TaxonomyInjectedProps): ReactNode
 }
 
-export interface TaxonomyInjectedProps {
+interface TaxonomyInjectedProps {
   requestStatus: RequestStatus
 }
 

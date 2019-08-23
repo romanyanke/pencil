@@ -21,13 +21,13 @@
     "qs": "^6.7.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
     "react-intl": "^3.1.9",
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "react-simple-maps": "^0.12.1",
-    "react-window-infinite-loader": "^1.0.3",
     "redux": "^4.0.1",
     "redux-devtools": "^3.5.0",
     "redux-devtools-extension": "^2.13.8",
@@ -60,9 +60,11 @@
     ]
   },
   "devDependencies": {
+    "@types/react-helmet": "^5.0.9",
     "@types/react-simple-maps": "^0.12.2",
     "@typescript-eslint/eslint-plugin": "^1.10.2",
     "gh-pages": "^2.0.1",
+    "prettier": "^1.18.2",
     "tslint-react-hooks": "^2.2.1"
   }
 }

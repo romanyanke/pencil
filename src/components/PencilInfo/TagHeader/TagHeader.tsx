@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { appMessages } from '../../App/App.messages'
 import { useFilter } from '../../Filter/Filter.hooks'
-import { useCached } from '../../Pencil/Pencil.hooks'
+import { useCached, usePecnilRequestStatus } from '../../Pencil/Pencil.hooks'
 import messages from './TagHeader.messages'
 
 const TagHeader = () => {
   const [filter, setFilter] = useFilter()
   const cache = useCached()
+  const requestStatus = usePecnilRequestStatus()
+  const dropTag = useCallback(() => setFilter({ tag: '' }), [setFilter])
+
+  useEffect(() => {
+    if (requestStatus.rejected) {
+      dropTag()
+    }
+  }, [dropTag, requestStatus])
+
   return (
-    <button onClick={() => setFilter({ tag: '' })} className="TagHeader-drop">
+    <button onClick={dropTag} className="TagHeader-drop">
       {cache ? (
         <FormattedMessage
           tagName="h3"
@@ -21,9 +30,7 @@ const TagHeader = () => {
             ),
           }}
         />
-      ) : (
-        'x'
-      )}
+      ) : null}
     </button>
   )
 }

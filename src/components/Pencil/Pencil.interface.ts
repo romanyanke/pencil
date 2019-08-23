@@ -2,24 +2,24 @@ import { ReactNode } from 'react'
 import { RequestStatus } from './../../modules/requestStatus'
 export type PencilProps = PencilOwnPropsSingle | PencilOwnPropsList
 
-export interface PencilOwnProps {
+interface PencilOwnProps {
   id?: string
   query?: PencilQuery
   queries?: PencilQuery[]
   children(injectedProps: PencilInjectedProps): ReactNode
 }
 
-export interface PencilOwnPropsSingle extends PencilOwnProps {
+interface PencilOwnPropsSingle extends PencilOwnProps {
   id: string
 }
 
-export interface PencilOwnPropsList extends PencilOwnProps {
+interface PencilOwnPropsList extends PencilOwnProps {
   query?: PencilQuery
   queries?: PencilQuery[]
 }
 
 export type PencilQuery = Partial<PencilQueryFields>
-export interface PencilQueryFields {
+interface PencilQueryFields {
   page: number
   tag: string
   country: string
@@ -43,11 +43,6 @@ export interface PencilListResponse {
   data: Pencil[]
 }
 
-export interface PencilCacheNormalizeInput {
-  pencils: Pencil[]
-  cacheId: string
-}
-
 export interface PencilAppStore {
   requestStatus: RequestStatus
   cache: Partial<PencilCache>
@@ -62,7 +57,7 @@ export interface PencilCacheItem {
   pages: PencilPages
 }
 
-export interface PencilInjectedProps {
+interface PencilInjectedProps {
   requestStatus: RequestStatus
   pencils: Pencil[]
   pencil?: Pencil
@@ -73,7 +68,7 @@ export interface Pencil {
   content: string
   count: number
   grid: 1 | 2 | 3
-  country: PencilCountry
+  country: Pick<PencilCountry, 'id' | 'name'>
   geo: string
   id: string
   map: PencilMap | null
@@ -89,7 +84,7 @@ export interface PencilCountry {
   flag: string
 }
 
-export interface PencilMap {
+interface PencilMap {
   lat: number
   lng: number
 }
