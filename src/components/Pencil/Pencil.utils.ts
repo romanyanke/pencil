@@ -10,7 +10,7 @@ import {
   PencilsNormalized,
 } from './Pencil.interface'
 
-export const getEmptyPencilCacheItem = (): PencilCacheItem => ({
+const getEmptyPencilCacheItem = (): PencilCacheItem => ({
   ids: [],
   pages: {
     page: 0,
@@ -66,9 +66,6 @@ export const mapRequestToCacheId = (request: PencilRequest): string => {
 
   return cahceIdParts.join('|')
 }
-
-export const mapQueriesToCacheId = (queries: PencilQuery[]): string =>
-  queries.map(query => mapRequestToCacheId({ query })).join('+')
 
 interface CacheAndNormalize {
   cache: PencilCache

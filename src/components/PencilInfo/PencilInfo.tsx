@@ -2,9 +2,8 @@ import React, { SFC, useEffect } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import Pencil from '../Pencil'
 import Info from './Info'
-import { PencilInfoProps } from './PencilInfo.interface'
 
-const PencilInfo: SFC<PencilInfoProps> = () => {
+const PencilInfo = () => {
   const [filter, setFilter] = useFilter()
   const { display } = filter
   const closePencilInfo = () => setFilter({ display: '' })

@@ -1,6 +1,6 @@
 export type FilterProps = FilterOwnProps
 
-export interface FilterOwnProps {
+interface FilterOwnProps {
   queryStringFilter?: Filter
 }
 
