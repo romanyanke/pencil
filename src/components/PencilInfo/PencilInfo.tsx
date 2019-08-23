@@ -1,4 +1,4 @@
-import React, { SFC, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import Pencil from '../Pencil'
 import Info from './Info'
