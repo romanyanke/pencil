@@ -32,16 +32,9 @@
   cursor: pointer;
   transition: transform 0.15s ease-in;
 }
-.GridItem:active {
-  transform: scale(0.99);
-}
+
 .GridItem:focus {
   z-index: 2;
-}
-
-.GridItem img {
-  width: 100%;
-  height: 100%;
 }
 
 .GridItem:hover {
@@ -52,6 +45,11 @@
 
 .GridItem:active {
   transform: scale(0.98);
+}
+
+.GridItem img {
+  width: 100%;
+  height: 100%;
 }
 
 .Gallery-loading {
