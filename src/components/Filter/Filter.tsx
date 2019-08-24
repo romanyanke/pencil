@@ -16,7 +16,7 @@ const Filter: SFC<FilterProps & RouteComponentProps> = ({ history }) => {
   const intl = useIntl()
   const [filter, setFilter] = useFilter()
   const cached = useCached()
-  const isCountryFiltered = Boolean(filter.country)
+  const isFiltered = Boolean(filter.country || filter.tag)
   const select = useRef<HTMLSelectElement>(null)
 
   useEffect(() => {
@@ -40,8 +40,8 @@ const Filter: SFC<FilterProps & RouteComponentProps> = ({ history }) => {
         <button
           className="Filter-clear-button"
           onClick={() => {
-            if (isCountryFiltered) {
-              setFilter({ country: '' })
+            if (isFiltered) {
+              setFilter({ country: '', tag: '' })
             }
             if (select.current) {
               select.current.focus()
@@ -49,7 +49,7 @@ const Filter: SFC<FilterProps & RouteComponentProps> = ({ history }) => {
           }}
         >
           <span className="Filter-Globe">
-            <Globe animated={isCountryFiltered} />
+            <Globe animated={isFiltered} />
           </span>
           <FormattedMessage
             {...messages.title}

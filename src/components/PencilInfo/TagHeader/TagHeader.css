@@ -8,3 +8,10 @@
 .TagHeader-drop:hover {
   text-decoration: line-through;
 }
+
+@media screen and (max-width: 900px) {
+  .TagHeader-drop {
+    width: 100%;
+    text-align: center;
+  }
+}
