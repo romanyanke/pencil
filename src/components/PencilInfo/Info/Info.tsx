@@ -1,11 +1,14 @@
 import React, { SFC, useCallback } from 'react'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
+import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 import { InfoProps } from './Info.interface'
 import { getFilterFromLink } from './Info.utils'
 
 const Info: SFC<InfoProps> = ({ pencil }) => {
   const [, setFilter] = useFilter()
+  const flag = usePencilFlag(pencil)
+  const location = [pencil.country.name, pencil.city].filter(Boolean).join(', ')
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation()
@@ -30,7 +33,7 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
       <div className="Info-content">
         <h1>{pencil.title}</h1>
         <h2>
-          {pencil.country.name}, {pencil.city}
+          {flag} {location}
         </h2>
 
         <article dangerouslySetInnerHTML={{ __html: pencil.content }} onClick={handlePseudoLink} />

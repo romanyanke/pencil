@@ -50,6 +50,10 @@
   z-index: 3;
 }
 
+.GridItem:active {
+  transform: scale(0.98);
+}
+
 .Gallery-loading {
   margin: 10rem auto;
   text-align: center;
