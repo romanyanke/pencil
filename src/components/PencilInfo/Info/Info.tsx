@@ -1,8 +1,10 @@
 import React, { SFC, useCallback } from 'react'
+import { FormattedMessage } from 'react-intl'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 import { InfoProps } from './Info.interface'
+import messages from './Info.messages'
 import { getFilterFromLink } from './Info.utils'
 
 const Info: SFC<InfoProps> = ({ pencil }) => {
@@ -37,6 +39,14 @@ const Info: SFC<InfoProps> = ({ pencil }) => {
         </h2>
 
         <article dangerouslySetInnerHTML={{ __html: pencil.content }} onClick={handlePseudoLink} />
+
+        <p>
+          <FormattedMessage
+            tagName="b"
+            {...messages.photo}
+            values={{ count: pencil.photos.length }}
+          />
+        </p>
       </div>
       {pencil.photos.map(src => (
         <div key={src} className="Info-frame">
