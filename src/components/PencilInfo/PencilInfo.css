@@ -12,6 +12,16 @@ body.no-scroll {
   background-color: rgba(0, 0, 0, 0.3);
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
+  animation: pencil-backdrop-fade-in 0.2s ease-in;
+}
+
+@keyframes pencil-backdrop-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .PencilInfo-content {
@@ -20,6 +30,17 @@ body.no-scroll {
   border-radius: 1rem;
   margin: 2rem auto;
   overflow: hidden;
+  animation: pencil-content-roll-out 0.2s ease-in;
+  will-change: transform;
+}
+
+@keyframes pencil-content-roll-out {
+  from {
+    transform: scale(0.98) translateY(10px);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
 }
 
 @media (orientation: landscape) {
@@ -30,6 +51,6 @@ body.no-scroll {
 
 @media (orientation: portrait) {
   .PencilInfo-content {
-    max-width: 80vw;
+    max-width: 90vw;
   }
 }
