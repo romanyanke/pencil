@@ -5,9 +5,17 @@
   },
 
   "rules": {
-    "no-console": false,
-    "interface-name": false,
-    "object-literal-sort-keys": false,
-    "no-unused-variable": [true, { "ignore-pattern": "^_" }]
+    "no-console": [true, "log"],
+    "jsx-boolean-value": false,
+    "interface-name": [true, "never-prefix"],
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false,
+    "only-arrow-functions": true,
+    "no-duplicate-switch-case": true,
+    "arrow-return-shorthand": [true, "multiline"],
+    "no-unnecessary-callback-wrapper": true,
+    "ordered-imports": true,
+    "eofline": true,
+    "object-literal-sort-keys": false
   }
 }
