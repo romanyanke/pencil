@@ -36,7 +36,8 @@ const Map = () => {
                   style={mapGeoIdToStyle({ hasPencil, isSelected })}
                 />
               )
-            })}
+            })
+          }
         </Geographies>
       </ComposableMap>
     </div>
