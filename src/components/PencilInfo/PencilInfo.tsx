@@ -18,15 +18,14 @@ const PencilInfo = () => {
 
   return display ? (
     <Pencil id={display}>
-      {({ pencil }) => {
-        return pencil ? (
+      {({ pencil }) =>
+        pencil ? (
           <div className="PencilInfo-backdrop" onClick={closePencilInfo}>
             <div className="PencilInfo-content">
               <Info pencil={pencil} />
             </div>
           </div>
-        ) : null
-      }}
+        ) : null}
     </Pencil>
   ) : null
 }

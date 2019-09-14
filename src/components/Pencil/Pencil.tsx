@@ -14,9 +14,8 @@ const Pencil: SFC<PencilProps> = ({ id, query, queries, children }) => {
   const normalized = useNormalizedPencils()
   const pencil = id ? normalized[id] : undefined
   const targetQueries = query ? [query] : queries ? queries : []
-  const pencils = targetQueries.reduce<PencilInterface[]>((acc, query) => {
-    return [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)]
-  }, [])
+  const pencils = targetQueries.reduce<PencilInterface[]>((acc, query) =>
+    [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)], [])
 
   useEffect(() => {
     const isNotCached = (query: PencilQuery) => isUndefined(cache[mapRequestToCacheId({ query })])

@@ -19,8 +19,8 @@ const Map = () => {
         }}
       >
         <Geographies geography={geography} disableOptimization>
-          {(geographies, projection) => {
-            return geographies.map((geo, index) => {
+          {(geographies, projection) =>
+            geographies.map((geo, index) => {
               // TODO @types/react-simple-maps type issue
               const geoId = (geo as any).id
               const country = normalizedIds[geoId] ? normalizedIds[geoId].name : null
@@ -36,8 +36,7 @@ const Map = () => {
                   style={mapGeoIdToStyle({ hasPencil, isSelected })}
                 />
               )
-            })
-          }}
+            })}
         </Geographies>
       </ComposableMap>
     </div>
