@@ -10,4 +10,9 @@ export default defineMessages({
     defaultMessage: '{flag} {title}, {country}',
     id: 'PageTitle.pencil',
   },
+
+  country: {
+    defaultMessage: '{flag} {country}. {pencils}',
+    id: 'PageTitle.country',
+  },
 })
