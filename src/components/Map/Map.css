@@ -1,6 +1,8 @@
 .Map {
-  background: #f8f8f8;
+  background: rgba(47, 156, 208, 0.12);
+  box-shadow: inset 0 0 50px rgba(0, 64, 105, 0.1);
 }
+
 .Map-block {
   display: block;
   margin: 0 auto;
