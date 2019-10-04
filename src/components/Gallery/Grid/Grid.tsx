@@ -1,9 +1,9 @@
 import classNames from 'classnames'
-import React, { SFC } from 'react'
+import React from 'react'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { GridProps } from './Grid.interface'
 
-const Grid: SFC<GridProps> = ({ pencils }) => {
+const Grid = ({ pencils }: GridProps) => {
   const [, setFilter] = useFilter()
 
   return (

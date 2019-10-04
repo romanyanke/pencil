@@ -1,10 +1,10 @@
-import React, { SFC, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { requestTaxonomy } from './Taxonomy.actions'
 import { useTaxonomyRequestStatus } from './Taxonomy.hooks'
 import { TaxonomyProps } from './Taxonomy.interface'
 
-const Taxonomy: SFC<TaxonomyProps> = ({ children }) => {
+const Taxonomy = ({ children }: TaxonomyProps) => {
   const dispatch = useDispatch()
   const requestStatus = useTaxonomyRequestStatus()
 

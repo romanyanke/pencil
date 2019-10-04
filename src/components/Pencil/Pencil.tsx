@@ -1,5 +1,5 @@
 import { isUndefined } from 'lodash'
-import React, { SFC, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { requestPencilList, requestSinglePencil } from './Pencil.actions'
 import { useNormalizedPencils, usePecnilRequestStatus, usePencilCache } from './Pencil.hooks'
@@ -7,15 +7,17 @@ import { Pencil as PencilInterface, PencilProps, PencilQuery } from './Pencil.in
 import { getPencilsFromCacheByQuery, mapRequestToCacheId } from './Pencil.utils'
 
 // tslint:disable: no-shadowed-variable
-const Pencil: SFC<PencilProps> = ({ id, query, queries, children }) => {
+const Pencil = ({ id, query, queries, children }: PencilProps) => {
   const dispatch = useDispatch()
   const requestStatus = usePecnilRequestStatus()
   const cache = usePencilCache()
   const normalized = useNormalizedPencils()
   const pencil = id ? normalized[id] : undefined
   const targetQueries = query ? [query] : queries ? queries : []
-  const pencils = targetQueries.reduce<PencilInterface[]>((acc, query) =>
-    [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)], [])
+  const pencils = targetQueries.reduce<PencilInterface[]>(
+    (acc, query) => [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)],
+    [],
+  )
 
   useEffect(() => {
     const isNotCached = (query: PencilQuery) => isUndefined(cache[mapRequestToCacheId({ query })])

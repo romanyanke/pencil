@@ -1,4 +1,4 @@
-import React, { SFC, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
@@ -7,7 +7,7 @@ import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
 import { getFilterFromLink } from './Info.utils'
 
-const Info: SFC<InfoProps> = ({ pencil }) => {
+const Info = ({ pencil }: InfoProps) => {
   const [, setFilter] = useFilter()
   const flag = usePencilFlag(pencil)
   const location = [pencil.country.name, pencil.city].filter(Boolean).join(', ')
