@@ -1,9 +1,3 @@
-export type FilterProps = FilterOwnProps
-
-interface FilterOwnProps {
-  queryStringFilter?: Filter
-}
-
 export interface Filter {
   page?: number
   display: string
