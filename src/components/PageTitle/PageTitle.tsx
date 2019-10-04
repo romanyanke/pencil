@@ -1,5 +1,4 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
+import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
 import { appMessages } from '../App/App.messages'
 import { useFilter } from '../Filter/Filter.hooks'
@@ -14,50 +13,28 @@ const PageTitle = () => {
   const normalizedPencils = useNormalizedPencils()
   const normalizedCoutries = useCountriesNormalizedBy('name')
   const pencil = normalizedPencils[filter.display]
+  const flag = normalizedCoutries[filter.country]
+    ? normalizedCoutries[filter.country].flag
+    : undefined
 
-  if (pencil) {
-    const { title, country } = pencil
-    const flag = normalizedCoutries[country.name]
-      ? normalizedCoutries[country.name].flag
-      : undefined
+  const count = filter.country && cached ? cached.pages.pencils : undefined
 
-    return (
-      <Helmet>
-        <title>
-          {intl.formatMessage(messages.pencil, {
-            title,
-            country: country.name,
-            flag,
-          })}
-        </title>
-      </Helmet>
-    )
-  }
+  useEffect(() => {
+    if (pencil && flag) {
+      const { title, country } = pencil
+      document.title = intl.formatMessage(messages.pencil, { title, country: country.name, flag })
+    } else if (filter.country && count) {
+      document.title = intl.formatMessage(messages.country, {
+        flag,
+        country: filter.country,
+        pencils: intl.formatMessage(appMessages.pencil, { count }),
+      })
+    } else {
+      document.title = intl.formatMessage(messages.title)
+    }
+  }, [intl, pencil, count, filter, flag])
 
-  if (filter.country && cached) {
-    const flag = normalizedCoutries[filter.country]
-      ? normalizedCoutries[filter.country].flag
-      : undefined
-    return (
-      <Helmet>
-        <title>
-          {intl.formatMessage(messages.country, {
-            flag,
-            country: filter.country,
-            pencils: intl.formatMessage(appMessages.pencil, {
-              count: cached.pages.pencils,
-            }),
-          })}
-        </title>
-      </Helmet>
-    )
-  }
-
-  return (
-    <Helmet>
-      <title>{intl.formatMessage(messages.title)}</title>
-    </Helmet>
-  )
+  return null
 }
 
 export default PageTitle
