@@ -2,7 +2,7 @@ import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
 import { getRequestStatus } from '../../modules/requestStatus'
 import { TaxonomyAppStore as StoreTaxonomy, TaxonomyResponse } from './Taxonomy.interface'
 
-export const requestTaxonomy = createAsyncAction(
+const requestTaxonomy = createAsyncAction(
   'taxonomy:pending',
   'taxonomy:fulfilled',
   'taxonomy:rejected',
@@ -11,26 +11,29 @@ export const requestTaxonomy = createAsyncAction(
 const initialState: StoreTaxonomy = {
   requestStatus: getRequestStatus().idle,
   pencilCount: 0,
-
   countries: [],
   tags: [],
 }
 
-const actions = { requestTaxonomy }
-type Actions = ActionType<typeof actions>
+export const taxonomyActions = { requestTaxonomy }
+type Actions = ActionType<typeof taxonomyActions>
 
 export default createReducer<StoreTaxonomy, Actions>(initialState)
   .handleAction(requestTaxonomy.request, state => ({
-    ...state,
     requestStatus: getRequestStatus().pending,
+    pencilCount: state.pencilCount,
+    countries: state.countries,
+    tags: state.tags,
   }))
   .handleAction(requestTaxonomy.success, (state, { payload }) => ({
-    countries: payload.taxonomy.countries,
     requestStatus: getRequestStatus().fulfilled,
-    tags: payload.taxonomy.tags,
     pencilCount: payload.meta.pencils,
+    countries: payload.taxonomy.countries,
+    tags: payload.taxonomy.tags,
   }))
   .handleAction(requestTaxonomy.failure, state => ({
-    ...state,
     requestStatus: getRequestStatus().rejected,
+    pencilCount: state.pencilCount,
+    countries: state.countries,
+    tags: state.tags,
   }))

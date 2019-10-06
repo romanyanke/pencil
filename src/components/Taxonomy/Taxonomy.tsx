@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { requestTaxonomy } from './Taxonomy.actions'
+import { taxonomyActions } from './Taxonomy.actions'
 import { useTaxonomyRequestStatus } from './Taxonomy.hooks'
 import { TaxonomyProps } from './Taxonomy.interface'
 
@@ -9,7 +9,7 @@ const Taxonomy = ({ children }: TaxonomyProps) => {
   const requestStatus = useTaxonomyRequestStatus()
 
   useEffect(() => {
-    dispatch(requestTaxonomy.request())
+    dispatch(taxonomyActions.requestTaxonomy.request())
   }, [dispatch])
 
   return <>{children({ requestStatus })}</>

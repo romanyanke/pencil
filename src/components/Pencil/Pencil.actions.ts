@@ -15,44 +15,42 @@ const initialState: PencilAppStore = {
   normalized: {},
 }
 
-export const requestSinglePencil = createAsyncAction(
+const requestSinglePencil = createAsyncAction(
   'pencil-single:pending',
   'pencil-single:fulfilled',
   'pencil-single:rejected',
 )<PencilSingleRequest, PencilSingleResponse, undefined>()
 
-export const requestPencilList = createAsyncAction(
+const requestPencilList = createAsyncAction(
   'pencil-list:pending',
   'pencil-list:fulfilled',
   'pencil-list:rejected',
 )<PencilsListRequest, PencilListResponse, undefined>()
 
-const actions = { requestPencils: requestPencilList, requestPencil: requestSinglePencil }
-type Actions = ActionType<typeof actions>
+export const pencilActions = { requestPencilList, requestSinglePencil }
+type Actions = ActionType<typeof pencilActions>
 
 export default createReducer<PencilAppStore, Actions>(initialState)
   .handleAction([requestPencilList.request, requestSinglePencil.request], state => ({
-    ...state,
     requestStatus: getRequestStatus().pending,
+    cache: state.cache,
+    normalized: state.normalized,
   }))
   .handleAction([requestPencilList.failure, requestSinglePencil.failure], state => ({
-    ...state,
     requestStatus: getRequestStatus().rejected,
+    cache: state.cache,
+    normalized: state.normalized,
   }))
   .handleAction(requestPencilList.success, (state, { payload }) => {
     const { cache, normalized } = getCacheAndNormilizedFromList(payload)
     return {
-      ...state,
       cache: { ...state.cache, ...cache },
       normalized: { ...state.normalized, ...normalized },
       requestStatus: getRequestStatus().fulfilled,
     }
   })
   .handleAction(requestSinglePencil.success, (state, { payload: pencil }) => ({
-    ...state,
-    normalized: {
-      ...state.normalized,
-      [pencil.id]: pencil,
-    },
+    normalized: { ...state.normalized, [pencil.id]: pencil },
     requestStatus: getRequestStatus().fulfilled,
+    cache: state.cache,
   }))
