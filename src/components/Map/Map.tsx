@@ -14,9 +14,7 @@ const Map = () => {
       <ComposableMap
         className="Map-block"
         height={400}
-        projectionConfig={{
-          yOffset: 50,
-        }}
+        projectionConfig={{ yOffset: 50, scale: 150 }}
       >
         <Geographies geography={geography} disableOptimization>
           {(geographies, projection) =>
