@@ -25,6 +25,8 @@
 .GridItem {
   cursor: pointer;
   transition: transform 0.15s ease-in;
+  display: flex;
+  align-items: center;
 }
 
 .GridItem:focus {
@@ -43,7 +45,6 @@
 
 .GridItem img {
   width: 100%;
-  height: 100%;
 }
 
 .Gallery-loading {
