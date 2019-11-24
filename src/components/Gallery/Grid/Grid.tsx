@@ -12,6 +12,7 @@ const Grid = ({ pencils }: GridProps) => {
         const thumbSize = pencil.preview
         const fullSize = pencil.photos[0]
         const useSize = pencil.grid === 1 ? thumbSize : fullSize
+
         return (
           <a
             href={`?display=${pencil.id}`}

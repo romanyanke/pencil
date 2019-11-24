@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
-import Pencil from '../Pencil'
+import { usePencil } from '../Pencil/Pencil.hooks'
 import Info from './Info'
 
 const PencilInfo = () => {
   const [filter, setFilter] = useFilter()
   const { display } = filter
   const closePencilInfo = () => setFilter({ display: '' })
+  const { pencil } = usePencil({ id: display })
 
   useEffect(() => {
     if (display === '') {
@@ -16,17 +17,12 @@ const PencilInfo = () => {
     }
   }, [display])
 
-  return display ? (
-    <Pencil id={display}>
-      {({ pencil }) =>
-        pencil ? (
-          <div className="PencilInfo-backdrop" onClick={closePencilInfo}>
-            <div className="PencilInfo-content">
-              <Info pencil={pencil} />
-            </div>
-          </div>
-        ) : null}
-    </Pencil>
+  return pencil ? (
+    <div className="PencilInfo-backdrop" onClick={closePencilInfo}>
+      <div className="PencilInfo-content">
+        <Info pencil={pencil} />
+      </div>
+    </div>
   ) : null
 }
 

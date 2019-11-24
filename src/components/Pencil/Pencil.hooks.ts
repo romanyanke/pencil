@@ -1,15 +1,22 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { isUndefined } from 'util'
 import { AppStore } from '../../store'
 import { useFilter } from '../Filter/Filter.hooks'
 import { requestFirstPage } from '../Gallery/Gallery.utils'
-import { PencilAppStore, PencilQuery } from './Pencil.interface'
-import { mapRequestToCacheId as mapQueryToCacheId } from './Pencil.utils'
+import { pencilActions } from './Pencil.actions'
+import { Pencil, PencilAppStore, PencilProps, PencilQuery } from './Pencil.interface'
+import {
+  getPencilsFromCacheByQuery,
+  mapRequestToCacheId,
+  mapRequestToCacheId as mapQueryToCacheId,
+} from './Pencil.utils'
 
-const usePencil = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
+const usePencilStore = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
 
-export const usePecnilRequestStatus = () => usePencil().requestStatus
-export const useNormalizedPencils = () => usePencil().normalized
-export const usePencilCache = () => usePencil().cache
+export const usePecnilRequestStatus = () => usePencilStore().requestStatus
+export const useNormalizedPencils = () => usePencilStore().normalized
+export const usePencilCache = () => usePencilStore().cache
 
 export const useCached = (userQuery?: PencilQuery) => {
   const [currentFilter] = useFilter()
@@ -19,4 +26,32 @@ export const useCached = (userQuery?: PencilQuery) => {
   const cache = usePencilCache()
   const cacheItem = cache[queryCacheId]
   return cacheItem
+}
+
+export const usePencil = ({ id, query, queries }: PencilProps) => {
+  const dispatch = useDispatch()
+  const requestStatus = usePecnilRequestStatus()
+  const cache = usePencilCache()
+  const normalized = useNormalizedPencils()
+  const pencil = id ? normalized[id] : undefined
+  const targetQueries = query ? [query] : queries ? queries : []
+  const pencils = targetQueries.reduce<Pencil[]>(
+    (acc, query) => [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)],
+    [],
+  )
+
+  useEffect(() => {
+    const isNotCached = (query: PencilQuery) => isUndefined(cache[mapRequestToCacheId({ query })])
+    if (id && !pencil) {
+      dispatch(pencilActions.requestSinglePencil.request({ id }))
+    } else if (query && isNotCached(query)) {
+      dispatch(pencilActions.requestPencilList.request({ query }))
+    } else if (queries) {
+      queries.filter(isNotCached).forEach(query => {
+        dispatch(pencilActions.requestPencilList.request({ query }))
+      })
+    }
+  }, [dispatch, id, query, queries, pencil, cache])
+
+  return { requestStatus, pencil, pencils }
 }

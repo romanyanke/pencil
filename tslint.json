@@ -15,6 +15,7 @@
     "arrow-return-shorthand": [true, "multiline"],
     "no-unnecessary-callback-wrapper": true,
     "ordered-imports": true,
+    "no-shadowed-variable": false,
     "eofline": true,
     "object-literal-sort-keys": false
   }

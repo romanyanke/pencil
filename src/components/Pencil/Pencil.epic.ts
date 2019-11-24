@@ -20,7 +20,7 @@ export default (
       getType(pencilActions.requestSinglePencil.request),
       getType(pencilActions.requestPencilList.request),
     ),
-    bufferTime(33),
+    bufferTime(66),
     filter(actions => actions.length > 0),
     mergeMap(actions =>
       from(

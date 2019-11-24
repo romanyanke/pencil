@@ -1,4 +1,3 @@
-import { ReactNode } from 'react'
 import { RequestStatus } from './../../modules/requestStatus'
 export type PencilProps = PencilOwnPropsSingle | PencilOwnPropsList
 
@@ -6,7 +5,6 @@ interface PencilOwnProps {
   id?: string
   query?: PencilQuery
   queries?: PencilQuery[]
-  children(injectedProps: PencilInjectedProps): ReactNode
 }
 
 interface PencilOwnPropsSingle extends PencilOwnProps {
