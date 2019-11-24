@@ -9,55 +9,50 @@ import Map from '../Map'
 import PageTitle from '../PageTitle'
 import PencilInfo from '../PencilInfo'
 import TagHeader from '../PencilInfo/TagHeader'
-import Taxonomy from '../Taxonomy'
+import { useTaxonomyRequest } from '../Taxonomy/Taxonomy.hooks'
 import { appMessages } from './App.messages'
 
 const App = () => {
-  const [filter] = useFilter()
+  const [{ tag }] = useFilter()
+  const { pending, fulfilled, rejected } = useTaxonomyRequest()
+
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
-      <Taxonomy>
-        {({ requestStatus: { pending, fulfilled, rejected } }) => {
-          if (rejected) {
-            return (
-              <div className="App-loading">
-                <button onClick={() => window.location.reload()}>
-                  <FormattedMessage {...appMessages.error} />
-                </button>
-              </div>
-            )
-          }
-          return pending ? (
-            <div className="App-loading">
-              <Loader />
-            </div>
-          ) : fulfilled ? (
-            <div className="App">
-              <BrowserRouter>
-                <PageTitle />
+      {rejected ? (
+        <div className="App-loading">
+          <button onClick={() => window.location.reload()}>
+            <FormattedMessage {...appMessages.error} />
+          </button>
+        </div>
+      ) : pending ? (
+        <div className="App-loading">
+          <Loader />
+        </div>
+      ) : fulfilled ? (
+        <div className="App">
+          <BrowserRouter>
+            <PageTitle />
 
-                <PencilInfo />
+            <PencilInfo />
 
-                <section className="App-block">
-                  <Filter />
-                </section>
+            <section className="App-block">
+              <Filter />
+            </section>
 
-                {filter.tag ? (
-                  <section className="App-block">
-                    <TagHeader />
-                  </section>
-                ) : (
-                  <Map />
-                )}
+            {tag ? (
+              <section className="App-block">
+                <TagHeader />
+              </section>
+            ) : (
+              <Map />
+            )}
 
-                <section className="App-block">
-                  <Gallery />
-                </section>
-              </BrowserRouter>
-            </div>
-          ) : null
-        }}
-      </Taxonomy>
+            <section className="App-block">
+              <Gallery />
+            </section>
+          </BrowserRouter>
+        </div>
+      ) : null}
     </IntlProvider>
   )
 }

@@ -6,7 +6,7 @@ import { useCached, usePecnilRequestStatus } from '../../Pencil/Pencil.hooks'
 import messages from './TagHeader.messages'
 
 const TagHeader = () => {
-  const [filter, setFilter] = useFilter()
+  const [{ tag }, setFilter] = useFilter()
   const cache = useCached()
   const requestStatus = usePecnilRequestStatus()
   const dropTag = useCallback(() => setFilter({ tag: '' }), [setFilter])
@@ -24,7 +24,7 @@ const TagHeader = () => {
           tagName="h3"
           {...messages.title}
           values={{
-            tag: filter.tag,
+            tag,
             pencils: (
               <FormattedMessage {...appMessages.pencil} values={{ count: cache.pages.pencils }} />
             ),

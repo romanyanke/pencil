@@ -1,11 +1,22 @@
-import { useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '../../store'
 import { Pencil, PencilCountry } from './../Pencil/Pencil.interface'
+import { taxonomyActions } from './Taxonomy.actions'
 import { TaxonomyAppStore } from './Taxonomy.interface'
 
 export const useTaxonomy = () => useSelector<AppStore, TaxonomyAppStore>(store => store.taxonomy)
-export const useTaxonomyRequestStatus = () => useTaxonomy().requestStatus
+
+export const useTaxonomyRequest = () => {
+  const dispatch = useDispatch()
+  const requestStatus = useTaxonomy().requestStatus
+
+  useEffect(() => {
+    dispatch(taxonomyActions.requestTaxonomy.request())
+  }, [dispatch])
+
+  return requestStatus
+}
 
 export const usePencilFlag = (pencil: Pencil) => {
   const normalizedCountries = useCountriesNormalizedBy('id')
