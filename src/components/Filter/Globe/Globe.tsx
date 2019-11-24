@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GlobeProps } from './Globe.interface'
 
-const Globe: FC<GlobeProps> = ({ animated }) => {
+const Globe = ({ animated }: GlobeProps) => {
   const isAnimated = Boolean(animated)
   const frames = ['🌍', '🌏', '🌎']
   const speed = 400

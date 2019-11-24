@@ -1,5 +1,5 @@
 import { throttle } from 'lodash'
-import React, { FC, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import Loader from '../Loader'
 import { useCached, usePencil } from '../Pencil/Pencil.hooks'
@@ -8,7 +8,7 @@ import { getNextPageNumberFromPages } from '../Pencil/Pencil.utils'
 import { requestFirstPage } from './Gallery.utils'
 import Grid from './Grid'
 
-const Gallery: FC = () => {
+const Gallery = () => {
   const [filter] = useFilter()
   const [queries, setQueries] = useState<PencilQuery[]>([])
   const lastQuery = queries[queries.length - 1]

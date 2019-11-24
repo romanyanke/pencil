@@ -12,7 +12,7 @@ import TagHeader from '../PencilInfo/TagHeader'
 import Taxonomy from '../Taxonomy'
 import { appMessages } from './App.messages'
 
-const App: React.FC = () => {
+const App = () => {
   const [filter] = useFilter()
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
