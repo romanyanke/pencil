@@ -8,7 +8,7 @@ export const getEmptyFilter = (): Filter => ({
   tag: '',
 })
 
-export const mapFilterToQueryString = (filter: Filter): string => {
+export const mapFilterToQueryString = (filter: Partial<Filter>): string => {
   const query = qs.stringify(pickBy(filter, Boolean))
   return query ? '?' + query : ''
 }
