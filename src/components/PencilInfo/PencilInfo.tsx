@@ -14,9 +14,9 @@ const PencilInfo = () => {
 
   useEffect(() => {
     if (display === '') {
-      document.body.classList.remove('no-scroll')
+      document.body.style.overflow = 'initial'
     } else {
-      document.body.classList.add('no-scroll')
+      document.body.style.overflow = 'hidden'
     }
   }, [display])
 
