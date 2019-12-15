@@ -1,4 +1,4 @@
-import { throttle } from 'lodash'
+import { last, throttle } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import Loader from '../Loader'
@@ -11,8 +11,7 @@ import Grid from './Grid'
 const Gallery = () => {
   const [filter] = useFilter()
   const [queries, setQueries] = useState<PencilQuery[]>([])
-  const lastQuery = queries[queries.length - 1]
-  const cached = useCached(lastQuery)
+  const cached = useCached(last(queries))
   const { pencils } = usePencil({ queries })
   const nextPageNumber = cached ? getNextPageNumberFromPages(cached.pages) : null
   const { country, tag, page } = filter
@@ -20,19 +19,17 @@ const Gallery = () => {
   useEffect(() => {
     setQueries([requestFirstPage({ country, tag, page })])
   }, [country, tag, page])
+
   useEffect(() => {
-    const loadNextPage = (nextpage: number) => {
-      setQueries([...queries, { page: nextpage, ...filter }])
-    }
     const onScroll = throttle(() => {
       if (nextPageNumber) {
         const preloadSensivity = document.body.clientHeight * 0.6
         const scrollBottomLine = window.pageYOffset + window.innerHeight
         if (preloadSensivity < scrollBottomLine) {
-          loadNextPage(nextPageNumber)
+          setQueries([...queries, { page: nextPageNumber, ...filter }])
         }
       }
-    }, 500)
+    }, 300)
     if (nextPageNumber) {
       window.addEventListener('scroll', onScroll)
     }

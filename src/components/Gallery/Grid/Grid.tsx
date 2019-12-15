@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import { useFilter } from '../../Filter/Filter.hooks'
+import { mapFilterToQueryString } from '../../Filter/Filter.utils'
 import { GridProps } from './Grid.interface'
 
 const Grid = ({ pencils }: GridProps) => {
@@ -15,7 +16,7 @@ const Grid = ({ pencils }: GridProps) => {
 
         return (
           <a
-            href={`?display=${pencil.id}`}
+            href={mapFilterToQueryString({ display: pencil.id })}
             onClick={e => {
               e.preventDefault()
               setFilter({ display: pencil.id })

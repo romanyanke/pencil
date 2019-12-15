@@ -1,11 +1,14 @@
+import classNames from 'classnames'
 import React, { useEffect } from 'react'
-import { useFilter } from '../Filter/Filter.hooks'
+import { useFilter, useSiblings } from '../Filter/Filter.hooks'
 import { usePencil } from '../Pencil/Pencil.hooks'
 import Info from './Info'
 
 const PencilInfo = () => {
-  const [filter, setFilter] = useFilter()
-  const { display } = filter
+  const [{ display }, setFilter] = useFilter()
+  const [prevPencil, nextPencil] = useSiblings(display)
+  console.log(prevPencil, nextPencil)
+
   const closePencilInfo = () => setFilter({ display: '' })
   const { pencil } = usePencil({ id: display })
 

@@ -48,6 +48,7 @@ const Info = ({ pencil }: InfoProps) => {
           />
         </p>
       </div>
+
       {pencil.photos.map(src => (
         <div key={src} className="Info-frame">
           <img className="Info-photo" alt={pencil.title} src={src} />

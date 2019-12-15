@@ -20,11 +20,13 @@ export const usePencilCache = () => usePencilStore().cache
 
 export const useCached = (userQuery?: PencilQuery) => {
   const [currentFilter] = useFilter()
+  const cache = usePencilCache()
+
   const filter = userQuery || currentFilter
   const query = filter && filter.page && filter.page > 1 ? filter : requestFirstPage(filter)
   const queryCacheId = mapQueryToCacheId({ query })
-  const cache = usePencilCache()
   const cacheItem = cache[queryCacheId]
+
   return cacheItem
 }
 
