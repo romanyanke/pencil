@@ -23,7 +23,7 @@ export const useCached = (userQuery?: PencilQuery) => {
   const cache = usePencilCache()
 
   const filter = userQuery || currentFilter
-  const query = filter && filter.page && filter.page > 1 ? filter : requestFirstPage(filter)
+  const query = (filter?.page ?? 0) > 1 ? filter : requestFirstPage(filter)
   const queryCacheId = mapQueryToCacheId({ query })
   const cacheItem = cache[queryCacheId]
 

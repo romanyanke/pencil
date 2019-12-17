@@ -1,4 +1,4 @@
-import { pickBy } from 'lodash'
+import { pick, pickBy } from 'lodash'
 import qs from 'qs'
 import { Filter } from './Filter.interface'
 
@@ -15,7 +15,11 @@ export const mapFilterToQueryString = (filter: Partial<Filter>): string => {
 
 export const mapQueryStringToFilter = (querystring = window.location.search): Filter => {
   const input = qs.parse(querystring, { ignoreQueryPrefix: true })
-  return { ...getEmptyFilter(), ...input }
+  const emptyFilter = getEmptyFilter()
+  const filterKeys = Object.keys(emptyFilter)
+  const filter = pick(input, filterKeys)
+
+  return { ...emptyFilter, ...filter }
 }
 
 export const getInitialFilter = (): Filter => ({
