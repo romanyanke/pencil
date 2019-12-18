@@ -1,16 +1,17 @@
 import React, { useCallback } from 'react'
 import { FormattedMessage } from 'react-intl'
-import { useFilter, useSiblings } from '../../Filter/Filter.hooks'
-import { getEmptyFilter, mapFilterToQueryString } from '../../Filter/Filter.utils'
+import { useFilter } from '../../Filter/Filter.hooks'
+import { getEmptyFilter } from '../../Filter/Filter.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
+import Siblings from '../Siblings'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
 import { getFilterFromLink } from './Info.utils'
 
 const Info = ({ pencil }: InfoProps) => {
   const [, setFilter] = useFilter()
-  const [, nextPencil] = useSiblings(pencil.id)
   const flag = usePencilFlag(pencil)
+  const location = [pencil.country.name, pencil.city].filter(Boolean).join(', ')
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation()
@@ -30,12 +31,12 @@ const Info = ({ pencil }: InfoProps) => {
     [setFilter],
   )
 
-  const location = [pencil.country.name, pencil.city].filter(Boolean).join(', ')
-
   return (
     <div className="Info">
       <div className="Info-content" onClick={handlePseudoLink}>
         <h1>{pencil.title}</h1>
+
+        <Siblings pencilId={pencil.id} />
 
         <h2>
           {flag} {location}
@@ -56,22 +57,6 @@ const Info = ({ pencil }: InfoProps) => {
           <img className="Info-photo" alt={pencil.title} src={src} />
         </div>
       ))}
-
-      {nextPencil ? (
-        <div className="Info-content" onClick={handlePseudoLink}>
-          <p>
-            <FormattedMessage
-              {...messages.nextPencil}
-              values={{
-                pencilName: nextPencil.title,
-                a: (pencilName: string) => (
-                  <a href={mapFilterToQueryString({ display: nextPencil.id })}>{pencilName}</a>
-                ),
-              }}
-            />
-          </p>
-        </div>
-      ) : null}
     </div>
   )
 }

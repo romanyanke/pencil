@@ -1,0 +1,7 @@
+.Siblings {
+  display: inline-flex;
+}
+
+.Siblings-sibling {
+  flex: 0;
+}

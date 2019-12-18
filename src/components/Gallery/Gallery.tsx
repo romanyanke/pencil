@@ -13,15 +13,12 @@ const Gallery = () => {
   const [queries, setQueries] = useState<PencilQuery[]>([])
   const cached = useCached(last(queries))
   const { pencils } = usePencil({ queries })
-  const nextPageNumber =
-    filter.display === '' && cached ? getNextPageNumberFromPages(cached.pages) : null
-  const { country, tag, page } = filter
+  const nextPageNumber = filter.display === '' ? getNextPageNumberFromPages(cached?.pages) : null
+  const { country, tag } = filter
 
   useEffect(() => {
-    setQueries([requestFirstPage({ country, tag, page })])
-  }, [country, tag, page])
-
-  console.log(cached?.pages, nextPageNumber)
+    setQueries([requestFirstPage({ country, tag })])
+  }, [country, tag])
 
   useEffect(() => {
     const onScroll = throttle(() => {

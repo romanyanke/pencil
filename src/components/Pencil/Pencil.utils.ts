@@ -26,8 +26,7 @@ export const mapPencilsingleQueryRequestUrl = ({ id }: PencilSingleRequest): str
 
 export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery): string => {
   const pathParts: string[] = []
-  const sanitize = (input: string) =>
-    encodeURIComponent(input.toLowerCase().replace(/\s/g, '-'))
+  const sanitize = (input: string) => encodeURIComponent(input.toLowerCase().replace(/\s/g, '-'))
 
   if (tag && country) {
     throw new Error('no tag and country at the same time')
@@ -79,7 +78,7 @@ export const getCacheAndNormilizedFromList = ({
   return { normalized, cache: { [cacheId]: { ids, pages } } }
 }
 
-export const getNextPageNumberFromPages = (pages: PencilPages): number | null => {
+export const getNextPageNumberFromPages = (pages?: PencilPages): number | null => {
   if (pages) {
     if (pages.page < pages.total) {
       return pages.page + 1

@@ -5,9 +5,4 @@ export default defineMessages({
     defaultMessage: '{count, number} фото',
     id: 'Info.photo',
   },
-
-  nextPencil: {
-    defaultMessage: 'Смотрите дальше: <a>{pencilName}</a>.',
-    id: 'Info.nextPencil',
-  },
 })
