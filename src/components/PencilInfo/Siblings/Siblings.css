@@ -12,6 +12,7 @@
   overflow: hidden;
   background-color: #fff;
   margin: 0 0.2rem;
+  border: 1px solid #a5a5a5;
 }
 
 .Siblings-sibling:first-child {
