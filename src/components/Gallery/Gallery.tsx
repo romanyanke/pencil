@@ -1,7 +1,6 @@
 import { last, throttle } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
-import Loader from '../Loader'
 import { useCached, usePencil } from '../Pencil/Pencil.hooks'
 import { PencilQuery } from '../Pencil/Pencil.interface'
 import { getNextPageNumberFromPages } from '../Pencil/Pencil.utils'
@@ -13,7 +12,6 @@ const Gallery = () => {
   const [queries, setQueries] = useState<PencilQuery[]>([])
   const cached = useCached(last(queries))
   const { pencils } = usePencil({ queries })
-  const nextPageNumber = filter.display === '' ? getNextPageNumberFromPages(cached?.pages) : null
   const { country, tag } = filter
 
   useEffect(() => {
@@ -21,6 +19,7 @@ const Gallery = () => {
   }, [country, tag])
 
   useEffect(() => {
+    const nextPageNumber = getNextPageNumberFromPages(cached?.pages)
     const onScroll = throttle(() => {
       if (nextPageNumber) {
         const preloadSensivity = document.body.clientHeight * 0.6
@@ -37,19 +36,9 @@ const Gallery = () => {
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [queries, nextPageNumber, filter])
+  }, [queries, cached, filter])
 
-  return (
-    <>
-      <Grid pencils={pencils} />
-
-      {nextPageNumber ? (
-        <div className="Gallery-loading">
-          <Loader />
-        </div>
-      ) : null}
-    </>
-  )
+  return <Grid pencils={pencils} />
 }
 
 export default Gallery

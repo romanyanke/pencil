@@ -34,9 +34,10 @@ const Info = ({ pencil }: InfoProps) => {
   return (
     <div className="Info">
       <div className="Info-content" onClick={handlePseudoLink}>
+        <div className="Info-siblings">
+          <Siblings pencilId={pencil.id} />
+        </div>
         <h1>{pencil.title}</h1>
-
-        <Siblings pencilId={pencil.id} />
 
         <h2>
           {flag} {location}
