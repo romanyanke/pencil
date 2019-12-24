@@ -1,4 +1,4 @@
-import appConfig from '../appConfig'
+import appConfig from './appConfig'
 
 const apiRequest = <T>(path: string): Promise<T> =>
   fetch(appConfig.apiUrl + path)

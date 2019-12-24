@@ -1,4 +1,4 @@
-import { RequestStatus } from '../../modules/requestStatus'
+import { RequestStatus } from '../../requestStatus'
 import { PencilCountry } from '../Pencil/Pencil.interface'
 
 export interface TaxonomyResponse {

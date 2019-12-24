@@ -1,4 +1,4 @@
-import apiRequest from '../../modules/api'
+import apiRequest from '../../api'
 import {
   PencilListResponse,
   PencilSingleRequest,

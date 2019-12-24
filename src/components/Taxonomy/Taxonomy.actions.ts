@@ -1,5 +1,5 @@
 import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
-import { getRequestStatus } from '../../modules/requestStatus'
+import { getRequestStatus } from '../../requestStatus'
 import { TaxonomyAppStore as StoreTaxonomy, TaxonomyResponse } from './Taxonomy.interface'
 
 const requestTaxonomy = createAsyncAction(
