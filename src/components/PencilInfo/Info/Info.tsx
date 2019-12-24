@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
-import Siblings from '../Siblings'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
 import { getFilterFromLink } from './Info.utils'
@@ -34,9 +33,9 @@ const Info = ({ pencil }: InfoProps) => {
   return (
     <div className="Info">
       <div className="Info-content" onClick={handlePseudoLink}>
-        <div className="Info-siblings">
+        {/* <div className="Info-siblings">
           <Siblings pencilId={pencil.id} />
-        </div>
+        </div> */}
         <h1>{pencil.title}</h1>
 
         <h2>
