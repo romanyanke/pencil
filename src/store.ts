@@ -1,17 +1,10 @@
-import { applyMiddleware, combineReducers, createStore, Store } from 'redux'
+import { applyMiddleware, createStore, Store } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { createEpicMiddleware } from 'redux-observable'
-import { filterReducer } from './components/Filter'
-import { pencilReducer } from './components/Pencil'
-import { taxonomyReducer } from './components/Taxonomy'
-import rootEpic from './epics'
+import rootEpic from './rootEpic'
+import rootReducer from './rootReducer'
 
 const epicMiddleware = createEpicMiddleware()
-const rootReducer = combineReducers({
-  taxonomy: taxonomyReducer,
-  pencils: pencilReducer,
-  filter: filterReducer,
-})
 const store: Store<AppStore> = createStore(
   rootReducer,
   {},

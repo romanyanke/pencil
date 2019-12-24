@@ -1,5 +1,5 @@
 import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
-import { getRequestStatus } from '../../modules/requestStatus'
+import { getRequestStatus } from '../../requestStatus'
 import {
   PencilAppStore,
   PencilListResponse,

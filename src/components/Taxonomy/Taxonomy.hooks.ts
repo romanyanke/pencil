@@ -1,3 +1,4 @@
+import { mapKeys } from 'lodash'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from '../../store'
@@ -30,15 +31,6 @@ export const usePencilFlag = (pencil: Pencil) => {
 
 export const useCountriesNormalizedBy = <K extends keyof PencilCountry>(field: K) => {
   const { countries } = useTaxonomy()
-  return useMemo(
-    () =>
-      countries.reduce<Record<string, PencilCountry>>(
-        (normalized, country) => ({
-          ...normalized,
-          [country[field]]: country,
-        }),
-        {},
-      ),
-    [countries, field],
-  )
+
+  return useMemo(() => mapKeys(countries, field), [countries, field])
 }

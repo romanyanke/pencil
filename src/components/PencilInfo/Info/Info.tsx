@@ -32,13 +32,16 @@ const Info = ({ pencil }: InfoProps) => {
 
   return (
     <div className="Info">
-      <div className="Info-content">
+      <div className="Info-content" onClick={handlePseudoLink}>
+        {/* <div className="Info-siblings">
+          <Siblings pencilId={pencil.id} />
+        </div> */}
         <h1>{pencil.title}</h1>
+
         <h2>
           {flag} {location}
         </h2>
-
-        <article dangerouslySetInnerHTML={{ __html: pencil.content }} onClick={handlePseudoLink} />
+        <article dangerouslySetInnerHTML={{ __html: pencil.content }} />
 
         <p>
           <FormattedMessage
@@ -48,6 +51,7 @@ const Info = ({ pencil }: InfoProps) => {
           />
         </p>
       </div>
+
       {pencil.photos.map(src => (
         <div key={src} className="Info-frame">
           <img className="Info-photo" alt={pencil.title} src={src} />

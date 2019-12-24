@@ -10,6 +10,7 @@ const TagHeader = () => {
   const cache = useCached()
   const requestStatus = usePecnilRequestStatus()
   const dropTag = useCallback(() => setFilter({ tag: '' }), [setFilter])
+  const count = cache?.pages.pencils
 
   useEffect(() => {
     if (requestStatus.rejected) {
@@ -19,15 +20,13 @@ const TagHeader = () => {
 
   return (
     <button onClick={dropTag} className="TagHeader-drop">
-      {cache ? (
+      {count ? (
         <FormattedMessage
           tagName="h3"
           {...messages.title}
           values={{
             tag,
-            pencils: (
-              <FormattedMessage {...appMessages.pencil} values={{ count: cache.pages.pencils }} />
-            ),
+            pencils: <FormattedMessage {...appMessages.pencil} values={{ count }} />,
           }}
         />
       ) : null}
