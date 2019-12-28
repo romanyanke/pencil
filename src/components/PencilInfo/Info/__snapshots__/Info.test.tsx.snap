@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Info /> should match snapshot 1`] = `
+<div>
+  <div
+    class="Info"
+  >
+    <div
+      class="Info-content"
+    >
+      <h1>
+        Римский Пиноккио
+      </h1>
+      <h2>
+         
+        Италия, Рим
+      </h2>
+      <article>
+        <ul>
+           
+          <li>
+            <strong>
+              Пиноккио I
+            </strong>
+          </li>
+           
+          <li>
+            <a
+              href="?display=pinocchio-second"
+            >
+              Пиноккио II
+            </a>
+          </li>
+           
+          <li>
+            <a
+              href="?display=pinocchio-third"
+            >
+              Пиноккио III
+            </a>
+          </li>
+           
+        </ul>
+          
+        <p>
+          Roma, Рим. На конце карандаща сидит деревянный пиноккио, руки и ноги болтаются на веревочках, а из колпака торчит петля из резинки, чтобы подвесить его куда-нибудь. Еще у него есть два брата-бдизнеца.
+        </p>
+         
+      </article>
+      <p>
+        <b>
+          3 фото
+        </b>
+      </p>
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg"
+      />
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg"
+      />
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg"
+      />
+    </div>
+  </div>
+</div>
+`;
