@@ -13,18 +13,20 @@ const Grid = ({ pencils }: GridProps) => {
         const thumbSize = pencil.preview
         const fullSize = pencil.photos[0]
         const useSize = pencil.grid === 1 ? thumbSize : fullSize
+        const className = classNames('GridItem', {
+          size2: pencil.grid === 2,
+          size3: pencil.grid === 3,
+        })
+        const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          e.preventDefault()
+          setFilter({ display: pencil.id })
+        }
 
         return (
           <a
             href={mapFilterToQueryString({ display: pencil.id })}
-            onClick={e => {
-              e.preventDefault()
-              setFilter({ display: pencil.id })
-            }}
-            className={classNames('GridItem', {
-              size2: pencil.grid === 2,
-              size3: pencil.grid === 3,
-            })}
+            onClick={onClick}
+            className={className}
             key={pencil.id}
             title={pencil.title}
           >

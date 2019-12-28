@@ -1,4 +1,4 @@
-import { throttle } from 'lodash'
+import { last, throttle } from 'lodash'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import { useCached, usePencil } from '../Pencil/Pencil.hooks'
@@ -11,7 +11,7 @@ const Gallery = () => {
   const [filter] = useFilter()
   const [queries, setQueries] = useState<PencilQuery[]>([])
   const { pencils } = usePencil({ queries })
-  const cached = useCached()
+  const cached = useCached(last(queries))
   const { country, tag } = filter
   const loadNextPage = useCallback(() => {
     const page = getNextPageNumberFromPages(cached?.pages)
@@ -29,14 +29,14 @@ const Gallery = () => {
       if (checkWindowScroll()) {
         loadNextPage()
       }
-    }, 500)
+    }, 100)
 
     window.addEventListener('scroll', onScroll)
 
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [queries, cached, filter, loadNextPage])
+  }, [loadNextPage])
 
   return <Grid pencils={pencils} />
 }

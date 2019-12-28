@@ -42,11 +42,9 @@ const Filter = () => {
         <button
           className="Filter-clear-button"
           onClick={() => {
+            select.current?.focus()
             if (isFiltered) {
               setFilter({ country: '', tag: '' })
-            }
-            if (select.current) {
-              select.current.focus()
             }
           }}
         >
