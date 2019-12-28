@@ -6,8 +6,8 @@ import Info from './Info'
 const PencilInfo = () => {
   const [{ display }, setFilter] = useFilter()
   const scroller = useRef<HTMLDivElement>(null)
-  const closePencilInfo = () => setFilter({ display: '' })
   const { pencil } = usePencil({ id: display })
+  const closePencilInfo = () => setFilter({ display: '' })
 
   useEffect(() => {
     if (display === '') {

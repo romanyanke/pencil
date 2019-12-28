@@ -22,14 +22,13 @@ export const useTaxonomyRequest = () => {
 export const usePencilFlag = (pencil: Pencil) => {
   const normalizedCountries = useCountriesNormalizedBy('id')
   const countryId = pencil.country.id
-  if (normalizedCountries[countryId]) {
-    return normalizedCountries[countryId].flag
-  }
 
-  return null
+  return normalizedCountries[countryId]?.flag
 }
 
-export const useCountriesNormalizedBy = <K extends keyof PencilCountry>(field: K) => {
+export const useCountriesNormalizedBy = <K extends keyof PencilCountry>(
+  field: K,
+): Partial<Record<string, PencilCountry>> => {
   const { countries } = useTaxonomy()
 
   return useMemo(() => mapKeys(countries, field), [countries, field])

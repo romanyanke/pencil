@@ -18,41 +18,30 @@ const App = () => {
 
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
-      {rejected ? (
-        <div className="App-loading">
-          <button onClick={() => window.location.reload()}>
-            <FormattedMessage {...appMessages.error} />
-          </button>
-        </div>
-      ) : pending ? (
-        <div className="App-loading">
-          <Loader />
-        </div>
-      ) : fulfilled ? (
+      {fulfilled ? (
         <div className="App">
           <BrowserRouter>
             <PageTitle />
-
             <PencilInfo />
-
-            <section className="App-block">
+            <nav className="App-block">
               <Filter />
-            </section>
-
-            {tag ? (
-              <section className="App-block">
-                <TagHeader />
-              </section>
-            ) : (
-              <Map />
-            )}
-
-            <section className="App-block">
+            </nav>
+            <section className="App-block">{tag ? <TagHeader /> : <Map />}</section>
+            <main className="App-block">
               <Gallery />
-            </section>
+            </main>
           </BrowserRouter>
         </div>
-      ) : null}
+      ) : (
+        <div className="App-loading">
+          {pending && <Loader />}
+          {rejected && (
+            <button onClick={() => window.location.reload()}>
+              <FormattedMessage {...appMessages.error} />
+            </button>
+          )}
+        </div>
+      )}
     </IntlProvider>
   )
 }

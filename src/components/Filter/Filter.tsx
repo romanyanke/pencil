@@ -11,13 +11,14 @@ import { mapFilterToQueryString, mapQueryStringToFilter } from './Filter.utils'
 import Globe from './Globe'
 
 const Filter = () => {
-  const history = useHistory()
-  const { countries, pencilCount } = useTaxonomy()
-  const intl = useIntl()
   const [filter, setFilter] = useFilter()
+  const { countries, pencilCount } = useTaxonomy()
   const cached = useCached()
-  const isFiltered = Boolean(filter.country || filter.tag)
+  const history = useHistory()
+  const intl = useIntl()
   const select = useRef<HTMLSelectElement>(null)
+
+  const isFiltered = Boolean(filter.country || filter.tag)
 
   useEffect(() => {
     if (mapFilterToQueryString(filter) !== window.location.search) {
@@ -31,6 +32,7 @@ const Filter = () => {
         setFilter(mapQueryStringToFilter(search))
       }
     })
+
     return unlisten
   }, [filter, history, setFilter])
 

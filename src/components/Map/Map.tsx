@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { isUndefined } from 'lodash'
 import React from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
@@ -18,28 +19,23 @@ const Map = () => {
       >
         {topologies.map(topology => {
           const geoId = topology.id
-          const country = geoId && normalizedIds[geoId] ? normalizedIds[geoId].name : null
-          const hasPencil = country !== null
+          const country = geoId ? normalizedIds[geoId]?.name : undefined
+          const hasPencil = !isUndefined(country)
           const isSelected = country === filter.country
-
-          return (
-            <path
-              key={geoId}
-              d={topology.pathD}
-              onClick={() => {
-                if (isSelected) {
-                  setFilter({ country: '' })
-                } else if (country) {
-                  setFilter({ country })
-                }
-              }}
-              className={classNames(
-                'Map-country',
-                hasPencil && 'Map-has-pencil',
-                isSelected && 'Map-selected',
-              )}
-            />
+          const className = classNames(
+            'Map-country',
+            hasPencil && 'Map-has-pencil',
+            isSelected && 'Map-selected',
           )
+          const onClick = () => {
+            if (isSelected) {
+              setFilter({ country: '' })
+            } else if (country) {
+              setFilter({ country })
+            }
+          }
+
+          return <path key={geoId} className={className} d={topology.pathD} onClick={onClick} />
         })}
       </svg>
     </div>
