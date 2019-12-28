@@ -5,6 +5,7 @@ export const requestFirstPage = (query: PencilQuery): PencilQuery => ({ ...query
 export const checkWindowScroll = () => {
   const preloadSensivity = document.body.clientHeight * 0.6
   const scrollBottomLine = window.pageYOffset + window.innerHeight
+  const nearAtBottom = preloadSensivity < scrollBottomLine
 
-  return preloadSensivity < scrollBottomLine
+  return nearAtBottom
 }

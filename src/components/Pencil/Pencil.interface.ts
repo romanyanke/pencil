@@ -55,19 +55,12 @@ export interface PencilCacheItem {
   pages: PencilPages
 }
 
-interface PencilInjectedProps {
-  requestStatus: RequestStatus
-  pencils: Pencil[]
-  pencil?: Pencil
-}
-
 export interface Pencil {
   city: string
   content: string
   count: number
   grid: 1 | 2 | 3
   country: Pick<PencilCountry, 'id' | 'name'>
-  geo: string
   id: string
   map: PencilMap | null
   photos: string[]

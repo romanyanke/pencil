@@ -13,30 +13,30 @@ const Gallery = () => {
   const { pencils } = usePencil({ queries })
   const cached = useCached(last(queries))
   const { country, tag } = filter
-  const loadNextPage = useCallback(() => {
-    const page = getNextPageNumberFromPages(cached?.pages)
-    if (page) {
-      setQueries([...queries, { ...filter, page }])
-    }
-  }, [filter, queries, setQueries, cached])
+  const page = getNextPageNumberFromPages(cached?.pages)
 
   useEffect(() => {
     setQueries([requestFirstPage({ country, tag })])
   }, [country, tag])
 
-  useEffect(() => {
-    const onScroll = throttle(() => {
-      if (checkWindowScroll()) {
-        loadNextPage()
-      }
-    }, 100)
+  const loadNextPage = useCallback(() => {
+    if (page) {
+      setQueries([...queries, { ...filter, page }])
+    }
+  }, [filter, queries, setQueries, page])
 
+  const onScroll = useCallback(
+    throttle(() => checkWindowScroll() && loadNextPage(), 100, { leading: false }),
+    [loadNextPage],
+  )
+
+  useEffect(() => {
     window.addEventListener('scroll', onScroll)
 
     return () => {
       window.removeEventListener('scroll', onScroll)
     }
-  }, [loadNextPage])
+  }, [onScroll])
 
   return <Grid pencils={pencils} />
 }
