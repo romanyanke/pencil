@@ -4,10 +4,14 @@ import React from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
+import { useCached } from '../Pencil/Pencil.hooks'
+import { getEmptyFilter } from '../Filter/Filter.utils'
 
 const Map = () => {
-  const [filter, setFilter] = useFilter()
+  const [, setFilter] = useFilter()
   const normalizedIds = useCountriesNormalizedBy('id')
+  const cached = useCached()
+  const geoIds = cached?.geoIds ?? []
 
   return (
     <div className="Map">
@@ -18,10 +22,10 @@ const Map = () => {
         className="Map-block"
       >
         {topologies.map(topology => {
-          const geoId = topology.id
+          const geoId = topology.id as string
           const country = geoId ? normalizedIds[geoId]?.name : undefined
           const hasPencil = !isUndefined(country)
-          const isSelected = country === filter.country
+          const isSelected = geoIds.includes(geoId)
           const className = classNames(
             'Map-country',
             hasPencil && 'Map-has-pencil',
@@ -29,9 +33,9 @@ const Map = () => {
           )
           const onClick = () => {
             if (isSelected) {
-              setFilter({ country: '' })
+              setFilter(getEmptyFilter())
             } else if (country) {
-              setFilter({ country })
+              setFilter({ country, tag: '' })
             }
           }
 

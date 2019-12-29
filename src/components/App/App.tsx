@@ -26,7 +26,14 @@ const App = () => {
             <nav className="App-block">
               <Filter />
             </nav>
-            <section className="App-block">{tag ? <TagHeader /> : <Map />}</section>
+            {tag ? (
+              <section className="App-block">
+                <TagHeader />{' '}
+              </section>
+            ) : null}
+            <section className="App-block">
+              <Map />
+            </section>
             <main className="App-block">
               <Gallery />
             </main>

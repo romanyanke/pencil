@@ -12,6 +12,7 @@ import {
 
 const getEmptyPencilCacheItem = (): PencilCacheItem => ({
   ids: [],
+  geoIds: [],
   pages: {
     page: 0,
     total: 0,
@@ -72,10 +73,12 @@ export const getCacheAndNormilizedFromList = ({
   cacheId,
   pages,
   data,
+  geoIds,
 }: PencilListResponse): CacheAndNormalize => {
   const ids = data.map(({ id }) => id)
   const normalized = data.reduce((list, pencil) => ({ ...list, [pencil.id]: pencil }), {})
-  return { normalized, cache: { [cacheId]: { ids, pages } } }
+
+  return { normalized, cache: { [cacheId]: { ids, pages, geoIds } } }
 }
 
 export const getNextPageNumberFromPages = (pages?: PencilPages): number | null => {

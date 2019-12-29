@@ -37,6 +37,7 @@ export interface PencilsListRequest extends PencilRequest {
 export type PencilSingleResponse = Pencil
 export interface PencilListResponse {
   cacheId: string
+  geoIds: string[]
   pages: PencilPages
   data: Pencil[]
 }
@@ -52,6 +53,7 @@ export type PencilsNormalized = Partial<Record<string, Pencil>>
 
 export interface PencilCacheItem {
   ids: string[]
+  geoIds: string[]
   pages: PencilPages
 }
 
