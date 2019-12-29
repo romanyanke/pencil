@@ -1,5 +1,5 @@
 import { Location } from 'history'
-import React, { ChangeEvent, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useHistory } from 'react-router-dom'
 import { appMessages } from '../App/App.messages'
@@ -19,6 +19,7 @@ const Filter = () => {
   const select = useRef<HTMLSelectElement>(null)
 
   const isFiltered = Boolean(filter.country || filter.tag)
+  const pencilsInCountry = cached?.pages.pencils
 
   useEffect(() => {
     if (mapFilterToQueryString(filter) !== window.location.search) {
@@ -76,26 +77,26 @@ const Filter = () => {
           ref={select}
           className="Filter-select"
           value={filter.country}
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setFilter({ country: e.target.value, tag: '' })
-          }
+          onChange={e => setFilter({ country: e.target.value, tag: '' })}
         >
           <option key="empty-country" value="">
             {intl.formatMessage(messages.all)}
           </option>
           {countries.map(country => {
             const isCurrent = filter.country === country.name
+            const optionText =
+              isCurrent && pencilsInCountry
+                ? intl.formatMessage(messages.current, {
+                    country: country.name,
+                    pencils: intl.formatMessage(appMessages.pencil, {
+                      count: pencilsInCountry,
+                    }),
+                  })
+                : country.name
+
             return (
               <option key={country.name} value={country.name}>
-                {country.flag}{' '}
-                {isCurrent && cached
-                  ? intl.formatMessage(messages.current, {
-                      country: country.name,
-                      pencils: intl.formatMessage(appMessages.pencil, {
-                        count: cached.pages.pencils,
-                      }),
-                    })
-                  : country.name}
+                {`${country.flag} ${optionText}`}
               </option>
             )
           })}
