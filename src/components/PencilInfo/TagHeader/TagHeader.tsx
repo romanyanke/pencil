@@ -4,13 +4,16 @@ import { appMessages } from '../../App/App.messages'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { useCached, usePecnilRequestStatus } from '../../Pencil/Pencil.hooks'
 import messages from './TagHeader.messages'
+import { useCountryFlags } from '../../Taxonomy/Taxonomy.hooks'
 
 const TagHeader = () => {
   const [{ tag }, setFilter] = useFilter()
   const cache = useCached()
   const requestStatus = usePecnilRequestStatus()
   const dropTag = useCallback(() => setFilter({ tag: '' }), [setFilter])
-  const count = cache?.pages.pencils
+  const countryFlags = useCountryFlags(cache?.geoIds ?? [])
+  const pencilCount = cache?.pages.pencils
+  const countryCount = cache?.geoIds.length
 
   useEffect(() => {
     if (requestStatus.rejected) {
@@ -19,18 +22,24 @@ const TagHeader = () => {
   }, [dropTag, requestStatus])
 
   return (
-    <button onClick={dropTag} className="TagHeader-drop">
-      {count ? (
-        <FormattedMessage
-          tagName="h3"
-          {...messages.title}
-          values={{
-            tag,
-            pencils: <FormattedMessage {...appMessages.pencil} values={{ count }} />,
-          }}
-        />
-      ) : null}
-    </button>
+    <>
+      <button onClick={dropTag} className="TagHeader-drop" title={countryFlags.join(' ')}>
+        {pencilCount && countryCount ? (
+          <FormattedMessage
+            {...messages.title}
+            values={{
+              tag,
+              pencilCount: (
+                <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />
+              ),
+              countryCount: (
+                <FormattedMessage {...appMessages.country} values={{ count: countryCount }} />
+              ),
+            }}
+          />
+        ) : null}
+      </button>
+    </>
   )
 }
 

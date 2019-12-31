@@ -3,13 +3,22 @@ import { useCached, useNormalizedPencils } from '../Pencil/Pencil.hooks'
 import { AppStore } from './../../store'
 import { filterActions } from './Filter.actions'
 import { Filter } from './Filter.interface'
+import { useCallback } from 'react'
+import { isMatch } from 'lodash'
 
-export const useFilter = (): [Filter, (update: Partial<Filter>) => void] => {
+export const useFilter = () => {
   const filter = useSelector<AppStore, Filter>(store => store.filter)
   const dispatch = useDispatch()
-  const setFilter = (update: Partial<Filter>) => dispatch(filterActions.updateFilter(update))
+  const setFilter = useCallback(
+    (update: Partial<Filter>) => {
+      if (!isMatch(filter, update)) {
+        dispatch(filterActions.updateFilter(update))
+      }
+    },
+    [filter, dispatch],
+  )
 
-  return [filter, setFilter]
+  return [filter, setFilter] as const
 }
 
 export const useSiblings = (pencilId: string) => {

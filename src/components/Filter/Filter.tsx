@@ -45,7 +45,7 @@ const Filter = () => {
           onClick={() => {
             select.current?.focus()
             if (isFiltered) {
-              setFilter({ country: '', tag: '' })
+              setFilter({ country: '' })
             }
           }}
         >

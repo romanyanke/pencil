@@ -14,7 +14,7 @@ const PageTitle = () => {
   const normalizedCoutries = useCountriesNormalizedBy('name')
   const pencil = normalizedPencils[filter.display]
   const flag = normalizedCoutries[filter.country]?.flag
-  const count = filter.country ? cached?.pages.pencils : undefined
+  const count = cached?.pages.pencils
 
   useEffect(() => {
     if (pencil && flag) {
