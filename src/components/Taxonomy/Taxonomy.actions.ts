@@ -16,9 +16,9 @@ const initialState: StoreTaxonomy = {
 }
 
 export const taxonomyActions = { requestTaxonomy }
-type Actions = ActionType<typeof taxonomyActions>
+export type TaxonomyActions = ActionType<typeof taxonomyActions>
 
-export default createReducer<StoreTaxonomy, Actions>(initialState)
+export default createReducer<StoreTaxonomy, TaxonomyActions>(initialState)
   .handleAction(requestTaxonomy.request, state => ({
     requestStatus: getRequestStatus().pending,
     pencilCount: state.pencilCount,

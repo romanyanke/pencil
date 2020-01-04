@@ -1,13 +1,11 @@
-import { ActionsObservable, ofType } from 'redux-observable'
+import { Epic, ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { catchError, map, mergeMap } from 'rxjs/operators'
-import { ActionType, getType } from 'typesafe-actions'
-import { taxonomyActions } from './Taxonomy.actions'
+import { getType } from 'typesafe-actions'
+import { taxonomyActions, TaxonomyActions } from './Taxonomy.actions'
 import { apiRequestTaxonomy } from './Taxonomy.api'
 
-export default (
-  action$: ActionsObservable<ActionType<typeof taxonomyActions.requestTaxonomy.request>>,
-) =>
+const taxonomyEpic: Epic<TaxonomyActions> = action$ =>
   action$.pipe(
     ofType(getType(taxonomyActions.requestTaxonomy.request)),
     mergeMap(() =>
@@ -17,3 +15,5 @@ export default (
       ),
     ),
   )
+
+export default taxonomyEpic

@@ -1,22 +1,19 @@
 import { uniqBy } from 'lodash'
-import { ActionsObservable, ofType } from 'redux-observable'
+import { Epic, ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { bufferTime, catchError, filter, map, mergeAll, mergeMap } from 'rxjs/operators'
 import { ActionType, getType, isActionOf } from 'typesafe-actions'
-import { pencilActions } from './Pencil.actions'
+import { PencilActions, pencilActions } from './Pencil.actions'
 import { apiRequestPencilList, apiRequestSinglePencil } from './Pencil.api'
 import { mapRequestToCacheId } from './Pencil.utils'
 
-export default (
-  action$: ActionsObservable<
-    ActionType<
-      | typeof pencilActions.requestSinglePencil.request
-      | typeof pencilActions.requestPencilList.request
-    >
-  >,
-) =>
+type PencilRequestActions = ActionType<
+  typeof pencilActions.requestSinglePencil.request | typeof pencilActions.requestPencilList.request
+>
+
+const pencilEpic: Epic<PencilActions> = action$ =>
   action$.pipe(
-    ofType(
+    ofType<PencilActions, PencilRequestActions>(
       getType(pencilActions.requestSinglePencil.request),
       getType(pencilActions.requestPencilList.request),
     ),
@@ -41,3 +38,5 @@ export default (
       ).pipe(mergeAll()),
     ),
   )
+
+export default pencilEpic

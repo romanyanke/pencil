@@ -28,9 +28,9 @@ const requestPencilList = createAsyncAction(
 )<PencilsListRequest, PencilListResponse, undefined>()
 
 export const pencilActions = { requestPencilList, requestSinglePencil }
-type Actions = ActionType<typeof pencilActions>
+export type PencilActions = ActionType<typeof pencilActions>
 
-export default createReducer<PencilAppStore, Actions>(initialState)
+export default createReducer<PencilAppStore, PencilActions>(initialState)
   .handleAction([requestPencilList.request, requestSinglePencil.request], state => ({
     requestStatus: getRequestStatus().pending,
     cache: state.cache,
