@@ -27,7 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --maxWorkers=1",
     "coverage": "npm t -- --coverage --watchAll=false",
-    "deploy": "REACT_APP_API_URL=https://romanyanke.github.io/pencilbox-static npm run build && gh-pages -d build"
+    "deploy": "REACT_APP_API_URL=https://romanyanke.github.io/pencilbox-static npm run build && gh-pages -d build",
+    "lint": "tslint --project . --fix"
   },
   "eslintConfig": {
     "extends": "react-app"

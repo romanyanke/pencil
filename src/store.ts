@@ -14,4 +14,7 @@ epicMiddleware.run(rootEpic)
 
 export type AppStore = ReturnType<typeof rootReducer>
 
+export const createTestStore = (initialState?: RecursivePartial<AppStore>) =>
+  createStore(rootReducer, initialState as AppStore)
+
 export default store

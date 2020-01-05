@@ -21,26 +21,20 @@ const TagHeader = () => {
     }
   }, [dropTag, requestStatus])
 
-  return (
-    <>
-      <button onClick={dropTag} className="TagHeader-drop" title={countryFlags.join(' ')}>
-        {pencilCount && countryCount ? (
-          <FormattedMessage
-            {...messages.title}
-            values={{
-              tag,
-              pencilCount: (
-                <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />
-              ),
-              countryCount: (
-                <FormattedMessage {...appMessages.country} values={{ count: countryCount }} />
-              ),
-            }}
-          />
-        ) : null}
-      </button>
-    </>
-  )
+  return tag && pencilCount && countryCount ? (
+    <button onClick={dropTag} className="TagHeader-drop" title={countryFlags.join(' ')}>
+      <FormattedMessage
+        {...messages.title}
+        values={{
+          tag,
+          pencilCount: <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />,
+          countryCount: (
+            <FormattedMessage {...appMessages.country} values={{ count: countryCount }} />
+          ),
+        }}
+      />
+    </button>
+  ) : null
 }
 
 export default TagHeader

@@ -1,4 +1,4 @@
-import { getFilterFromLink } from './Info.utils'
+import { getFilterFromLink, displayPencilLocation } from './Info.utils'
 
 describe('<Info />', () => {
   describe('getFilterFromLink', () => {
@@ -17,6 +17,21 @@ describe('<Info />', () => {
     it('should ignore unknown properties and return null', () => {
       expect(getFilterFromLink('?foo=bar')).toBeNull()
       expect(getFilterFromLink('/foo/bar')).toBeNull()
+    })
+  })
+
+  describe('displayPencilLocation', () => {
+    it('should display country and city', () => {
+      expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: 'City' })).toBe(
+        'Country, City',
+      )
+    })
+
+    it('should remove empty values', () => {
+      expect(displayPencilLocation({ country: { name: '', id: '' }, city: 'City' })).toBe('City')
+      expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: '' })).toBe(
+        'Country',
+      )
     })
   })
 })

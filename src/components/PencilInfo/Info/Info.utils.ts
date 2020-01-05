@@ -18,3 +18,6 @@ export const getFilterFromLink = (link: string): Filter | null => {
 
   return null
 }
+
+export const displayPencilLocation = ({ country, city }: Pick<Pencil, 'country' | 'city'>) =>
+  [country.name, city].filter(Boolean).join(', ')

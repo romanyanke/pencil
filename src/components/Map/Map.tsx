@@ -2,10 +2,10 @@ import classNames from 'classnames'
 import { isUndefined } from 'lodash'
 import React from 'react'
 import { useFilter } from '../Filter/Filter.hooks'
+import { getEmptyFilter } from '../Filter/Filter.utils'
+import { useCached } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
-import { useCached } from '../Pencil/Pencil.hooks'
-import { getEmptyFilter } from '../Filter/Filter.utils'
 
 const Map = () => {
   const [, setFilter] = useFilter()
@@ -39,7 +39,15 @@ const Map = () => {
             }
           }
 
-          return <path key={geoId} className={className} d={topology.pathD} onClick={onClick} />
+          return (
+            <path
+              data-testid={geoId}
+              key={geoId}
+              className={className}
+              d={topology.pathD}
+              onClick={onClick}
+            />
+          )
         })}
       </svg>
     </div>

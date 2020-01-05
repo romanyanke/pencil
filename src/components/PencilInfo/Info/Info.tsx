@@ -4,11 +4,12 @@ import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
+import { displayPencilLocation } from './Info.utils'
 
 const Info = ({ pencil }: InfoProps) => {
   const flag = usePencilFlag(pencil)
   const handlePseudoLink = usePseudoClick()
-  const location = [pencil.country.name, pencil.city].filter(Boolean).join(', ')
+  const location = displayPencilLocation(pencil)
 
   return (
     <div className="Info">
