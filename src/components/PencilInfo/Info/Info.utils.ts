@@ -1,5 +1,6 @@
 import { isEmpty, pick } from 'lodash'
 import qs from 'qs'
+import { Pencil } from '../../Pencil/Pencil.interface'
 import { Filter } from './../../Filter/Filter.interface'
 import { getEmptyFilter } from './../../Filter/Filter.utils'
 

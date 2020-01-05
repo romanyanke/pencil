@@ -3,8 +3,8 @@ import { FormattedMessage } from 'react-intl'
 import { appMessages } from '../../App/App.messages'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { useCached, usePecnilRequestStatus } from '../../Pencil/Pencil.hooks'
-import messages from './TagHeader.messages'
 import { useCountryFlags } from '../../Taxonomy/Taxonomy.hooks'
+import messages from './TagHeader.messages'
 
 const TagHeader = () => {
   const [{ tag }, setFilter] = useFilter()
