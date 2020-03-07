@@ -6,7 +6,6 @@ import './index.css'
 import store from './store'
 
 if (!Intl.PluralRules) {
-  // tslint:disable-next-line: no-var-requires
   require('intl-pluralrules')
 }
 
