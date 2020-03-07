@@ -2,13 +2,13 @@ import { Location } from 'history'
 import React, { useEffect, useRef } from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
 import { useHistory } from 'react-router-dom'
-import { appMessages } from '../App/App.messages'
-import { useCached } from '../Pencil/Pencil.hooks'
-import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
 import { useFilter } from './Filter.hooks'
 import messages from './Filter.messages'
 import { mapFilterToQueryString, mapQueryStringToFilter } from './Filter.utils'
 import Globe from './Globe'
+import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
+import { useCached } from '../Pencil/Pencil.hooks'
+import { appMessages } from '../App/App.messages'
 
 const Filter = () => {
   const [filter, setFilter] = useFilter()

@@ -7,6 +7,7 @@ import { createTestStore } from '../../store'
 describe('<Map />', () => {
   const renderWithProviders = (partialState: ArgumentType<typeof createTestStore> = {}) => {
     const store = createTestStore(partialState)
+
     return {
       store,
       ...render(

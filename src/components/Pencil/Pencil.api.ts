@@ -1,4 +1,3 @@
-import apiRequest from '../../api'
 import {
   PencilListResponse,
   PencilSingleRequest,
@@ -10,6 +9,7 @@ import {
   mapPencilsingleQueryRequestUrl,
   mapRequestToCacheId,
 } from './Pencil.utils'
+import apiRequest from '../../api'
 
 export const apiRequestSinglePencil = (request: PencilSingleRequest) =>
   apiRequest<PencilSingleResponse>(mapPencilsingleQueryRequestUrl(request))
@@ -17,5 +17,6 @@ export const apiRequestSinglePencil = (request: PencilSingleRequest) =>
 export const apiRequestPencilList = (request: PencilsListRequest) =>
   apiRequest<PencilListResponse>(mapPencilListQueryRequestUrl(request.query)).then(data => {
     data.cacheId = mapRequestToCacheId(request)
+
     return data
   })

@@ -12,6 +12,7 @@ const Globe = ({ animated }: GlobeProps) => {
         const nextIndex = index + 1 === frames.length ? 0 : index + 1
         setIndex(nextIndex)
       }, speed)
+
       return () => {
         clearTimeout(spin)
       }

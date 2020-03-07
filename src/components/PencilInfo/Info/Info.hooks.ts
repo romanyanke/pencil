@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
+import { getFilterFromLink } from './Info.utils'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
-import { getFilterFromLink } from './Info.utils'
 
 export const usePseudoClick = () => {
   const [, setFilter] = useFilter()

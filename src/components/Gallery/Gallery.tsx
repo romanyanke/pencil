@@ -1,11 +1,11 @@
 import { last, throttle } from 'lodash'
 import React, { useCallback, useEffect, useState } from 'react'
+import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
+import Grid from './Grid'
 import { useFilter } from '../Filter/Filter.hooks'
 import { useCached, usePencil } from '../Pencil/Pencil.hooks'
 import { PencilQuery } from '../Pencil/Pencil.interface'
 import { getNextPageNumberFromPages } from '../Pencil/Pencil.utils'
-import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
-import Grid from './Grid'
 
 const Gallery = () => {
   const [filter] = useFilter()

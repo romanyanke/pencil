@@ -1,11 +1,11 @@
 import classNames from 'classnames'
 import { isUndefined } from 'lodash'
 import React from 'react'
+import { mapHeight, mapWidth, topologies } from './Map.utils'
 import { useFilter } from '../Filter/Filter.hooks'
 import { getEmptyFilter } from '../Filter/Filter.utils'
 import { useCached } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
-import { mapHeight, mapWidth, topologies } from './Map.utils'
 
 const Map = () => {
   const [, setFilter] = useFilter()

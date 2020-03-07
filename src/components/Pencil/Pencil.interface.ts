@@ -1,4 +1,5 @@
 import { RequestStatus } from '../../requestStatus'
+
 export type PencilProps = PencilOwnPropsSingle | PencilOwnPropsList
 
 interface PencilOwnProps {

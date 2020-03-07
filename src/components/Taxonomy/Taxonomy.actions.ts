@@ -1,6 +1,6 @@
 import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
-import { getRequestStatus } from '../../requestStatus'
 import { TaxonomyAppStore as StoreTaxonomy, TaxonomyResponse } from './Taxonomy.interface'
+import { getRequestStatus } from '../../requestStatus'
 
 const requestTaxonomy = createAsyncAction(
   'taxonomy:pending',

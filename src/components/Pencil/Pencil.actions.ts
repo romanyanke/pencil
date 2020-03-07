@@ -1,5 +1,4 @@
 import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
-import { getRequestStatus } from '../../requestStatus'
 import {
   PencilAppStore,
   PencilListResponse,
@@ -8,6 +7,7 @@ import {
   PencilsListRequest,
 } from './Pencil.interface'
 import { getCacheAndNormilizedFromList } from './Pencil.utils'
+import { getRequestStatus } from '../../requestStatus'
 
 const initialState: PencilAppStore = {
   requestStatus: getRequestStatus().idle,
@@ -43,6 +43,7 @@ export default createReducer<PencilAppStore, PencilActions>(initialState)
   }))
   .handleAction(requestPencilList.success, (state, { payload }) => {
     const { cache, normalized } = getCacheAndNormilizedFromList(payload)
+
     return {
       cache: { ...state.cache, ...cache },
       normalized: { ...state.normalized, ...normalized },

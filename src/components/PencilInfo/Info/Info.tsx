@@ -1,10 +1,10 @@
 import React from 'react'
 import { FormattedMessage } from 'react-intl'
-import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
 import { displayPencilLocation } from './Info.utils'
+import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 
 const Info = ({ pencil }: InfoProps) => {
   const flag = usePencilFlag(pencil)

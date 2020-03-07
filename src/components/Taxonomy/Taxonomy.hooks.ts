@@ -1,10 +1,10 @@
 import { compact, mapKeys } from 'lodash'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppStore } from '../../store'
 import { Pencil, PencilCountry } from './../Pencil/Pencil.interface'
 import { taxonomyActions } from './Taxonomy.actions'
 import { TaxonomyAppStore } from './Taxonomy.interface'
+import { AppStore } from '../../store'
 
 export const useTaxonomy = () => useSelector<AppStore, TaxonomyAppStore>(store => store.taxonomy)
 

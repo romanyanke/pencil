@@ -1,8 +1,8 @@
 import classNames from 'classnames'
 import React from 'react'
+import { GridProps } from './Grid.interface'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { mapFilterToQueryString } from '../../Filter/Filter.utils'
-import { GridProps } from './Grid.interface'
 
 const Grid = ({ pencils }: GridProps) => {
   const [, setFilter] = useFilter()

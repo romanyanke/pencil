@@ -10,7 +10,8 @@ export const getEmptyFilter = (): Filter => ({
 
 export const mapFilterToQueryString = (filter: Partial<Filter>): string => {
   const query = qs.stringify(pickBy(filter, Boolean))
-  return query ? '?' + query : ''
+
+  return query ? `?${query}` : ''
 }
 
 export const mapQueryStringToFilter = (querystring = window.location.search): Filter => {

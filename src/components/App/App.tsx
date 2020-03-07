@@ -1,6 +1,7 @@
 import React from 'react'
 import { FormattedMessage, IntlProvider } from 'react-intl'
 import { BrowserRouter } from 'react-router-dom'
+import { appMessages } from './App.messages'
 import Filter from '../Filter'
 import { useFilter } from '../Filter/Filter.hooks'
 import Gallery from '../Gallery'
@@ -10,7 +11,6 @@ import PageTitle from '../PageTitle'
 import PencilInfo from '../PencilInfo'
 import TagHeader from '../PencilInfo/TagHeader'
 import { useTaxonomyRequest } from '../Taxonomy/Taxonomy.hooks'
-import { appMessages } from './App.messages'
 
 const App = () => {
   const [{ tag }] = useFilter()

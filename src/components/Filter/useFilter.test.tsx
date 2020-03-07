@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
 import React, { useEffect } from 'react'
 import { Provider } from 'react-redux'
-import { createTestStore } from '../../store'
 import { useFilter } from './Filter.hooks'
 import { Filter } from './Filter.interface'
 import { getEmptyFilter } from './Filter.utils'
+import { createTestStore } from '../../store'
 
 describe('<Filter />', () => {
   describe('useFilter', () => {

@@ -1,9 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { isUndefined } from 'util'
-import { AppStore } from '../../store'
-import { useFilter } from '../Filter/Filter.hooks'
-import { requestFirstPage } from '../Gallery/Gallery.utils'
 import { pencilActions } from './Pencil.actions'
 import { Pencil, PencilAppStore, PencilProps, PencilQuery } from './Pencil.interface'
 import {
@@ -11,6 +8,9 @@ import {
   mapRequestToCacheId,
   mapRequestToCacheId as mapQueryToCacheId,
 } from './Pencil.utils'
+import { AppStore } from '../../store'
+import { useFilter } from '../Filter/Filter.hooks'
+import { requestFirstPage } from '../Gallery/Gallery.utils'
 
 const usePencilStore = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
 

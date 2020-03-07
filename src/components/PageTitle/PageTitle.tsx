@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useIntl } from 'react-intl'
+import messages from './PageTitle.messages'
 import { appMessages } from '../App/App.messages'
 import { useFilter } from '../Filter/Filter.hooks'
 import { useCached, useNormalizedPencils } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
-import messages from './PageTitle.messages'
 
 const PageTitle = () => {
   const [filter] = useFilter()

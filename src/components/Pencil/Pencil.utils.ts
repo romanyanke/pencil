@@ -42,7 +42,8 @@ export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery
   if (page && page !== 1) {
     pathParts.push(`/page/${page}`)
   }
-  return pathParts.join('/') + '/'
+
+  return `${pathParts.join('/')}/`
 }
 
 export const mapRequestToCacheId = (request: PencilRequest): string => {
@@ -101,8 +102,9 @@ export const getPencilsFromCacheByQuery = (
   const pencils = pencilCache.ids.map(id => {
     const data = normalized[id]
     if (!data) {
-      throw new Error('no cache for id ' + id)
+      throw new Error(`no cache for id ${id}`)
     }
+
     return data
   })
 
