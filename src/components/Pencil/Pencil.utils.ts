@@ -82,7 +82,7 @@ export const getCacheAndNormilizedFromList = ({
   return { normalized, cache: { [cacheId]: { ids, pages, geoIds } } }
 }
 
-export const getNextPageNumberFromPages = (pages?: PencilPages): number | null => {
+export const getNextPageNumberFromPages = (pages?: PencilPages) => {
   if (pages) {
     if (pages.page < pages.total) {
       return pages.page + 1

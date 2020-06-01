@@ -17,6 +17,7 @@ const Gallery = () => {
 
   useEffect(() => {
     setQueries([requestFirstPage({ country, tag })])
+    document.documentElement.scrollTop = 0
   }, [country, tag])
 
   const loadNextPage = useCallback(() => {
@@ -26,7 +27,15 @@ const Gallery = () => {
   }, [filter, queries, setQueries, page])
 
   const onScroll = useCallback(
-    throttle(() => checkWindowScroll() && loadNextPage(), 100, { leading: false }),
+    throttle(
+      () => {
+        if (page && checkWindowScroll()) {
+          loadNextPage()
+        }
+      },
+      100,
+      { leading: false, trailing: false },
+    ),
     [loadNextPage],
   )
 
