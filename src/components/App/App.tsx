@@ -19,26 +19,24 @@ const App = () => {
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
       {fulfilled ? (
-        <div className="App">
-          <BrowserRouter>
-            <PageTitle />
-            <PencilInfo />
-            <nav className="App-block">
-              <Filter />
-            </nav>
-            {tag ? (
-              <section className="App-block">
-                <TagHeader />{' '}
-              </section>
-            ) : null}
+        <BrowserRouter>
+          <PageTitle />
+          <PencilInfo />
+          <nav className="App-block">
+            <Filter />
+          </nav>
+          {tag ? (
             <section className="App-block">
-              <Map />
+              <TagHeader />
             </section>
-            <main className="App-block">
-              <Gallery />
-            </main>
-          </BrowserRouter>
-        </div>
+          ) : null}
+          <section className="App-block">
+            <Map />
+          </section>
+          <main className="App-block">
+            <Gallery />
+          </main>
+        </BrowserRouter>
       ) : (
         <div className="App-loading">
           {pending && <Loader />}
