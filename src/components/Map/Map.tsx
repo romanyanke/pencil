@@ -46,7 +46,9 @@ const Map = () => {
               className={className}
               d={topology.pathD}
               onClick={onClick}
-            />
+            >
+              {country && <title>{country}</title>}
+            </path>
           )
         })}
       </svg>
