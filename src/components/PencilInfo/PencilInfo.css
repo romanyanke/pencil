@@ -9,6 +9,7 @@
   -webkit-overflow-scrolling: touch;
   overflow-y: auto;
   animation: pencil-backdrop-fade-in 0.2s ease-in;
+  cursor: zoom-out;
 }
 
 @keyframes pencil-backdrop-fade-in {
@@ -28,6 +29,7 @@
   overflow: hidden;
   animation: pencil-content-roll-out 0.2s ease-in;
   will-change: transform;
+  cursor: initial;
 }
 
 @keyframes pencil-content-roll-out {

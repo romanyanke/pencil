@@ -8,6 +8,7 @@
   position: absolute;
   display: block;
   width: 100%;
+  cursor: zoom-out;
 }
 
 .Info-content {
