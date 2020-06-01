@@ -4,16 +4,13 @@ import { Filter } from './../../Filter/Filter.interface'
 import { getEmptyFilter } from './../../Filter/Filter.utils'
 import { Pencil } from '../../Pencil/Pencil.interface'
 
-export const getFilterFromLink = (link: string): Filter | null => {
-  const queryPart = link.split('?')[1]
-  if (queryPart) {
-    const emptyFilter = getEmptyFilter()
-    const query = qs.parse(queryPart)
-    const filterKeys = Object.keys(emptyFilter) as Array<keyof Filter>
-    const keysFromQuery = pick<Filter, keyof Filter>(query, filterKeys)
-    if (!isEmpty(keysFromQuery)) {
-      return keysFromQuery
-    }
+export const getFilterFromLink = (querystring: string): Filter | null => {
+  const parsed = qs.parse(querystring, { ignoreQueryPrefix: true }) as {}
+  const filterKeys = Object.keys(getEmptyFilter())
+  const filter = pick(parsed, filterKeys) as Filter
+
+  if (!isEmpty(filter)) {
+    return filter
   }
 
   return null
