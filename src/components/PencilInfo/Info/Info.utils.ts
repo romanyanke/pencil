@@ -1,4 +1,5 @@
-import { isEmpty, pick } from 'lodash'
+import isEmpty from 'lodash/isEmpty'
+import pick from 'lodash/pick'
 import qs from 'qs'
 import { Filter } from './../../Filter/Filter.interface'
 import { getEmptyFilter } from './../../Filter/Filter.utils'

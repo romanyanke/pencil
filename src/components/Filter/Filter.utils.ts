@@ -1,4 +1,5 @@
-import { pick, pickBy } from 'lodash'
+import pick from 'lodash/pick'
+import pickBy from 'lodash/pickBy'
 import qs from 'qs'
 import { Filter } from './Filter.interface'
 

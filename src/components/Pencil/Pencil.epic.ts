@@ -1,4 +1,4 @@
-import { uniqBy } from 'lodash'
+import uniqBy from 'lodash/uniqBy'
 import { Epic, ofType } from 'redux-observable'
 import { from, of } from 'rxjs'
 import { bufferTime, catchError, filter, map, mergeAll, mergeMap } from 'rxjs/operators'

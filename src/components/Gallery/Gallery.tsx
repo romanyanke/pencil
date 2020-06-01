@@ -1,4 +1,5 @@
-import { last, throttle } from 'lodash'
+import last from 'lodash/last'
+import throttle from 'lodash/throttle'
 import React, { useCallback, useEffect, useState } from 'react'
 import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
 import Grid from './Grid'

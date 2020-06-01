@@ -1,4 +1,4 @@
-import { isMatch } from 'lodash'
+import isMatch from 'lodash/isMatch'
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppStore } from './../../store'

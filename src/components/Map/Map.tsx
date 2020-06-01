@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { isUndefined } from 'lodash'
+import isUndefined from 'lodash/isUndefined'
 import React from 'react'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
 import { useFilter } from '../Filter/Filter.hooks'

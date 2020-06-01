@@ -1,4 +1,5 @@
-import { compact, mapKeys } from 'lodash'
+import compact from 'lodash/compact'
+import mapKeys from 'lodash/mapKeys'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Pencil, PencilCountry } from './../Pencil/Pencil.interface'
