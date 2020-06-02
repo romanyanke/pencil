@@ -20,7 +20,7 @@ export const appMessages = defineMessages({
   },
 
   error: {
-    defaultMessage: 'не могу загрузить',
+    defaultMessage: 'не могу загрузить, попробую перезагрузить страницу',
     id: 'App.error',
   },
 })

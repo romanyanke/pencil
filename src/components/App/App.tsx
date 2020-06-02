@@ -18,7 +18,7 @@ const App = () => {
 
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
-      {loading ? (
+      {loading || failure ? (
         <div className="App-loading">
           {loading && <Loader />}
           {failure && (
