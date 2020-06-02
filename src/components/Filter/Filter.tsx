@@ -42,10 +42,7 @@ const Filter = () => {
               ),
               countries: (
                 <span className="Filter-span">
-                  <FormattedMessage
-                    {...appMessages.country}
-                    values={{ count: countries.length + 1 }}
-                  />
+                  <FormattedMessage {...appMessages.country} values={{ count: countries.length }} />
                 </span>
               ),
             }}
