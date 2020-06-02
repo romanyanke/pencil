@@ -1,10 +1,7 @@
-import { Location } from 'history'
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useHistory } from 'react-router-dom'
 import { useFilter } from './Filter.hooks'
 import messages from './Filter.messages'
-import { mapFilterToQueryString, mapQueryStringToFilter } from './Filter.utils'
 import Globe from './Globe'
 import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
 import { useCached } from '../Pencil/Pencil.hooks'
@@ -14,25 +11,7 @@ const Filter = () => {
   const [filter, setFilter] = useFilter()
   const { countries, pencilCount } = useTaxonomy()
   const cached = useCached()
-  const history = useHistory()
   const intl = useIntl()
-  const select = useRef<HTMLSelectElement>(null)
-
-  useEffect(() => {
-    if (mapFilterToQueryString(filter) !== window.location.search) {
-      history.push(mapFilterToQueryString(filter))
-    }
-  }, [filter, history])
-
-  useEffect(() => {
-    const unlisten = history.listen(({ search }: Location, action) => {
-      if (action === 'POP') {
-        setFilter(mapQueryStringToFilter(search))
-      }
-    })
-
-    return unlisten
-  }, [filter, history, setFilter])
 
   const isFiltered = Boolean(filter.country || filter.tag)
   const pencilsInCountry = cached?.pages.pencils
@@ -76,7 +55,6 @@ const Filter = () => {
       <div className="Filter-control">
         <select
           id={htmlFor}
-          ref={select}
           className="Filter-select"
           value={filter.country}
           onChange={e => setFilter({ country: e.target.value, tag: '' })}
