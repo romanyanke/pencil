@@ -13,7 +13,7 @@ describe('<Filter />', () => {
       filterUpdate: Partial<Filter> = {},
     ): Filter => {
       const HookWrapper = () => {
-        const [filter, setFilter] = useFilter()
+        const [filter, { setFilter }] = useFilter()
 
         useEffect(() => {
           setFilter(filterUpdate)

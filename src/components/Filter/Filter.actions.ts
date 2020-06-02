@@ -3,12 +3,12 @@ import { Filter, FilterAppStore } from './Filter.interface'
 import { getInitialFilter } from './Filter.utils'
 
 const initialState: FilterAppStore = getInitialFilter()
-const updateFilter = createAction('filter:set')<Partial<Filter>>()
+const setFilter = createAction('filter:set')<Filter>()
 type Actions = ActionType<typeof filterActions>
 
-export const filterActions = { updateFilter }
+export const filterActions = { setFilter }
 
 export default createReducer<FilterAppStore, Actions>(initialState).handleAction(
-  updateFilter,
-  (state, { payload }) => ({ ...state, ...payload }),
+  setFilter,
+  (state, { payload }) => payload,
 )

@@ -3,12 +3,11 @@ import isUndefined from 'lodash/isUndefined'
 import React from 'react'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
 import { useFilter } from '../Filter/Filter.hooks'
-import { getEmptyFilter } from '../Filter/Filter.utils'
 import { useCached } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 
 const Map = () => {
-  const [, setFilter] = useFilter()
+  const [, { setCountry, clearCountry }] = useFilter()
   const normalizedIds = useCountriesNormalizedBy('id')
   const cached = useCached()
   const geoIds = cached?.geoIds ?? []
@@ -33,9 +32,9 @@ const Map = () => {
           )
           const onClick = () => {
             if (isSelected) {
-              setFilter(getEmptyFilter())
+              clearCountry()
             } else if (country) {
-              setFilter({ country, tag: '' })
+              setCountry(country)
             }
           }
 

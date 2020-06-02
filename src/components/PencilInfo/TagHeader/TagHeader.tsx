@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './TagHeader.messages'
 import { appMessages } from '../../App/App.messages'
@@ -7,22 +7,21 @@ import { useCached, usePecnilRequestStatus } from '../../Pencil/Pencil.hooks'
 import { useCountryFlags } from '../../Taxonomy/Taxonomy.hooks'
 
 const TagHeader = () => {
-  const [{ tag }, setFilter] = useFilter()
+  const [{ tag }, { clearTag }] = useFilter()
   const cache = useCached()
   const requestStatus = usePecnilRequestStatus()
-  const dropTag = useCallback(() => setFilter({ tag: '' }), [setFilter])
   const countryFlags = useCountryFlags(cache?.geoIds ?? [])
   const pencilCount = cache?.pages.pencils
   const countryCount = cache?.geoIds.length
 
   useEffect(() => {
     if (requestStatus.rejected) {
-      dropTag()
+      clearTag()
     }
-  }, [dropTag, requestStatus])
+  }, [clearTag, requestStatus])
 
   return tag && pencilCount && countryCount ? (
-    <button onClick={dropTag} className="TagHeader-drop" title={countryFlags.join(' ')}>
+    <button onClick={clearTag} className="TagHeader-drop" title={countryFlags.join(' ')}>
       <FormattedMessage
         {...messages.title}
         values={{

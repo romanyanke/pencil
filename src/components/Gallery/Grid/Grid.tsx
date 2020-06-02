@@ -6,7 +6,7 @@ import { useFilter } from '../../Filter/Filter.hooks'
 import { mapFilterToQueryString } from '../../Filter/Filter.utils'
 
 const Grid = ({ pencils }: GridProps) => {
-  const [, setFilter] = useFilter()
+  const [, { openPencil }] = useFilter()
 
   return (
     <div className="Grid">
@@ -17,7 +17,7 @@ const Grid = ({ pencils }: GridProps) => {
         const className = classNames('GridItem', size === 2 && 'size2', size === 3 && 'size3')
         const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
           e.preventDefault()
-          setFilter({ display: pencil.id })
+          openPencil(pencil.id)
         }
 
         return (

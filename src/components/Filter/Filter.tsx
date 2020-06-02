@@ -8,7 +8,7 @@ import { useCached } from '../Pencil/Pencil.hooks'
 import { appMessages } from '../App/App.messages'
 
 const Filter = () => {
-  const [filter, setFilter] = useFilter()
+  const [filter, { clearCountry, setCountry }] = useFilter()
   const { countries, pencilCount } = useTaxonomy()
   const cached = useCached()
   const intl = useIntl()
@@ -25,7 +25,7 @@ const Filter = () => {
           className="Filter-label"
           onClick={() => {
             if (isFiltered) {
-              setFilter({ country: '' })
+              clearCountry()
             }
           }}
         >
@@ -57,7 +57,7 @@ const Filter = () => {
           id={htmlFor}
           className="Filter-select"
           value={filter.country}
-          onChange={e => setFilter({ country: e.target.value, tag: '' })}
+          onChange={e => setCountry(e.target.value)}
         >
           <option key="empty-country" value="">
             {intl.formatMessage(messages.all)}
