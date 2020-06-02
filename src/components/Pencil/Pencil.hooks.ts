@@ -14,7 +14,7 @@ import { requestFirstPage } from '../Gallery/Gallery.utils'
 
 const usePencilStore = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
 
-export const useNormalizedPencils = () => usePencilStore().normalized
+export const useNormalizedPencils = () => usePencilStore().data
 
 export const usePencilCache = (userQuery?: PencilQuery) => {
   const [currentFilter] = useFilter()

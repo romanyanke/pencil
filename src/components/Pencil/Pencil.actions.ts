@@ -8,11 +8,11 @@ import {
   PencilSingleResponse,
   PencilsListRequest,
 } from './Pencil.interface'
-import { getCacheAndNormilizedFromList } from './Pencil.utils'
+import { mapPancilsResponseToStore } from './Pencil.utils'
 
 const getInitialPencilState = (): PencilAppStore => ({
   cache: {},
-  normalized: {},
+  data: {},
 })
 
 const requestSinglePencil = createAsyncAction(
@@ -33,11 +33,11 @@ export type PencilActions = ActionType<typeof pencilActions>
 export default createReducer<PencilAppStore, PencilActions>(getInitialPencilState())
   .handleAction(requestPencilList.success, (state, { payload }) =>
     produce(state, draft => {
-      merge(draft, getCacheAndNormilizedFromList(payload))
+      merge(draft, mapPancilsResponseToStore(payload))
     }),
   )
   .handleAction(requestSinglePencil.success, (state, { payload }) =>
     produce(state, draft => {
-      draft.normalized[payload.id] = payload
+      draft.data[payload.id] = payload
     }),
   )

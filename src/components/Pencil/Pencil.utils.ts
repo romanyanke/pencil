@@ -9,6 +9,7 @@ import {
   PencilRequest,
   PencilSingleRequest,
   PencilsNormalized,
+  PencilAppStore,
 } from './Pencil.interface'
 
 const getEmptyPencilCacheItem = (): PencilCacheItem => ({
@@ -67,20 +68,16 @@ export const mapRequestToCacheId = (request: PencilRequest): string => {
   return cahceIdParts.join('|')
 }
 
-interface CacheAndNormalize {
-  cache: PencilCache
-  normalized: PencilsNormalized
-}
-export const getCacheAndNormilizedFromList = ({
+export const mapPancilsResponseToStore = ({
   cacheId,
   pages,
-  data,
+  data: pencils,
   geoIds,
-}: PencilListResponse): CacheAndNormalize => {
-  const ids = data.map(({ id }) => id)
-  const normalized = mapKeys(data, item => item.id)
+}: PencilListResponse): PencilAppStore => {
+  const ids = pencils.map(({ id }) => id)
+  const data = mapKeys(pencils, item => item.id)
 
-  return { normalized, cache: { [cacheId]: { ids, pages, geoIds } } }
+  return { data, cache: { [cacheId]: { ids, pages, geoIds } } }
 }
 
 export const getNextPageNumberFromPages = (pages?: PencilPages) => {

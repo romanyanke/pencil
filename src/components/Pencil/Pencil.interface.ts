@@ -43,7 +43,7 @@ export interface PencilListResponse {
 
 export interface PencilAppStore {
   cache: Partial<PencilCache>
-  normalized: PencilsNormalized
+  data: PencilsNormalized
 }
 
 export type PencilCache = Record<string, PencilCacheItem>
