@@ -39,9 +39,7 @@ const App = () => {
               <TagHeader />
             </section>
           ) : null}
-          <section className="App-block">
-            <Map />
-          </section>
+          <Map />
           <main className="App-block">
             <Gallery />
           </main>
