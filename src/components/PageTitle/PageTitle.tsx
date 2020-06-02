@@ -13,23 +13,28 @@ const PageTitle = () => {
   const normalizedPencils = useNormalizedPencils()
   const normalizedCoutries = useCountriesNormalizedBy('name')
   const pencil = normalizedPencils[filter.display]
-  const flag = normalizedCoutries[filter.country]?.flag
+  const countryFlag = normalizedCoutries[filter.country]?.flag
+  const pencilFlag = pencil ? normalizedCoutries[pencil.country.name]?.flag : undefined
   const count = cached?.pages.pencils
 
   useEffect(() => {
-    if (pencil && flag) {
+    if (pencil && pencilFlag) {
       const { title, country } = pencil
-      document.title = intl.formatMessage(messages.pencil, { title, country: country.name, flag })
+      document.title = intl.formatMessage(messages.pencil, {
+        title,
+        country: country.name,
+        pencilFlag,
+      })
     } else if (filter.country && count) {
       document.title = intl.formatMessage(messages.country, {
-        flag,
+        countryFlag,
         country: filter.country,
         pencils: intl.formatMessage(appMessages.pencil, { count }),
       })
     } else {
       document.title = intl.formatMessage(messages.title)
     }
-  }, [intl, pencil, count, filter, flag])
+  }, [intl, pencil, count, filter, countryFlag, pencilFlag])
 
   return null
 }

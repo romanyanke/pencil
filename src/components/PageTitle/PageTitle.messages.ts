@@ -7,12 +7,12 @@ export default defineMessages({
   },
 
   pencil: {
-    defaultMessage: '{flag} {title}, {country}',
+    defaultMessage: '{pencilFlag} {title}, {country}',
     id: 'PageTitle.pencil',
   },
 
   country: {
-    defaultMessage: '{flag} {country}. {pencils}',
+    defaultMessage: '{countryFlag} {country}. {pencils}',
     id: 'PageTitle.country',
   },
 })
