@@ -28,7 +28,11 @@ const Grid = ({ pencils }: GridProps) => {
             key={pencil.id}
             title={pencil.title}
           >
-            <img alt={pencil.title} {...getGridImageSources(size, fullSrc, thumbSrc)} />
+            <img
+              alt={pencil.title}
+              loading="lazy"
+              {...getGridImageSources(size, fullSrc, thumbSrc)}
+            />
           </a>
         )
       })}
