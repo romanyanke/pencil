@@ -1,42 +1,31 @@
-import uniqBy from 'lodash/uniqBy'
-import { Epic, ofType } from 'redux-observable'
+import { Epic, combineEpics } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { bufferTime, catchError, filter, map, mergeAll, mergeMap } from 'rxjs/operators'
-import { ActionType, getType, isActionOf } from 'typesafe-actions'
+import { catchError, filter, map, concatMap } from 'rxjs/operators'
+import { isActionOf } from 'typesafe-actions'
 import { PencilActions, pencilActions } from './Pencil.actions'
 import { apiRequestPencilList, apiRequestSinglePencil } from './Pencil.api'
-import { mapRequestToCacheId } from './Pencil.utils'
 
-type PencilRequestActions = ActionType<
-  typeof pencilActions.requestSinglePencil.request | typeof pencilActions.requestPencilList.request
->
-
-const pencilEpic: Epic<PencilActions> = action$ =>
-  action$.pipe(
-    ofType<PencilActions, PencilRequestActions>(
-      getType(pencilActions.requestSinglePencil.request),
-      getType(pencilActions.requestPencilList.request),
+const pencilEpic: Epic<PencilActions> = combineEpics(
+  action$ =>
+    action$.pipe(
+      filter(isActionOf(pencilActions.requestSinglePencil.request)),
+      concatMap(({ payload }) =>
+        from(apiRequestSinglePencil(payload)).pipe(
+          map(pencilActions.requestSinglePencil.success),
+          catchError(() => of(pencilActions.requestSinglePencil.failure())),
+        ),
+      ),
     ),
-    bufferTime(66),
-    filter(actions => actions.length > 0),
-    mergeMap(actions =>
-      from(
-        uniqBy(actions, ({ payload }) => mapRequestToCacheId(payload)).map(action => {
-          if (isActionOf(pencilActions.requestSinglePencil.request)(action)) {
-            return from(apiRequestSinglePencil(action.payload)).pipe(
-              map(pencilActions.requestSinglePencil.success),
-              catchError(() => of(pencilActions.requestSinglePencil.failure())),
-            )
-          } else if (isActionOf(pencilActions.requestPencilList.request)(action)) {
-            return from(apiRequestPencilList(action.payload)).pipe(
-              map(pencilActions.requestPencilList.success),
-              catchError(() => of(pencilActions.requestPencilList.failure())),
-            )
-          }
-          throw new Error()
-        }),
-      ).pipe(mergeAll()),
-    ),
-  )
 
+  action$ =>
+    action$.pipe(
+      filter(isActionOf(pencilActions.requestPencilList.request)),
+      concatMap(({ payload }) =>
+        from(apiRequestPencilList(payload)).pipe(
+          map(pencilActions.requestPencilList.success),
+          catchError(() => of(pencilActions.requestPencilList.failure())),
+        ),
+      ),
+    ),
+)
 export default pencilEpic
