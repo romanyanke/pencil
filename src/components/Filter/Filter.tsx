@@ -18,9 +18,6 @@ const Filter = () => {
   const intl = useIntl()
   const select = useRef<HTMLSelectElement>(null)
 
-  const isFiltered = Boolean(filter.country || filter.tag)
-  const pencilsInCountry = cached?.pages.pencils
-
   useEffect(() => {
     if (mapFilterToQueryString(filter) !== window.location.search) {
       history.push(mapFilterToQueryString(filter))
@@ -37,13 +34,17 @@ const Filter = () => {
     return unlisten
   }, [filter, history, setFilter])
 
+  const isFiltered = Boolean(filter.country || filter.tag)
+  const pencilsInCountry = cached?.pages.pencils
+  const htmlFor = 'country-filter'
+
   return (
     <div className="Filter">
       <div className="Filter-control">
-        <button
-          className="Filter-clear-button"
+        <label
+          htmlFor={htmlFor}
+          className="Filter-label"
           onClick={() => {
-            select.current?.focus()
             if (isFiltered) {
               setFilter({ country: '' })
             }
@@ -70,10 +71,11 @@ const Filter = () => {
               ),
             }}
           />
-        </button>
+        </label>
       </div>
       <div className="Filter-control">
         <select
+          id={htmlFor}
           ref={select}
           className="Filter-select"
           value={filter.country}

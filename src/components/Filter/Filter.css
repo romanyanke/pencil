@@ -6,6 +6,7 @@
 
 .Filter-control {
   flex: 0 1 auto;
+  margin-right: 1rem;
   white-space: nowrap;
 }
 
@@ -13,12 +14,10 @@
   padding-right: 0.6rem;
 }
 
-.Filter-clear-button {
+.Filter-label {
   font-size: 24px;
-  background-color: transparent;
-  text-align: left;
-  border: none;
   cursor: pointer;
+  display: block;
 }
 
 @media screen and (max-width: 900px) {
