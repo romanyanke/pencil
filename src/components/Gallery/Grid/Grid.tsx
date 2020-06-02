@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import { GridProps } from './Grid.interface'
+import { getGridImageSources } from './Grid.utils'
 import { useFilter } from '../../Filter/Filter.hooks'
 import { mapFilterToQueryString } from '../../Filter/Filter.utils'
 
@@ -10,13 +11,10 @@ const Grid = ({ pencils }: GridProps) => {
   return (
     <div className="Grid">
       {pencils.map(pencil => {
-        const thumbSize = pencil.preview
-        const fullSize = pencil.photos[0]
-        const useSize = pencil.grid === 1 ? thumbSize : fullSize
-        const className = classNames('GridItem', {
-          size2: pencil.grid === 2,
-          size3: pencil.grid === 3,
-        })
+        const size = pencil.grid
+        const thumbSrc = pencil.preview
+        const fullSrc = pencil.photos[0]
+        const className = classNames('GridItem', size === 2 && 'size2', size === 3 && 'size3')
         const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
           e.preventDefault()
           setFilter({ display: pencil.id })
@@ -30,7 +28,7 @@ const Grid = ({ pencils }: GridProps) => {
             key={pencil.id}
             title={pencil.title}
           >
-            <img srcSet={`${useSize}, ${fullSize} 2x`} alt={pencil.title} src={useSize} />
+            <img alt={pencil.title} {...getGridImageSources(size, fullSrc, thumbSrc)} />
           </a>
         )
       })}
