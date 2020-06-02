@@ -14,11 +14,20 @@ import { useTaxonomyRequest } from '../Taxonomy/Taxonomy.hooks'
 const App = () => {
   useFilerQueryString()
   const [{ tag }] = useFilter()
-  const { pending, fulfilled, rejected } = useTaxonomyRequest()
+  const { loading, failure } = useTaxonomyRequest()
 
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
-      {fulfilled ? (
+      {loading ? (
+        <div className="App-loading">
+          {loading && <Loader />}
+          {failure && (
+            <button onClick={() => window.location.reload()}>
+              <FormattedMessage {...appMessages.error} />
+            </button>
+          )}
+        </div>
+      ) : (
         <>
           <PageTitle />
           <PencilInfo />
@@ -37,15 +46,6 @@ const App = () => {
             <Gallery />
           </main>
         </>
-      ) : (
-        <div className="App-loading">
-          {pending && <Loader />}
-          {rejected && (
-            <button onClick={() => window.location.reload()}>
-              <FormattedMessage {...appMessages.error} />
-            </button>
-          )}
-        </div>
       )}
     </IntlProvider>
   )

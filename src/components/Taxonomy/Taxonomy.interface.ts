@@ -1,4 +1,3 @@
-import { RequestStatus } from '../../requestStatus'
 import { PencilCountry } from '../Pencil/Pencil.interface'
 
 export interface TaxonomyResponse {
@@ -15,7 +14,8 @@ export interface TaxonomyResponse {
 }
 
 export interface TaxonomyAppStore {
-  requestStatus: RequestStatus
+  loading: boolean
+  failure: boolean
   pencilCount: number
   countries: PencilCountry[]
   tags: string[]

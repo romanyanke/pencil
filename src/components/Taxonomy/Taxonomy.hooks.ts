@@ -1,23 +1,23 @@
 import compact from 'lodash/compact'
 import mapKeys from 'lodash/mapKeys'
-import { useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useMemo, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { Pencil, PencilCountry } from './../Pencil/Pencil.interface'
-import { taxonomyActions } from './Taxonomy.actions'
 import { TaxonomyAppStore } from './Taxonomy.interface'
+import { taxonomyActions } from './Taxonomy.actions'
 import { AppStore } from '../../store'
 
 export const useTaxonomy = () => useSelector<AppStore, TaxonomyAppStore>(store => store.taxonomy)
 
 export const useTaxonomyRequest = () => {
   const dispatch = useDispatch()
-  const requestStatus = useTaxonomy().requestStatus
+  const { loading, failure } = useTaxonomy()
 
   useEffect(() => {
     dispatch(taxonomyActions.requestTaxonomy.request())
   }, [dispatch])
 
-  return requestStatus
+  return { loading, failure }
 }
 
 export const usePencilFlag = (pencil: Pencil) => {
