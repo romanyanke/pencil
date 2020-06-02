@@ -4,13 +4,13 @@ import { useFilter } from './Filter.hooks'
 import messages from './Filter.messages'
 import Globe from './Globe'
 import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
-import { useCached } from '../Pencil/Pencil.hooks'
+import { usePencilCache } from '../Pencil/Pencil.hooks'
 import { appMessages } from '../App/App.messages'
 
 const Filter = () => {
   const [filter, { clearCountry, setCountry }] = useFilter()
   const { countries, pencilCount } = useTaxonomy()
-  const cached = useCached()
+  const cached = usePencilCache()
   const intl = useIntl()
 
   const isFiltered = Boolean(filter.country || filter.tag)

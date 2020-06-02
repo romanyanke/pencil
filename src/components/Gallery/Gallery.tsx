@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
 import Grid from './Grid'
 import { useFilter } from '../Filter/Filter.hooks'
-import { useCached, usePencil } from '../Pencil/Pencil.hooks'
+import { usePencilCache, usePencil } from '../Pencil/Pencil.hooks'
 import { PencilQuery } from '../Pencil/Pencil.interface'
 import { getNextPageNumberFromPages } from '../Pencil/Pencil.utils'
 
@@ -12,7 +12,7 @@ const Gallery = () => {
   const [filter] = useFilter()
   const [queries, setQueries] = useState<PencilQuery[]>([])
   const { pencils } = usePencil({ queries })
-  const cached = useCached(last(queries))
+  const cached = usePencilCache(last(queries))
   const { country, tag } = filter
   const page = getNextPageNumberFromPages(cached?.pages)
 

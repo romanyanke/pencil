@@ -3,12 +3,12 @@ import { useIntl } from 'react-intl'
 import messages from './PageTitle.messages'
 import { appMessages } from '../App/App.messages'
 import { useFilter } from '../Filter/Filter.hooks'
-import { useCached, useNormalizedPencils } from '../Pencil/Pencil.hooks'
+import { usePencilCache, useNormalizedPencils } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 
 const PageTitle = () => {
   const [filter] = useFilter()
-  const cached = useCached()
+  const cached = usePencilCache()
   const intl = useIntl()
   const normalizedPencils = useNormalizedPencils()
   const normalizedCoutries = useCountriesNormalizedBy('name')

@@ -1,3 +1,4 @@
+import mapKeys from 'lodash/mapKeys'
 import {
   Pencil,
   PencilCache,
@@ -77,7 +78,7 @@ export const getCacheAndNormilizedFromList = ({
   geoIds,
 }: PencilListResponse): CacheAndNormalize => {
   const ids = data.map(({ id }) => id)
-  const normalized = data.reduce((list, pencil) => ({ ...list, [pencil.id]: pencil }), {})
+  const normalized = mapKeys(data, item => item.id)
 
   return { normalized, cache: { [cacheId]: { ids, pages, geoIds } } }
 }

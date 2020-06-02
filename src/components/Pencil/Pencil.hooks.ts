@@ -14,13 +14,11 @@ import { requestFirstPage } from '../Gallery/Gallery.utils'
 
 const usePencilStore = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
 
-export const usePecnilRequestStatus = () => usePencilStore().requestStatus
 export const useNormalizedPencils = () => usePencilStore().normalized
-export const usePencilCache = () => usePencilStore().cache
 
-export const useCached = (userQuery?: PencilQuery) => {
+export const usePencilCache = (userQuery?: PencilQuery) => {
   const [currentFilter] = useFilter()
-  const cache = usePencilCache()
+  const { cache } = usePencilStore()
 
   const filter = userQuery || currentFilter
   const query = (filter?.page ?? 0) > 1 ? filter : requestFirstPage(filter)
@@ -32,8 +30,7 @@ export const useCached = (userQuery?: PencilQuery) => {
 
 export const usePencil = ({ id, query, queries }: PencilProps) => {
   const dispatch = useDispatch()
-  const requestStatus = usePecnilRequestStatus()
-  const cache = usePencilCache()
+  const { cache } = usePencilStore()
   const normalized = useNormalizedPencils()
   const pencil = id ? normalized[id] : undefined
   const targetQueries = query ? [query] : queries ? queries : []
@@ -55,5 +52,5 @@ export const usePencil = ({ id, query, queries }: PencilProps) => {
     }
   }, [dispatch, id, query, queries, pencil, cache])
 
-  return { requestStatus, pencil, pencils }
+  return { pencil, pencils }
 }

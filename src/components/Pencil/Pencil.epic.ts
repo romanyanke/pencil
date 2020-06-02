@@ -4,6 +4,7 @@ import { catchError, filter, map, concatMap } from 'rxjs/operators'
 import { isActionOf } from 'typesafe-actions'
 import { PencilActions, pencilActions } from './Pencil.actions'
 import { apiRequestPencilList, apiRequestSinglePencil } from './Pencil.api'
+import { filterActions } from '../Filter/Filter.actions'
 
 const pencilEpic: Epic<PencilActions> = combineEpics(
   action$ =>
@@ -12,7 +13,9 @@ const pencilEpic: Epic<PencilActions> = combineEpics(
       concatMap(({ payload }) =>
         from(apiRequestSinglePencil(payload)).pipe(
           map(pencilActions.requestSinglePencil.success),
-          catchError(() => of(pencilActions.requestSinglePencil.failure())),
+          catchError(() =>
+            of(filterActions.update({ display: '' }), pencilActions.requestSinglePencil.failure()),
+          ),
         ),
       ),
     ),
@@ -23,7 +26,12 @@ const pencilEpic: Epic<PencilActions> = combineEpics(
       concatMap(({ payload }) =>
         from(apiRequestPencilList(payload)).pipe(
           map(pencilActions.requestPencilList.success),
-          catchError(() => of(pencilActions.requestPencilList.failure())),
+          catchError(() =>
+            of(
+              filterActions.update({ country: '', tag: '' }),
+              pencilActions.requestPencilList.failure(),
+            ),
+          ),
         ),
       ),
     ),

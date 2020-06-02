@@ -19,7 +19,7 @@ describe('<Filter />', () => {
 
     it('should stringify filter values', () => {
       expect(mapFilterToQueryString({ display: 'A', tag: 'B', country: 'C' })).toBe(
-        '?display=A&tag=B&country=C',
+        'display=A&tag=B&country=C',
       )
     })
   })

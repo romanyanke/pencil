@@ -3,13 +3,13 @@ import isUndefined from 'lodash/isUndefined'
 import React from 'react'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
 import { useFilter } from '../Filter/Filter.hooks'
-import { useCached } from '../Pencil/Pencil.hooks'
+import { usePencilCache } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 
 const Map = () => {
   const [, { setCountry, clearCountry }] = useFilter()
   const normalizedIds = useCountriesNormalizedBy('id')
-  const cached = useCached()
+  const cached = usePencilCache()
   const geoIds = cached?.geoIds ?? []
 
   return (

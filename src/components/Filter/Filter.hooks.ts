@@ -10,21 +10,21 @@ import { mapQueryStringToFilter, mapFilterToQueryString } from './Filter.utils'
 export const useFilter = () => {
   const filter = useSelector<AppStore, Filter>(store => store.filter)
   const dispatch = useDispatch()
-
-  const setFilter = useCallback(
+  const updateFilter = useCallback(
     (update: Partial<Filter>) => {
       const newFilter = { ...filter, ...update }
       if (!isMatch(filter, newFilter)) {
-        dispatch(filterActions.setFilter(newFilter))
+        dispatch(filterActions.set(newFilter))
       }
     },
     [filter, dispatch],
   )
-
-  const setCountry = useCallback((country: string) => setFilter({ country, tag: '' }), [setFilter])
-  const setTag = useCallback((tag: string) => setFilter({ tag, country: '' }), [setFilter])
-  const openPencil = useCallback((pencilId: string) => setFilter({ display: pencilId }), [
-    setFilter,
+  const setCountry = useCallback((country: string) => updateFilter({ country, tag: '' }), [
+    updateFilter,
+  ])
+  const setTag = useCallback((tag: string) => updateFilter({ tag, country: '' }), [updateFilter])
+  const openPencil = useCallback((pencilId: string) => updateFilter({ display: pencilId }), [
+    updateFilter,
   ])
   const clearCountry = useCallback(() => setCountry(''), [setCountry])
   const clearTag = useCallback(() => setTag(''), [setTag])
@@ -33,7 +33,7 @@ export const useFilter = () => {
   return [
     filter,
     {
-      setFilter,
+      updateFilter,
       setCountry,
       setTag,
       openPencil,
@@ -46,21 +46,19 @@ export const useFilter = () => {
 
 export const useFilerQueryString = () => {
   const history = useHistory()
-  const [filter, { setFilter }] = useFilter()
+  const [filter, { updateFilter }] = useFilter()
 
   useEffect(() => {
-    if (mapFilterToQueryString(filter) !== window.location.search) {
-      history.push(mapFilterToQueryString(filter))
-    }
+    history.push({ search: mapFilterToQueryString(filter) })
   }, [filter, history])
 
   useEffect(() => {
     const unlisten = history.listen(({ search }, action) => {
       if (action === 'POP') {
-        setFilter(mapQueryStringToFilter(search))
+        updateFilter(mapQueryStringToFilter(search))
       }
     })
 
     return unlisten
-  }, [filter, history, setFilter])
+  }, [filter, history, updateFilter])
 }

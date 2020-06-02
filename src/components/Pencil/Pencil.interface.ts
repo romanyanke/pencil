@@ -1,5 +1,3 @@
-import { RequestStatus } from '../../requestStatus'
-
 export type PencilProps = PencilOwnPropsSingle | PencilOwnPropsList
 
 interface PencilOwnProps {
@@ -44,7 +42,6 @@ export interface PencilListResponse {
 }
 
 export interface PencilAppStore {
-  requestStatus: RequestStatus
   cache: Partial<PencilCache>
   normalized: PencilsNormalized
 }

@@ -9,7 +9,7 @@ const requestTaxonomy = createAsyncAction(
 )<undefined, TaxonomyResponse, undefined>()
 
 const initialState: StoreTaxonomy = {
-  requestStatus: getRequestStatus().idle,
+  requestStatus: getRequestStatus().pending,
   pencilCount: 0,
   countries: [],
   tags: [],

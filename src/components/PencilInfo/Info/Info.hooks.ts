@@ -4,7 +4,7 @@ import { useFilter } from '../../Filter/Filter.hooks'
 import { getEmptyFilter } from '../../Filter/Filter.utils'
 
 export const usePseudoClick = () => {
-  const [, { setFilter }] = useFilter()
+  const [, { updateFilter }] = useFilter()
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation()
@@ -15,12 +15,12 @@ export const usePseudoClick = () => {
           const filterFromLink = getFilterFromLink(link)
           if (filterFromLink) {
             e.preventDefault()
-            setFilter({ ...getEmptyFilter(), ...filterFromLink })
+            updateFilter({ ...getEmptyFilter(), ...filterFromLink })
           }
         }
       }
     },
-    [setFilter],
+    [updateFilter],
   )
 
   return handlePseudoLink

@@ -13,10 +13,10 @@ describe('<Filter />', () => {
       filterUpdate: Partial<Filter> = {},
     ): Filter => {
       const HookWrapper = () => {
-        const [filter, { setFilter }] = useFilter()
+        const [filter, { updateFilter }] = useFilter()
 
         useEffect(() => {
-          setFilter(filterUpdate)
+          updateFilter(filterUpdate)
           // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [])
 
