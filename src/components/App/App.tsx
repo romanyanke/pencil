@@ -40,11 +40,11 @@ const App = () => {
             </section>
           ) : null}
           <Map />
-          <main className="App-block">
-            <Gallery />
-          </main>
         </>
       )}
+      <main className="App-block">
+        <Gallery />
+      </main>
     </IntlProvider>
   )
 }
