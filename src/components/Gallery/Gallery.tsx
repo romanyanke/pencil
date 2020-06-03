@@ -27,6 +27,7 @@ const Gallery = () => {
     }
   }, [filter, queries, setQueries, page])
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onScroll = useCallback(
     throttle(
       () => {
