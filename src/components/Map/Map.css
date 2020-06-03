@@ -29,7 +29,6 @@
 
 .Map-country {
   fill: #fff;
-  transition: fill 0.1s ease-in;
 }
 
 .Map-has-pencil {
