@@ -3,13 +3,15 @@ import { FormattedMessage } from 'react-intl'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
-import { displayPencilLocation } from './Info.utils'
+import { displayPencilLocation, getTagHref } from './Info.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
+import { useFilter } from '../../Filter/Filter.hooks'
 
 const Info = ({ pencil }: InfoProps) => {
   const flag = usePencilFlag(pencil)
   const handlePseudoLink = usePseudoClick()
   const location = displayPencilLocation(pencil)
+  const [, { setTag }] = useFilter()
 
   return (
     <div className="Info">
@@ -36,6 +38,15 @@ const Info = ({ pencil }: InfoProps) => {
           <img className="Info-photo" alt={pencil.title} src={src} />
         </div>
       ))}
+
+      <div className="Info-content" onClick={handlePseudoLink}>
+        🏷
+        {pencil.tags.map(tag => (
+          <a className="Info-tag" key={tag} href={getTagHref(tag)}>
+            {tag}
+          </a>
+        ))}
+      </div>
     </div>
   )
 }

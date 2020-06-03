@@ -20,3 +20,7 @@
 .Info-content article {
   line-height: 1.4;
 }
+
+.Info-tag {
+  margin: 0.5rem;
+}
