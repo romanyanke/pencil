@@ -5,6 +5,7 @@ import { isActionOf } from 'typesafe-actions'
 import { PencilActions, pencilActions } from './Pencil.actions'
 import { apiRequestPencilList, apiRequestSinglePencil } from './Pencil.api'
 import { filterActions } from '../Filter/Filter.actions'
+import { getEmptyFilter } from '../Filter/Filter.utils'
 
 const pencilEpic: Epic<PencilActions> = combineEpics(
   action$ =>
@@ -14,7 +15,7 @@ const pencilEpic: Epic<PencilActions> = combineEpics(
         from(apiRequestSinglePencil(payload)).pipe(
           map(pencilActions.requestSinglePencil.success),
           catchError(() =>
-            of(filterActions.update({ display: '' }), pencilActions.requestSinglePencil.failure()),
+            of(filterActions.set(getEmptyFilter()), pencilActions.requestSinglePencil.failure()),
           ),
         ),
       ),
@@ -27,10 +28,7 @@ const pencilEpic: Epic<PencilActions> = combineEpics(
         from(apiRequestPencilList(payload)).pipe(
           map(pencilActions.requestPencilList.success),
           catchError(() =>
-            of(
-              filterActions.update({ country: '', tag: '' }),
-              pencilActions.requestPencilList.failure(),
-            ),
+            of(filterActions.set(getEmptyFilter()), pencilActions.requestPencilList.failure()),
           ),
         ),
       ),

@@ -7,7 +7,7 @@ import { usePencilCache } from '../Pencil/Pencil.hooks'
 import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
 
 const Map = () => {
-  const [, { setCountry, clearCountry }] = useFilter()
+  const [, { setFilter, updateFilter }] = useFilter()
   const normalizedIds = useCountriesNormalizedBy('id')
   const cached = usePencilCache()
   const geoIds = cached?.geoIds ?? []
@@ -32,9 +32,9 @@ const Map = () => {
           )
           const onClick = () => {
             if (isSelected) {
-              clearCountry()
+              updateFilter({ country: '' })
             } else if (country) {
-              setCountry(country)
+              setFilter({ country })
             }
           }
 

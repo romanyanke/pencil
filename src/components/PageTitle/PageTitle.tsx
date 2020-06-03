@@ -4,7 +4,7 @@ import messages from './PageTitle.messages'
 import { appMessages } from '../App/App.messages'
 import { useFilter } from '../Filter/Filter.hooks'
 import { usePencilCache, useNormalizedPencils } from '../Pencil/Pencil.hooks'
-import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
+import { useCountriesNormalizedBy, usePencilFlag } from '../Taxonomy/Taxonomy.hooks'
 
 const PageTitle = () => {
   const [filter] = useFilter()
@@ -14,7 +14,7 @@ const PageTitle = () => {
   const normalizedCoutries = useCountriesNormalizedBy('name')
   const pencil = normalizedPencils[filter.display]
   const countryFlag = normalizedCoutries[filter.country]?.flag
-  const pencilFlag = pencil ? normalizedCoutries[pencil.country.name]?.flag : undefined
+  const pencilFlag = usePencilFlag(pencil)
   const count = cached?.pages.pencils
 
   useEffect(() => {

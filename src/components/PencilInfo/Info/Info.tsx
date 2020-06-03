@@ -5,13 +5,11 @@ import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
 import { displayPencilLocation, getTagHref } from './Info.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
-import { useFilter } from '../../Filter/Filter.hooks'
 
 const Info = ({ pencil }: InfoProps) => {
   const flag = usePencilFlag(pencil)
   const handlePseudoLink = usePseudoClick()
   const location = displayPencilLocation(pencil)
-  const [, { setTag }] = useFilter()
 
   return (
     <div className="Info">

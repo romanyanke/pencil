@@ -5,41 +5,36 @@ import { useHistory } from 'react-router-dom'
 import { AppStore } from './../../store'
 import { filterActions } from './Filter.actions'
 import { Filter } from './Filter.interface'
-import { mapQueryStringToFilter, mapFilterToQueryString } from './Filter.utils'
+import { mapQueryStringToFilter, mapFilterToQueryString, getEmptyFilter } from './Filter.utils'
 
 export const useFilter = () => {
   const filter = useSelector<AppStore, Filter>(store => store.filter)
   const dispatch = useDispatch()
-  const updateFilter = useCallback(
-    (update: Partial<Filter>) => {
-      const newFilter = { ...filter, ...update }
+
+  const dispatchFilter = useCallback(
+    (newFilter: Filter) => {
       if (!isMatch(filter, newFilter)) {
         dispatch(filterActions.set(newFilter))
       }
     },
     [filter, dispatch],
   )
-  const setCountry = useCallback((country: string) => updateFilter({ country, tag: '' }), [
-    updateFilter,
-  ])
-  const setTag = useCallback((tag: string) => updateFilter({ tag, country: '' }), [updateFilter])
-  const openPencil = useCallback((pencilId: string) => updateFilter({ display: pencilId }), [
-    updateFilter,
-  ])
-  const clearCountry = useCallback(() => setCountry(''), [setCountry])
-  const clearTag = useCallback(() => setTag(''), [setTag])
-  const closePencil = useCallback(() => openPencil(''), [openPencil])
+
+  const updateFilter = useCallback(
+    (update: Partial<Filter>) => dispatchFilter({ ...filter, ...update }),
+    [dispatchFilter, filter],
+  )
+
+  const setFilter = useCallback(
+    (update: Partial<Filter>) => dispatchFilter({ ...getEmptyFilter(), ...update }),
+    [dispatchFilter],
+  )
 
   return [
     filter,
     {
+      setFilter,
       updateFilter,
-      setCountry,
-      setTag,
-      openPencil,
-      clearCountry,
-      clearTag,
-      closePencil,
     },
   ] as const
 }

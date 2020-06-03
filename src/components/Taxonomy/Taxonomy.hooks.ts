@@ -20,11 +20,11 @@ export const useTaxonomyRequest = () => {
   return { loading, failure }
 }
 
-export const usePencilFlag = (pencil: Pencil) => {
+export const usePencilFlag = (pencil?: Pencil) => {
   const normalizedCountries = useCountriesNormalizedBy('id')
-  const countryId = pencil.country.id
+  const countryId = pencil?.country.id
 
-  return normalizedCountries[countryId]?.flag
+  return countryId ? normalizedCountries[countryId]?.flag : undefined
 }
 
 export const useCountryFlags = (geoIds: string[]) => {

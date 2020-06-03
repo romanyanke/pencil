@@ -4,7 +4,7 @@ import { useFilter } from '../Filter/Filter.hooks'
 import { usePencil } from '../Pencil/Pencil.hooks'
 
 const PencilInfo = () => {
-  const [{ display }, { closePencil }] = useFilter()
+  const [{ display }, { updateFilter }] = useFilter()
   const scroller = useRef<HTMLDivElement>(null)
   const { pencil } = usePencil({ id: display })
 
@@ -21,7 +21,11 @@ const PencilInfo = () => {
   }, [display, scroller])
 
   return pencil ? (
-    <div className="PencilInfo-backdrop" onClick={closePencil} ref={scroller}>
+    <div
+      className="PencilInfo-backdrop"
+      onClick={() => updateFilter({ display: '' })}
+      ref={scroller}
+    >
       <div className="PencilInfo-content">
         <Info pencil={pencil} />
       </div>
