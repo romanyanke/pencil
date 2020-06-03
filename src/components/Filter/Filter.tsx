@@ -6,6 +6,7 @@ import Globe from './Globe'
 import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
 import { usePencilCache } from '../Pencil/Pencil.hooks'
 import { appMessages } from '../App/App.messages'
+import TagHeader from '../PencilInfo/TagHeader'
 
 const Filter = () => {
   const [filter, { updateFilter, setFilter }] = useFilter()
@@ -79,6 +80,12 @@ const Filter = () => {
           })}
         </select>
       </div>
+
+      {filter.tag ? (
+        <div className="Filter-control">
+          <TagHeader />
+        </div>
+      ) : null}
     </div>
   )
 }

@@ -2,19 +2,17 @@ import React from 'react'
 import { FormattedMessage, IntlProvider } from 'react-intl'
 import { appMessages } from './App.messages'
 import Filter from '../Filter'
-import { useFilter, useFilerQueryString } from '../Filter/Filter.hooks'
+import { useFilerQueryString } from '../Filter/Filter.hooks'
 import Gallery from '../Gallery'
 import Loader from '../Loader'
 import Map from '../Map'
 import PageTitle from '../PageTitle'
 import PencilInfo from '../PencilInfo'
-import TagHeader from '../PencilInfo/TagHeader'
 import { useTaxonomyRequest } from '../Taxonomy/Taxonomy.hooks'
 
 const App = () => {
-  useFilerQueryString()
-  const [{ tag }] = useFilter()
   const { loading, failure } = useTaxonomyRequest()
+  useFilerQueryString()
 
   return (
     <IntlProvider locale="ru" defaultLocale="ru">
@@ -34,17 +32,14 @@ const App = () => {
           <nav className="App-block">
             <Filter />
           </nav>
-          {tag ? (
-            <section className="App-block">
-              <TagHeader />
-            </section>
-          ) : null}
-          <Map />
         </>
       )}
-      <main className="App-block">
-        <Gallery />
-      </main>
+      <>
+        <Map />
+        <main className="App-block">
+          <Gallery />
+        </main>
+      </>
     </IntlProvider>
   )
 }
