@@ -6,12 +6,8 @@ import { Topology } from 'topojson-specification'
 import { TopologyItem } from './Map.interface.js'
 import geography from './world.json'
 
-// TODO: how to get the type properly?
-const topology: Topology = geography as any
-const featureCollection = feature(topology, topology.objects.world) as FeatureCollection<
-  Geometry,
-  GeoJsonProperties
->
+export const mapWidth = 800
+export const mapHeight = 400
 
 const timesRaw: GeoRawProjection = (lambda, phi) => {
   // https://github.com/d3/d3-geo-projection/blob/master/src/times.js
@@ -23,12 +19,15 @@ const timesRaw: GeoRawProjection = (lambda, phi) => {
   return [lambda * (0.74482 - 0.34588 * s * s), 1.70711 * t]
 }
 
-const projection = () => geoProjection(timesRaw).translate([mapWidth / 2, mapHeight / 2 + 40])
+const projection = geoProjection(timesRaw).translate([mapWidth / 2, mapHeight / 2 + 40])
+const topology: Topology = geography as any
+const featureCollection = feature(topology, topology.objects.world) as FeatureCollection<
+  Geometry,
+  GeoJsonProperties
+>
 
-export const mapWidth = 800
-export const mapHeight = 400
 export const topologies = featureCollection.features.map<TopologyItem>(geo => {
-  const pathD = geoPath().projection(projection())(geo)
+  const pathD = geoPath().projection(projection)(geo)
   if (pathD === null) {
     throw new Error()
   }
