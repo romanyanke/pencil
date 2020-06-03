@@ -9,17 +9,13 @@ describe('<Filter />', () => {
   })
 
   describe('mapFilterToQueryString', () => {
-    it('should return empty string when filter is empty', () => {
-      expect(mapFilterToQueryString({})).toEqual('')
-    })
-
     it('should ignore emtpty values', () => {
       expect(mapFilterToQueryString(getEmptyFilter())).toEqual('')
     })
 
     it('should stringify filter values', () => {
       expect(mapFilterToQueryString({ display: 'A', tag: 'B', country: 'C' })).toBe(
-        'display=A&tag=B&country=C',
+        '?display=A&tag=B&country=C',
       )
     })
   })
