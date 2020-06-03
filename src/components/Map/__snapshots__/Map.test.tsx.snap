@@ -5,6 +5,9 @@ exports[`<Map /> should match snapshot 1`] = `
   <div
     class="Map"
   >
+    <div
+      class="Map-flags"
+    />
     <svg
       class="Map-block"
       height="400"

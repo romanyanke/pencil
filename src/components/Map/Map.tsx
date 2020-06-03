@@ -4,16 +4,22 @@ import React from 'react'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
 import { useFilter } from '../Filter/Filter.hooks'
 import { usePencilCache } from '../Pencil/Pencil.hooks'
-import { useCountriesNormalizedBy } from '../Taxonomy/Taxonomy.hooks'
+import { useCountriesNormalizedBy, useCountryFlags } from '../Taxonomy/Taxonomy.hooks'
 
 const Map = () => {
   const [, { setFilter, updateFilter }] = useFilter()
   const normalizedIds = useCountriesNormalizedBy('id')
   const cached = usePencilCache()
   const geoIds = cached?.geoIds ?? []
+  const countryFlags = useCountryFlags(geoIds)
 
   return (
     <div className="Map">
+      <div className="Map-flags">
+        {countryFlags.map(flag => (
+          <span key={flag}>{flag}</span>
+        ))}
+      </div>
       <svg
         width={mapWidth}
         height={mapHeight}
