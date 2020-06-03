@@ -39,12 +39,14 @@ const Info = ({ pencil }: InfoProps) => {
       ))}
 
       <div className="Info-content" onClick={handlePseudoLink}>
-        🏷
-        {pencil.tags.map(tag => (
-          <a className="Info-tag" key={tag} href={mapFilterToQueryString({ tag })}>
-            {tag}
-          </a>
-        ))}
+        <article className="Info-tags">
+          🏷
+          {pencil.tags.map(tag => (
+            <a className="Info-tag" key={tag} href={mapFilterToQueryString({ tag })}>
+              {tag}
+            </a>
+          ))}
+        </article>
       </div>
     </div>
   )
