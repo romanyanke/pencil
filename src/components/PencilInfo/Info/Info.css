@@ -23,4 +23,5 @@
 
 .Info-tag {
   margin: 0.5rem;
+  text-transform: lowercase;
 }

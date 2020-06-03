@@ -19,5 +19,3 @@ export const getFilterFromLink = (querystring: string): Filter | null => {
 
 export const displayPencilLocation = ({ country, city }: Pick<Pencil, 'country' | 'city'>) =>
   [country.name, city].filter(Boolean).join(', ')
-
-export const getTagHref = (tag: string) => qs.stringify({ tag })

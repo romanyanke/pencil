@@ -3,8 +3,9 @@ import { FormattedMessage } from 'react-intl'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
-import { displayPencilLocation, getTagHref } from './Info.utils'
+import { displayPencilLocation } from './Info.utils'
 import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
+import { mapFilterToQueryString } from '../../Filter/Filter.utils'
 
 const Info = ({ pencil }: InfoProps) => {
   const flag = usePencilFlag(pencil)
@@ -40,7 +41,7 @@ const Info = ({ pencil }: InfoProps) => {
       <div className="Info-content" onClick={handlePseudoLink}>
         🏷
         {pencil.tags.map(tag => (
-          <a className="Info-tag" key={tag} href={getTagHref(tag)}>
+          <a className="Info-tag" key={tag} href={mapFilterToQueryString({ tag })}>
             {tag}
           </a>
         ))}
