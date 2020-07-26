@@ -14,12 +14,11 @@ import {
 
 const getEmptyPencilCacheItem = (): PencilCacheItem => ({
   ids: [],
-  geoIds: [],
+  geo: [],
   pages: {
-    page: 0,
-    total: 0,
-    nextUrl: null,
-    items: 0,
+    currentPage: 0,
+    totalPages: 0,
+    records: 0,
     pencils: 0,
   },
 })
@@ -39,17 +38,17 @@ export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery
     pathParts.push(`/tags/${sanitize(tag)}`)
   }
   if (country) {
-    pathParts.push(`/countries/${sanitize(country)}`)
+    pathParts.push(`/geo/${country}`)
   }
   if (page && page !== 1) {
     pathParts.push(`/page/${page}`)
   }
 
-  return `${pathParts.join('/')}/`
+  return `${pathParts.join('/')}`
 }
 
 export const mapRequestToCacheId = (request: PencilRequest): string => {
-  const cahceIdParts: string[] = ['_']
+  const cahceIdParts = ['']
   if (request.id) {
     return `id:${request.id}`
   } else if (request.query) {
@@ -65,25 +64,25 @@ export const mapRequestToCacheId = (request: PencilRequest): string => {
     }
   }
 
-  return cahceIdParts.join('|')
+  return cahceIdParts.join('/')
 }
 
 export const mapPancilsResponseToStore = ({
   cacheId,
   pages,
   data: pencils,
-  geoIds,
+  geo,
 }: PencilListResponse): PencilAppStore => {
   const ids = pencils.map(({ id }) => id)
   const data = mapKeys(pencils, item => item.id)
 
-  return { data, cache: { [cacheId]: { ids, pages, geoIds } } }
+  return { data, cache: { [cacheId]: { ids, pages, geo } } }
 }
 
 export const getNextPageNumberFromPages = (pages?: PencilPages) => {
   if (pages) {
-    if (pages.page < pages.total) {
-      return pages.page + 1
+    if (pages.currentPage < pages.totalPages) {
+      return pages.currentPage + 1
     }
   }
 

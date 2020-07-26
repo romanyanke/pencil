@@ -3,14 +3,11 @@ import { FormattedMessage } from 'react-intl'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'
 import messages from './Info.messages'
-import { displayPencilLocation } from './Info.utils'
-import { usePencilFlag } from '../../Taxonomy/Taxonomy.hooks'
 import { mapFilterToQueryString } from '../../Filter/Filter.utils'
 
 const Info = ({ pencil }: InfoProps) => {
-  const flag = usePencilFlag(pencil)
   const handlePseudoLink = usePseudoClick()
-  const location = displayPencilLocation(pencil)
+  const { country, city } = pencil
 
   return (
     <div className="Info">
@@ -18,7 +15,20 @@ const Info = ({ pencil }: InfoProps) => {
         <h1>{pencil.title}</h1>
 
         <h2>
-          {flag} {location}
+          {city && country ? (
+            <FormattedMessage
+              {...messages.location}
+              values={{
+                flag: country.flag,
+                country: country.name,
+                city: pencil.city,
+              }}
+            />
+          ) : city ? (
+            city
+          ) : (
+            <FormattedMessage {...messages.unknown} />
+          )}
         </h2>
 
         <article dangerouslySetInnerHTML={{ __html: pencil.content }} />

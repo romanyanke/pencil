@@ -3,33 +3,37 @@ import produce from 'immer'
 import { TaxonomyAppStore as StoreTaxonomy, TaxonomyResponse } from './Taxonomy.interface'
 
 const requestTaxonomy = createAsyncAction(
-  'Taxonomy:loading',
+  'Taxonomy:pending',
   'Taxonomy:success',
   'Taxonomy:failure',
 )<undefined, TaxonomyResponse, undefined>()
 
 const getInitialTaxonomyState = (): StoreTaxonomy => ({
-  loading: true,
+  pending: true,
   failure: false,
   pencilCount: 0,
   countries: [],
   tags: [],
+  statistic: { tags: 0, countries: 0, items: 0, pencils: 0 },
 })
 
 export const taxonomyActions = { requestTaxonomy }
 export type TaxonomyActions = ActionType<typeof taxonomyActions>
 
-export default createReducer<StoreTaxonomy, TaxonomyActions>(getInitialTaxonomyState())
+export const taxonomyReducer = createReducer<StoreTaxonomy, TaxonomyActions>(
+  getInitialTaxonomyState(),
+)
   .handleAction(requestTaxonomy.success, (state, { payload }) => ({
-    loading: false,
     failure: false,
-    pencilCount: payload.meta.pencils,
-    countries: payload.taxonomy.countries,
-    tags: payload.taxonomy.tags,
+    pending: false,
+    countries: payload.countries,
+    pencilCount: payload.statistic.pencils,
+    statistic: payload.statistic,
+    tags: payload.tags,
   }))
-  .handleAction(requestTaxonomy.failure, state =>
-    produce(state, draft => {
-      draft.loading = false
+  .handleAction(requestTaxonomy.failure, () =>
+    produce(getInitialTaxonomyState(), draft => {
+      draft.pending = false
       draft.failure = true
     }),
   )

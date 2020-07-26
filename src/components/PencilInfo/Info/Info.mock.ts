@@ -2,14 +2,12 @@ import { Pencil } from '../../Pencil/Pencil.interface'
 
 export const mockPencil: Pencil = {
   title: 'Римский Пиноккио',
-  country: {
-    name: 'Италия',
-    id: 'ITA',
-  },
+  geo: 'ITA',
   city: 'Рим',
   id: 'roma',
   grid: 2,
   count: 1,
+  country: { flag: '🇮🇹', geo: 'ITA', name: 'Италия', pencils: 1 },
   map: {
     lat: 41.892099,
     lng: 12.474878,

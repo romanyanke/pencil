@@ -1,8 +1,9 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import flatMap from 'lodash/flatMap'
 import { isUndefined } from 'util'
 import { pencilActions } from './Pencil.actions'
-import { Pencil, PencilAppStore, PencilProps, PencilQuery } from './Pencil.interface'
+import { PencilAppStore, PencilProps, PencilQuery } from './Pencil.interface'
 import {
   getPencilsFromCacheByQuery,
   mapRequestToCacheId,
@@ -34,9 +35,8 @@ export const usePencil = ({ id, query, queries }: PencilProps) => {
   const normalized = useNormalizedPencils()
   const pencil = id ? normalized[id] : undefined
   const targetQueries = query ? [query] : queries ? queries : []
-  const pencils = targetQueries.reduce<Pencil[]>(
-    (acc, query) => [...acc, ...getPencilsFromCacheByQuery(query, cache, normalized)],
-    [],
+  const pencils = flatMap(targetQueries, query =>
+    getPencilsFromCacheByQuery(query, cache, normalized),
   )
 
   useEffect(() => {

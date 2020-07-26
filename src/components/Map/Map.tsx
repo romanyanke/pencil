@@ -1,22 +1,22 @@
 import classNames from 'classnames'
 import isUndefined from 'lodash/isUndefined'
 import React from 'react'
+import mapKeys from 'lodash/mapKeys'
 import { mapHeight, mapWidth, topologies } from './Map.utils'
-import { useFilter } from '../Filter/Filter.hooks'
-import { usePencilCache } from '../Pencil/Pencil.hooks'
-import { useCountriesNormalizedBy, useCountryFlags } from '../Taxonomy/Taxonomy.hooks'
+import { useFilter, useFilterCountries } from '../Filter/Filter.hooks'
+import { useCountryRecord } from '../Taxonomy/Taxonomy.hooks'
 
 const Map = () => {
   const [, { setFilter, updateFilter }] = useFilter()
-  const normalizedIds = useCountriesNormalizedBy('id')
-  const cached = usePencilCache()
-  const geoIds = cached?.geoIds ?? []
-  const countryFlags = useCountryFlags(geoIds)
+  const countryRecord = useCountryRecord()
+  const filterCountries = useFilterCountries()
+
+  const activeCountries = mapKeys(filterCountries, ({ geo }) => geo)
 
   return (
     <div className="Map">
       <div className="Map-flags">
-        {countryFlags.map(flag => (
+        {filterCountries.map(({ flag }) => (
           <span key={flag}>{flag}</span>
         ))}
       </div>
@@ -28,9 +28,9 @@ const Map = () => {
       >
         {topologies.map(topology => {
           const geoId = topology.id as string
-          const country = geoId ? normalizedIds[geoId]?.name : undefined
+          const country = countryRecord[geoId]
           const hasPencil = !isUndefined(country)
-          const isSelected = geoIds.includes(geoId)
+          const isSelected = !isUndefined(activeCountries[geoId])
           const className = classNames(
             'Map-country',
             hasPencil && 'Map-has-pencil',
@@ -39,8 +39,8 @@ const Map = () => {
           const onClick = () => {
             if (isSelected) {
               updateFilter({ country: '' })
-            } else if (country) {
-              setFilter({ country })
+            } else if (hasPencil) {
+              setFilter({ country: geoId })
             }
           }
 
@@ -52,7 +52,7 @@ const Map = () => {
               d={topology.pathD}
               onClick={onClick}
             >
-              {country && <title>{country}</title>}
+              {<title>{country?.name}</title>}
             </path>
           )
         })}

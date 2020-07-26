@@ -7,7 +7,7 @@ import { apiRequestPencilList, apiRequestSinglePencil } from './Pencil.api'
 import { filterActions } from '../Filter/Filter.actions'
 import { getEmptyFilter } from '../Filter/Filter.utils'
 
-const pencilEpic: Epic<PencilActions> = combineEpics(
+export const pencilEpic: Epic<PencilActions> = combineEpics(
   action$ =>
     action$.pipe(
       filter(isActionOf(pencilActions.requestSinglePencil.request)),
@@ -34,4 +34,3 @@ const pencilEpic: Epic<PencilActions> = combineEpics(
       ),
     ),
 )
-export default pencilEpic

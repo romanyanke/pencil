@@ -26,18 +26,18 @@ describe('<Map />', () => {
 
   it('should update filter when country with a pencil is clicked', () => {
     const { getByTestId, store } = renderWithProviders({
-      taxonomy: { countries: [{ id: 'RUS', name: 'Россия' }] },
+      taxonomy: { countries: [{ geo: 'RUS', name: 'Россия' }] },
     })
 
     const country = getByTestId('RUS')
     expect(store.getState()).toMatchObject({ filter: { country: '' } })
     fireEvent.click(country)
-    expect(store.getState()).toMatchObject({ filter: { country: 'Россия' } })
+    expect(store.getState()).toMatchObject({ filter: { country: 'RUS' } })
   })
 
   it('should drop tag filter when country is set', () => {
     const { getByTestId, store } = renderWithProviders({
-      taxonomy: { countries: [{ id: 'RUS', name: 'Россия' }] },
+      taxonomy: { countries: [{ geo: 'RUS', name: 'Россия' }] },
       filter: { tag: 'my-tag' },
     })
 

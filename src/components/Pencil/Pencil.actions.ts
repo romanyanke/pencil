@@ -16,13 +16,13 @@ const getInitialPencilState = (): PencilAppStore => ({
 })
 
 const requestSinglePencil = createAsyncAction(
-  'Pencil/single:loading',
+  'Pencil/single:pending',
   'Pencil/single:success',
   'Pencil/single:failure',
 )<PencilSingleRequest, PencilSingleResponse, undefined>()
 
 const requestPencilList = createAsyncAction(
-  'Pencil/list:loading',
+  'Pencil/list:pending',
   'Pencil/list:success',
   'Pencil/list:failure',
 )<PencilsListRequest, PencilListResponse, undefined>()
@@ -30,7 +30,7 @@ const requestPencilList = createAsyncAction(
 export const pencilActions = { requestPencilList, requestSinglePencil }
 export type PencilActions = ActionType<typeof pencilActions>
 
-export default createReducer<PencilAppStore, PencilActions>(getInitialPencilState())
+export const pencilReducer = createReducer<PencilAppStore, PencilActions>(getInitialPencilState())
   .handleAction(requestPencilList.success, (state, { payload }) =>
     produce(state, draft => {
       merge(draft, mapPancilsResponseToStore(payload))

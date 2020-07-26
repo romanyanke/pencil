@@ -5,7 +5,7 @@ import { isActionOf } from 'typesafe-actions'
 import { taxonomyActions, TaxonomyActions } from './Taxonomy.actions'
 import { apiRequestTaxonomy } from './Taxonomy.api'
 
-const taxonomyEpic: Epic<TaxonomyActions> = action$ =>
+export const taxonomyEpic: Epic<TaxonomyActions> = action$ =>
   action$.pipe(
     filter(isActionOf(taxonomyActions.requestTaxonomy.request)),
     mergeMap(() =>
@@ -15,5 +15,3 @@ const taxonomyEpic: Epic<TaxonomyActions> = action$ =>
       ),
     ),
   )
-
-export default taxonomyEpic

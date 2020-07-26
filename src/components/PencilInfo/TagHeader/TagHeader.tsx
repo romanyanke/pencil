@@ -11,7 +11,7 @@ const TagHeader = () => {
 
   if (tag && cache) {
     const pencilCount = cache.pages.pencils
-    const countryCount = cache.geoIds.length
+    const countryCount = cache.geo.length
 
     return (
       <button onClick={() => updateFilter({ tag: '' })} className="TagHeader-drop">

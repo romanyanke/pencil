@@ -6,9 +6,9 @@ export default defineMessages({
     id: 'Filter.title',
   },
 
-  current: {
-    defaultMessage: `{country}: {pencils}`,
-    id: 'Filter.current',
+  option: {
+    defaultMessage: `{flag}{country} {count}`,
+    id: 'Filter.option',
   },
 
   all: {

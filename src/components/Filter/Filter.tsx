@@ -1,21 +1,20 @@
 import React from 'react'
 import { FormattedMessage, useIntl } from 'react-intl'
-import { useFilter } from './Filter.hooks'
+import { useFilter, useFilerQueryString } from './Filter.hooks'
 import messages from './Filter.messages'
 import Globe from './Globe'
-import { useTaxonomy } from '../Taxonomy/Taxonomy.hooks'
-import { usePencilCache } from '../Pencil/Pencil.hooks'
+import { useTaxonomy, useCountries } from '../Taxonomy/Taxonomy.hooks'
 import { appMessages } from '../App/App.messages'
 import TagHeader from '../PencilInfo/TagHeader'
 
 const Filter = () => {
-  const [filter, { updateFilter, setFilter }] = useFilter()
-  const { countries, pencilCount } = useTaxonomy()
-  const cached = usePencilCache()
   const intl = useIntl()
+  const [filter, { updateFilter, setFilter, isFiltered }] = useFilter()
+  const { statistic } = useTaxonomy()
+  const countries = useCountries()
 
-  const isFiltered = Boolean(filter.country || filter.tag)
-  const pencilsInCountry = cached?.pages.pencils
+  useFilerQueryString()
+
   const htmlFor = 'country-filter'
 
   return (
@@ -24,11 +23,7 @@ const Filter = () => {
         <label
           htmlFor={htmlFor}
           className="Filter-label"
-          onClick={() => {
-            if (isFiltered) {
-              updateFilter({ country: '' })
-            }
-          }}
+          onClick={() => isFiltered && updateFilter({ country: '' })}
         >
           <span className="Filter-Globe">
             <Globe animated={isFiltered} />
@@ -38,12 +33,15 @@ const Filter = () => {
             values={{
               pencils: (
                 <span className="Filter-span">
-                  <FormattedMessage {...appMessages.pencil} values={{ count: pencilCount }} />
+                  <FormattedMessage {...appMessages.pencil} values={{ count: statistic.pencils }} />
                 </span>
               ),
               countries: (
                 <span className="Filter-span">
-                  <FormattedMessage {...appMessages.country} values={{ count: countries.length }} />
+                  <FormattedMessage
+                    {...appMessages.country}
+                    values={{ count: statistic.countries }}
+                  />
                 </span>
               ),
             }}
@@ -60,24 +58,16 @@ const Filter = () => {
           <option key="empty-country" value="">
             {intl.formatMessage(messages.all)}
           </option>
-          {countries.map(country => {
-            const isCurrent = filter.country === country.name
-            const optionText =
-              isCurrent && pencilsInCountry
-                ? intl.formatMessage(messages.current, {
-                    country: country.name,
-                    pencils: intl.formatMessage(appMessages.pencil, {
-                      count: pencilsInCountry,
-                    }),
-                  })
-                : country.name
 
-            return (
-              <option key={country.name} value={country.name}>
-                {`${country.flag} ${optionText}`}
-              </option>
-            )
-          })}
+          {countries.map(country => (
+            <option key={country.name} value={country.geo}>
+              {intl.formatMessage(messages.option, {
+                flag: country.flag,
+                country: country.name,
+                count: country.pencils,
+              })}
+            </option>
+          ))}
         </select>
       </div>
 

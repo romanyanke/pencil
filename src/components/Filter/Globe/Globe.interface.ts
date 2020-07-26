@@ -1,5 +1,3 @@
-export type GlobeProps = GlobeOwnProps
-
-interface GlobeOwnProps {
+export interface GlobeProps {
   animated?: boolean
 }

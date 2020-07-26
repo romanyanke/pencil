@@ -7,12 +7,17 @@ export default defineMessages({
   },
 
   pencil: {
-    defaultMessage: '{pencilFlag} {title}, {country}',
+    defaultMessage: '{flag} {title}. {country}',
     id: 'PageTitle.pencil',
   },
 
   country: {
     defaultMessage: '{countryFlag} {country}. {pencils}',
     id: 'PageTitle.country',
+  },
+
+  tag: {
+    defaultMessage: '"{tag}" {pencils} из {countries}',
+    id: 'PageTitle.tag',
   },
 })

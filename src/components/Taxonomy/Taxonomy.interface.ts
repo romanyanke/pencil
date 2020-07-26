@@ -1,22 +1,20 @@
 import { PencilCountry } from '../Pencil/Pencil.interface'
 
 export interface TaxonomyResponse {
-  meta: {
-    tags: number
-    countries: number
-    items: number
-    pencils: number
-  }
-  taxonomy: {
-    tags: string[]
-    countries: PencilCountry[]
-  }
+  statistic: TaxonomyStatistic
+  tags: string[]
+  countries: PencilCountry[]
 }
 
-export interface TaxonomyAppStore {
-  loading: boolean
+export interface TaxonomyAppStore extends TaxonomyResponse {
+  pending: boolean
   failure: boolean
   pencilCount: number
-  countries: PencilCountry[]
-  tags: string[]
+}
+
+interface TaxonomyStatistic {
+  tags: number
+  countries: number
+  items: number
+  pencils: number
 }

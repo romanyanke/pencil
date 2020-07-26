@@ -1,7 +1,5 @@
 import { Pencil } from '../../Pencil/Pencil.interface'
 
-export type GridProps = GridOwnProps
-
-interface GridOwnProps {
+export interface GridProps {
   pencils: Pencil[]
 }

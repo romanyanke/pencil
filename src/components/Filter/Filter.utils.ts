@@ -4,8 +4,8 @@ import qs from 'qs'
 import { Filter } from './Filter.interface'
 
 export const getEmptyFilter = (): Filter => ({
-  display: '',
   country: '',
+  display: '',
   tag: '',
 })
 

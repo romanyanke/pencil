@@ -20,18 +20,18 @@ describe('<Info />', () => {
     })
   })
 
-  describe('displayPencilLocation', () => {
-    it('should display country and city', () => {
-      expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: 'City' })).toBe(
-        'Country, City',
-      )
-    })
+  // describe('displayPencilLocation', () => {
+  //   it('should display country and city', () => {
+  //     expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: 'City' })).toBe(
+  //       'Country, City',
+  //     )
+  //   })
 
-    it('should remove empty values', () => {
-      expect(displayPencilLocation({ country: { name: '', id: '' }, city: 'City' })).toBe('City')
-      expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: '' })).toBe(
-        'Country',
-      )
-    })
-  })
+  //   it('should remove empty values', () => {
+  //     expect(displayPencilLocation({ country: { name: '', id: '' }, city: 'City' })).toBe('City')
+  //     expect(displayPencilLocation({ country: { name: 'Country', id: '' }, city: '' })).toBe(
+  //       'Country',
+  //     )
+  //   })
+  // })
 })

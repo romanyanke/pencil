@@ -8,7 +8,7 @@ type Actions = ActionType<typeof filterActions>
 
 export const filterActions = { set }
 
-export default createReducer<FilterAppStore, Actions>(initialState).handleAction(
+export const filterReducer = createReducer<FilterAppStore, Actions>(initialState).handleAction(
   set,
   (state, { payload }) => payload,
 )

@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import { filterReducer as filter } from './components/Filter'
-import { pencilReducer as pencils } from './components/Pencil'
-import { taxonomyReducer as taxonomy } from './components/Taxonomy'
+import { taxonomyReducer } from './components/Taxonomy/Taxonomy.actions'
+import { pencilReducer } from './components/Pencil/Pencil.actions'
+import { filterReducer } from './components/Filter/Filter.actions'
 
-const rootReducer = combineReducers({ taxonomy, pencils, filter })
-
-export default rootReducer
+export const rootReducer = combineReducers({
+  filter: filterReducer,
+  pencils: pencilReducer,
+  taxonomy: taxonomyReducer,
+})

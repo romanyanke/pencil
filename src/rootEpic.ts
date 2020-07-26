@@ -1,7 +1,5 @@
 import { combineEpics } from 'redux-observable'
-import { pencilEpic } from './components/Pencil'
-import { taxonomyEpic } from './components/Taxonomy'
+import { taxonomyEpic } from './components/Taxonomy/Taxonomy.epic'
+import { pencilEpic } from './components/Pencil/Pencil.epic'
 
-const rootEpic = combineEpics(taxonomyEpic, pencilEpic)
-
-export default rootEpic
+export const rootEpic = combineEpics(taxonomyEpic, pencilEpic)
