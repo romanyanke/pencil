@@ -38,7 +38,7 @@ export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery
     pathParts.push(`tags/${sanitize(tag)}`)
   }
   if (country) {
-    pathParts.push(`geo/${country}`)
+    pathParts.push(`geo/${country.toLowerCase()}`)
   }
   if (page && page !== 1) {
     pathParts.push(`page/${page}`)
