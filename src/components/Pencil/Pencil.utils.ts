@@ -35,16 +35,16 @@ export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery
   }
 
   if (tag) {
-    pathParts.push(`/tags/${sanitize(tag)}`)
+    pathParts.push(`tags/${sanitize(tag)}`)
   }
   if (country) {
-    pathParts.push(`/geo/${country}`)
+    pathParts.push(`geo/${country}`)
   }
   if (page && page !== 1) {
-    pathParts.push(`/page/${page}`)
+    pathParts.push(`page/${page}`)
   }
 
-  return `${pathParts.join('/')}`
+  return `/${pathParts.join('/')}`
 }
 
 export const mapRequestToCacheId = (request: PencilRequest): string => {
