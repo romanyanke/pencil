@@ -1,21 +1,97 @@
+.Info {
+  height: 100%;
+  --bg-color: #f1f1f1;
+  --bg-color-transparent: rgb(241 241 241 / 0%);
+  background-color: var(--bg-color);
+}
+
+.Info h1 {
+  font-size: larger;
+}
+
+.Info-scroller {
+  height: 100%;
+  scroll-snap-type: both mandatory;
+  overflow-y: scroll;
+}
+
+.Info-country {
+  position: absolute;
+  display: block;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2;
+  cursor: help;
+
+  background-color: transparent;
+  font-size: xx-large;
+  border-radius: 1rem;
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 3rem;
+  height: 3rem;
+  line-height: 1;
+  transition: transform 0.1s ease-in;
+}
+.Info-country:hover {
+  transform: scale(1.1);
+}
+.Info-country:focus {
+  outline: none;
+}
+
 .Info-frame {
-  height: 0;
-  padding-bottom: 100%;
+  height: 100%;
   position: relative;
+  box-sizing: border-box;
+  scroll-snap-align: center;
+  z-index: 1;
 }
 
 .Info-photo {
-  position: absolute;
-  display: block;
   width: 100%;
   cursor: zoom-out;
 }
 
 .Info-content {
+  background-color: var(--bg-color);
   padding: 1rem;
-  background: #f1f1f1;
   color: #242424;
   word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+  transform: translate3d(0, 0, 0);
+}
+
+.Info-main {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+}
+
+.Info-main::before,
+.Info-main::after {
+  content: '';
+  height: 1rem;
+  display: block;
+  position: sticky;
+  left: 0;
+  right: 0;
+}
+.Info-main::before {
+  top: 0;
+  background-image: linear-gradient(var(--bg-color), var(--bg-color-transparent));
+}
+.Info-main::after {
+  bottom: 0;
+  background-image: linear-gradient(var(--bg-color-transparent), var(--bg-color));
+}
+
+.Info-main p:first-of-type {
+  margin-top: 0;
 }
 
 .Info-content article {
@@ -23,12 +99,12 @@
 }
 
 .Info-tags {
-  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: auto;
 }
-
 .Info-tag {
   margin-left: 0.5rem;
   text-transform: lowercase;
-  white-space: nowrap;
   display: inline-block;
 }

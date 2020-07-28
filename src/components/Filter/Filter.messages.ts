@@ -7,7 +7,7 @@ export default defineMessages({
   },
 
   option: {
-    defaultMessage: `{flag}{country} {count}`,
+    defaultMessage: `{flag} {country} {count}`,
     id: 'Filter.option',
   },
 

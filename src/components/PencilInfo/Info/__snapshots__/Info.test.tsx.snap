@@ -6,7 +6,7 @@ exports[`<Info /> should match snapshot 1`] = `
     class="Info"
   >
     <div
-      class="Info-content"
+      class="Info-frame Info-content"
     >
       <h1>
         Римский Пиноккио
@@ -14,7 +14,9 @@ exports[`<Info /> should match snapshot 1`] = `
       <h2>
         🇮🇹 Италия, Рим
       </h2>
-      <article>
+      <article
+        class="Info-main"
+      >
         <ul>
            
           <li>
@@ -46,45 +48,7 @@ exports[`<Info /> should match snapshot 1`] = `
         </p>
          
       </article>
-      <p>
-        <b>
-          3 фото
-        </b>
-      </p>
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg"
-      />
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg"
-      />
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg"
-      />
-    </div>
-    <div
-      class="Info-content"
-    >
-      <article
-        class="Info-tags"
-      >
+      <article>
         🏷
         <a
           class="Info-tag"
@@ -135,6 +99,33 @@ exports[`<Info /> should match snapshot 1`] = `
           тупой
         </a>
       </article>
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg"
+      />
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg"
+      />
+    </div>
+    <div
+      class="Info-frame"
+    >
+      <img
+        alt="Римский Пиноккио"
+        class="Info-photo"
+        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg"
+      />
     </div>
   </div>
 </div>

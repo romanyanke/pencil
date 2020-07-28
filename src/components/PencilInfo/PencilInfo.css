@@ -7,9 +7,10 @@
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.3);
   -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
+  overflow: hidden;
   animation: pencil-backdrop-fade-in 0.2s ease-in;
   cursor: zoom-out;
+  padding: 5vmin;
 }
 
 @keyframes pencil-backdrop-fade-in {
@@ -25,11 +26,19 @@
   background: #fff;
   box-shadow: var(--shadow);
   border-radius: 1rem;
-  margin: 2rem auto;
-  overflow: hidden;
+  margin: auto;
+  overflow-y: scroll;
   animation: pencil-content-roll-out 0.2s ease-in;
   will-change: transform;
   cursor: initial;
+  width: 90vmin;
+  height: 90vmin;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
 @keyframes pencil-content-roll-out {
@@ -38,17 +47,5 @@
   }
   to {
     transform: scale(1) translateY(0);
-  }
-}
-
-@media (orientation: landscape) {
-  .PencilInfo-content {
-    max-width: 80vh;
-  }
-}
-
-@media (orientation: portrait) {
-  .PencilInfo-content {
-    max-width: 90vw;
   }
 }
