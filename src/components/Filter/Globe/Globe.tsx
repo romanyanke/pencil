@@ -3,7 +3,7 @@ import { GlobeProps } from './Globe.interface'
 
 const Globe = ({ animated }: GlobeProps) => {
   const isAnimated = Boolean(animated)
-  const frames = ['🌍', '🌏', '🌎']
+  const [frames] = useState(['🌍', '🌏', '🌎'])
   const speed = 400
   const [index, setIndex] = useState(0)
   useEffect(() => {
