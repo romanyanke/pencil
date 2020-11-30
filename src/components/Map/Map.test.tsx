@@ -1,5 +1,4 @@
 import { fireEvent, render } from '@testing-library/react'
-import React from 'react'
 import { Provider } from 'react-redux'
 import Map from '.'
 import { createTestStore } from '../../store'

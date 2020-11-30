@@ -1,5 +1,4 @@
 import { render, fireEvent } from '@testing-library/react'
-import React from 'react'
 import { IntlProvider } from 'react-intl'
 import { Provider } from 'react-redux'
 import { mockPencil } from './Info.mock'

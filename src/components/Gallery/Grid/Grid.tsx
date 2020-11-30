@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import React from 'react'
 import { GridProps } from './Grid.interface'
 import { getGridImageSources } from './Grid.utils'
 import { useFilter } from '../../Filter/Filter.hooks'

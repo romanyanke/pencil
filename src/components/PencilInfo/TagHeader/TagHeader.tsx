@@ -1,4 +1,3 @@
-import React from 'react'
 import { FormattedMessage } from 'react-intl'
 import messages from './TagHeader.messages'
 import { appMessages } from '../../App/App.messages'

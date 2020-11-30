@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'

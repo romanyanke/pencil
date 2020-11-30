@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GlobeProps } from './Globe.interface'
 
 const Globe = ({ animated }: GlobeProps) => {

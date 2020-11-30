@@ -13,7 +13,7 @@ module.exports = {
   rules: {
     'eol-last': ['error', 'always'],
     'react-hooks/rules-of-hooks': 'error',
-
+    'react/react-in-jsx-scope': 'off',
     'react-hooks/exhaustive-deps': 'warn',
     'arrow-body-style': ['warn', 'as-needed'],
     'no-unused-vars': ['off'],

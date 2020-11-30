@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import Info from './Info'
 import { useFilter } from '../Filter/Filter.hooks'
 import { usePencil } from '../Pencil/Pencil.hooks'
