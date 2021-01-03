@@ -49,3 +49,15 @@
     transform: scale(1) translateY(0);
   }
 }
+
+@media (orientation: landscape) {
+  .PencilInfo-content {
+    width: 100vmin;
+  }
+}
+
+@media (orientation: portrait) {
+  .PencilInfo-content {
+    height: 100vmin;
+  }
+}
