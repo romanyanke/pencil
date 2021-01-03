@@ -6,126 +6,162 @@ exports[`<Info /> should match snapshot 1`] = `
     class="Info"
   >
     <div
-      class="Info-frame Info-content"
+      class="Info-scroller"
     >
-      <h1>
-        Римский Пиноккио
-      </h1>
-      <h2>
-        🇮🇹 Италия, Рим
-      </h2>
-      <article
-        class="Info-main"
+      <div
+        class="Info-thumbs"
       >
-        <ul>
+        <a
+          class="Info-thumb Info-thumb-highlight"
+          href="#thumb0"
+          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg);"
+        />
+        <a
+          class="Info-thumb"
+          href="#thumb1"
+          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg);"
+        />
+        <a
+          class="Info-thumb"
+          href="#thumb2"
+          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg);"
+        />
+        <a
+          class="Info-thumb Info-thumb-info"
+          href="#info"
+          title="Италия"
+        >
+          <span>
+            🇮🇹
+          </span>
+        </a>
+      </div>
+      <div
+        class="Info-frame"
+        id="thumb0"
+      >
+        <img
+          alt="Римский Пиноккио"
+          class="Info-photo"
+          src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg"
+        />
+      </div>
+      <div
+        class="Info-frame"
+        id="thumb1"
+      >
+        <img
+          alt="Римский Пиноккио"
+          class="Info-photo"
+          src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg"
+        />
+      </div>
+      <div
+        class="Info-frame"
+        id="thumb2"
+      >
+        <img
+          alt="Римский Пиноккио"
+          class="Info-photo"
+          src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg"
+        />
+      </div>
+      <div
+        class="Info-frame Info-content"
+        id="info"
+      >
+        <h1>
+          Римский Пиноккио
+        </h1>
+        <b>
+          🇮🇹 Италия, Рим
+        </b>
+        <article
+          class="Info-main"
+        >
+          <ul>
+             
+            <li>
+              <strong>
+                Пиноккио I
+              </strong>
+            </li>
+             
+            <li>
+              <a
+                href="?display=pinocchio-second"
+              >
+                Пиноккио II
+              </a>
+            </li>
+             
+            <li>
+              <a
+                href="?display=pinocchio-third"
+              >
+                Пиноккио III
+              </a>
+            </li>
+             
+          </ul>
+            
+          <p>
+            Roma, Рим. На конце карандаща сидит деревянный пиноккио, руки и ноги болтаются на веревочках, а из колпака торчит петля из резинки, чтобы подвесить его куда-нибудь. Еще у него есть два брата-бдизнеца.
+          </p>
            
-          <li>
-            <strong>
-              Пиноккио I
-            </strong>
-          </li>
-           
-          <li>
-            <a
-              href="?display=pinocchio-second"
-            >
-              Пиноккио II
-            </a>
-          </li>
-           
-          <li>
-            <a
-              href="?display=pinocchio-third"
-            >
-              Пиноккио III
-            </a>
-          </li>
-           
-        </ul>
-          
+        </article>
         <p>
-          Roma, Рим. На конце карандаща сидит деревянный пиноккио, руки и ноги болтаются на веревочках, а из колпака торчит петля из резинки, чтобы подвесить его куда-нибудь. Еще у него есть два брата-бдизнеца.
+          🏷
+          <a
+            class="Info-tag"
+            href="?tag=%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9"
+          >
+            государственный
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"
+          >
+            город
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA"
+          >
+            человек
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D1%81%20%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%BE%D0%B9"
+          >
+            с игрушкой
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B9"
+          >
+            круглый
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D0%B1%D0%B5%D0%B7%20%D1%80%D0%B5%D0%B7%D0%B8%D0%BD%D0%BA%D0%B8"
+          >
+            без резинки
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9"
+          >
+            новый
+          </a>
+          <a
+            class="Info-tag"
+            href="?tag=%D1%82%D1%83%D0%BF%D0%BE%D0%B9"
+          >
+            тупой
+          </a>
         </p>
-         
-      </article>
-      <article>
-        🏷
-        <a
-          class="Info-tag"
-          href="?tag=%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9"
-        >
-          государственный
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D0%B3%D0%BE%D1%80%D0%BE%D0%B4"
-        >
-          город
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA"
-        >
-          человек
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D1%81%20%D0%B8%D0%B3%D1%80%D1%83%D1%88%D0%BA%D0%BE%D0%B9"
-        >
-          с игрушкой
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D0%BA%D1%80%D1%83%D0%B3%D0%BB%D1%8B%D0%B9"
-        >
-          круглый
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D0%B1%D0%B5%D0%B7%20%D1%80%D0%B5%D0%B7%D0%B8%D0%BD%D0%BA%D0%B8"
-        >
-          без резинки
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9"
-        >
-          новый
-        </a>
-        <a
-          class="Info-tag"
-          href="?tag=%D1%82%D1%83%D0%BF%D0%BE%D0%B9"
-        >
-          тупой
-        </a>
-      </article>
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg"
-      />
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg"
-      />
-    </div>
-    <div
-      class="Info-frame"
-    >
-      <img
-        alt="Римский Пиноккио"
-        class="Info-photo"
-        src="https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg"
-      />
+      </div>
     </div>
   </div>
 </div>
