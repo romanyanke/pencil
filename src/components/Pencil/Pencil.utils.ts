@@ -44,7 +44,7 @@ export const mapPencilListQueryRequestUrl = ({ page, tag, country }: PencilQuery
     pathParts.push(`page/${page}`)
   }
 
-  return `/${pathParts.join('/')}`
+  return `/${pathParts.join('/')}/`
 }
 
 export const mapRequestToCacheId = (request: PencilRequest): string => {

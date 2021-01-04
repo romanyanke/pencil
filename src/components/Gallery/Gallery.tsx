@@ -1,12 +1,14 @@
 import last from 'lodash/last'
 import throttle from 'lodash/throttle'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { isNumber } from 'lodash'
 import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
 import Grid from './Grid'
 import { useFilter } from '../Filter/Filter.hooks'
 import { usePencilCache, usePencil } from '../Pencil/Pencil.hooks'
 import { PencilQuery } from '../Pencil/Pencil.interface'
 import { getNextPageNumberFromPages } from '../Pencil/Pencil.utils'
+import Loader from '../Loader'
 
 const Gallery = () => {
   const [filter] = useFilter()
@@ -15,6 +17,7 @@ const Gallery = () => {
   const cached = usePencilCache(last(queries))
   const { country, tag } = filter
   const page = getNextPageNumberFromPages(cached?.pages)
+  const hasNextPage = isNumber(page)
 
   useEffect(() => {
     setQueries([requestFirstPage({ country, tag })])
@@ -27,18 +30,18 @@ const Gallery = () => {
     }
   }, [filter, queries, setQueries, page])
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const onScroll = useCallback(
-    throttle(
-      () => {
-        if (page && checkWindowScroll()) {
-          loadNextPage()
-        }
-      },
-      100,
-      { leading: false, trailing: false },
-    ),
-    [loadNextPage],
+  const onScroll = useMemo(
+    () =>
+      throttle(
+        () => {
+          if (page && checkWindowScroll()) {
+            loadNextPage()
+          }
+        },
+        100,
+        { leading: false, trailing: false },
+      ),
+    [loadNextPage, page],
   )
 
   useEffect(() => {
@@ -49,7 +52,16 @@ const Gallery = () => {
     }
   }, [onScroll])
 
-  return <Grid pencils={pencils} />
+  return (
+    <>
+      <Grid pencils={pencils} />
+      {hasNextPage && (
+        <div className="Gallery-loader">
+          <Loader />
+        </div>
+      )}
+    </>
+  )
 }
 
 export default Gallery

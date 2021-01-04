@@ -6,36 +6,36 @@ exports[`<Info /> should match snapshot 1`] = `
     class="Info"
   >
     <div
+      class="Info-thumbs"
+    >
+      <a
+        class="Info-thumb Info-thumb-highlight"
+        href="#thumb0"
+        style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg);"
+      />
+      <a
+        class="Info-thumb"
+        href="#thumb1"
+        style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg);"
+      />
+      <a
+        class="Info-thumb"
+        href="#thumb2"
+        style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg);"
+      />
+      <a
+        class="Info-thumb Info-thumb-info"
+        href="#info"
+        title="Италия"
+      >
+        <span>
+          🇮🇹
+        </span>
+      </a>
+    </div>
+    <div
       class="Info-scroller"
     >
-      <div
-        class="Info-thumbs"
-      >
-        <a
-          class="Info-thumb Info-thumb-highlight"
-          href="#thumb0"
-          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-1.jpg);"
-        />
-        <a
-          class="Info-thumb"
-          href="#thumb1"
-          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-2.jpg);"
-        />
-        <a
-          class="Info-thumb"
-          href="#thumb2"
-          style="background-image: url(https://romanyanke.github.io/pencilbox-static/pencil/roma/gallery/roma-3.jpg);"
-        />
-        <a
-          class="Info-thumb Info-thumb-info"
-          href="#info"
-          title="Италия"
-        >
-          <span>
-            🇮🇹
-          </span>
-        </a>
-      </div>
       <div
         class="Info-frame"
         id="thumb0"
