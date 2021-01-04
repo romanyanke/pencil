@@ -21,21 +21,6 @@
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
-/* 
-@media (orientation: landscape) {
-  .PencilInfo-content {
-    outline: 1px solid red;
-  }
-} */
-
-@media (orientation: portrait) {
-  .Info {
-    flex-direction: column-reverse;
-  }
-  .Info-thumbs {
-    flex-direction: row;
-  }
-}
 
 .Info h1 {
   font-size: larger;
@@ -162,4 +147,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (orientation: portrait) {
+  .Info {
+    flex-direction: column-reverse;
+  }
+  .Info-thumbs {
+    flex-direction: row;
+    flex-basis: 10vh;
+  }
+
+  .Info-thumb {
+    flex: 0 1 10vh;
+    width: 10vh;
+    height: 10vh;
+  }
 }
