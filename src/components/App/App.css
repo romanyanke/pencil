@@ -1,3 +1,19 @@
 .App-block {
   margin: 1rem;
 }
+
+.romanyanke {
+  float: right;
+}
+.romanyanke a {
+  display: block;
+}
+.romanyanke img {
+  border-radius: 16px;
+}
+
+@media screen and (max-width: 900px) {
+  .romanyanke {
+    display: none;
+  }
+}

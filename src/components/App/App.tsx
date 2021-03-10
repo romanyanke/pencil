@@ -1,5 +1,4 @@
 import { IntlProvider } from 'react-intl'
-
 import Filter from '../Filter'
 import Gallery from '../Gallery'
 import Map from '../Map'
@@ -13,6 +12,11 @@ const App = () => (
       <PageTitle />
       <PencilInfo />
       <nav className="App-block">
+        <aside className="romanyanke">
+          <a href="https://yanke.ru">
+            <img src="https://avatars.githubusercontent.com/romanyanke?size=32" alt="Roman Yanke" />
+          </a>
+        </aside>
         <Filter />
       </nav>
       <Map />
