@@ -1,6 +1,6 @@
 import { FormattedMessage } from 'react-intl'
 import { useEffect, useRef, useState } from 'react'
-import { debounce } from 'lodash'
+import debounce from 'lodash/debounce'
 import classNames from 'classnames'
 import { usePseudoClick } from './Info.hooks'
 import { InfoProps } from './Info.interface'

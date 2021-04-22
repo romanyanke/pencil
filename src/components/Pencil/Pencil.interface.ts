@@ -30,7 +30,7 @@ interface PencilQueryBody {
 export interface PencilSingleRequest extends PencilRequest {
   id: string
 }
-export interface PencilsListRequest extends PencilRequest {
+export interface PencilListRequest extends PencilRequest {
   query: PencilQuery
 }
 
@@ -42,7 +42,7 @@ export interface PencilListResponse {
   data: Pencil[]
 }
 
-export interface PencilAppStore {
+export interface PencilRootState {
   cache: Partial<PencilCache>
   data: PencilsNormalized
 }

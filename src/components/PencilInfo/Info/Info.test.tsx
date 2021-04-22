@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl'
 import { Provider } from 'react-redux'
 import { mockPencil } from './Info.mock'
 import Info from '.'
-import store from '../../../store'
+import { store } from '../../../store'
 
 describe('<Info />', () => {
   const renderWithProviders = () => ({

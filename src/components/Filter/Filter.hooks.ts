@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
-import { AppStore } from './../../store'
+import { RootState } from './../../store'
 import { filterActions } from './Filter.actions'
 import { Filter } from './Filter.interface'
 import { mapQueryStringToFilter, mapFilterToQueryString, getEmptyFilter } from './Filter.utils'
@@ -11,7 +11,7 @@ import { usePencilCache } from '../Pencil/Pencil.hooks'
 import { useCountryRecord } from '../Taxonomy/Taxonomy.hooks'
 
 export const useFilter = () => {
-  const filter = useSelector<AppStore, Filter>(store => store.filter)
+  const filter = useSelector<RootState, Filter>(store => store.filter)
   const dispatch = useDispatch()
 
   const dispatchFilter = useCallback(

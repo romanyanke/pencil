@@ -1,18 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import mapKeys from 'lodash/mapKeys'
-import { TaxonomyAppStore } from './Taxonomy.interface'
-import { taxonomyActions } from './Taxonomy.actions'
-import { AppStore } from '../../store'
+import { taxonomyActions, taxonomySelector } from './Taxonomy.actions'
 
-export const useTaxonomy = () => useSelector<AppStore, TaxonomyAppStore>(store => store.taxonomy)
+export const useTaxonomy = () => useSelector(taxonomySelector)
 
 export const useTaxonomyRequest = () => {
   const dispatch = useDispatch()
   const { pending, failure } = useTaxonomy()
 
   useEffect(() => {
-    dispatch(taxonomyActions.requestTaxonomy.request())
+    dispatch(taxonomyActions.request())
   }, [dispatch])
 
   return { pending, failure }

@@ -1,43 +1,38 @@
-import { ActionType, createAsyncAction, createReducer } from 'typesafe-actions'
-import produce from 'immer'
 import merge from 'lodash/merge'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {
-  PencilAppStore,
+  PencilRootState,
   PencilListResponse,
-  PencilSingleRequest,
   PencilSingleResponse,
-  PencilsListRequest,
+  PencilSingleRequest,
+  PencilListRequest,
 } from './Pencil.interface'
-import { mapPancilsResponseToStore } from './Pencil.utils'
+import { mapPencilsResponseToStore } from './Pencil.utils'
+import { RootState } from '../../store'
 
-const getInitialPencilState = (): PencilAppStore => ({
+const initialState: PencilRootState = {
   cache: {},
   data: {},
+}
+
+const pencil = createSlice({
+  name: 'pencil',
+  initialState,
+  reducers: {
+    requestSingle: (state, action: PayloadAction<PencilSingleRequest>) => {},
+    requestList: (state, action: PayloadAction<PencilListRequest>) => {},
+
+    single: (state, { payload }: PayloadAction<PencilSingleResponse>) => {
+      state.data[payload.id] = payload
+    },
+
+    list: (state, { payload }: PayloadAction<PencilListResponse>) => {
+      merge(state, mapPencilsResponseToStore(payload))
+    },
+  },
 })
 
-const requestSinglePencil = createAsyncAction(
-  'Pencil/single:pending',
-  'Pencil/single:success',
-  'Pencil/single:failure',
-)<PencilSingleRequest, PencilSingleResponse, undefined>()
+export const pencilActions = pencil.actions
+export const pencilReducer = pencil.reducer
 
-const requestPencilList = createAsyncAction(
-  'Pencil/list:pending',
-  'Pencil/list:success',
-  'Pencil/list:failure',
-)<PencilsListRequest, PencilListResponse, undefined>()
-
-export const pencilActions = { requestPencilList, requestSinglePencil }
-export type PencilActions = ActionType<typeof pencilActions>
-
-export const pencilReducer = createReducer<PencilAppStore, PencilActions>(getInitialPencilState())
-  .handleAction(requestPencilList.success, (state, { payload }) =>
-    produce(state, draft => {
-      merge(draft, mapPancilsResponseToStore(payload))
-    }),
-  )
-  .handleAction(requestSinglePencil.success, (state, { payload }) =>
-    produce(state, draft => {
-      draft.data[payload.id] = payload
-    }),
-  )
+export const pencilSelector = (state: RootState) => state.pencils

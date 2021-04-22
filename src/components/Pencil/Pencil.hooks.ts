@@ -1,19 +1,18 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import isUndefined from 'lodash/isUndefined'
 import flatMap from 'lodash/flatMap'
-import { isUndefined } from 'util'
-import { pencilActions } from './Pencil.actions'
-import { PencilAppStore, PencilProps, PencilQuery } from './Pencil.interface'
+import { pencilActions, pencilSelector } from './Pencil.actions'
+import { PencilProps, PencilQuery } from './Pencil.interface'
 import {
   getPencilsFromCacheByQuery,
   mapRequestToCacheId,
   mapRequestToCacheId as mapQueryToCacheId,
 } from './Pencil.utils'
-import { AppStore } from '../../store'
 import { useFilter } from '../Filter/Filter.hooks'
 import { requestFirstPage } from '../Gallery/Gallery.utils'
 
-const usePencilStore = () => useSelector<AppStore, PencilAppStore>(store => store.pencils)
+const usePencilStore = () => useSelector(pencilSelector)
 
 export const useNormalizedPencils = () => usePencilStore().data
 
@@ -41,13 +40,14 @@ export const usePencil = ({ id, query, queries }: PencilProps) => {
 
   useEffect(() => {
     const isNotCached = (query: PencilQuery) => isUndefined(cache[mapRequestToCacheId({ query })])
+
     if (id && !pencil) {
-      dispatch(pencilActions.requestSinglePencil.request({ id }))
+      dispatch(pencilActions.requestSingle({ id }))
     } else if (query && isNotCached(query)) {
-      dispatch(pencilActions.requestPencilList.request({ query }))
+      dispatch(pencilActions.requestList({ query }))
     } else if (queries) {
       queries.filter(isNotCached).forEach(query => {
-        dispatch(pencilActions.requestPencilList.request({ query }))
+        dispatch(pencilActions.requestList({ query }))
       })
     }
   }, [dispatch, id, query, queries, pencil, cache])

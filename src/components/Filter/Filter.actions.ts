@@ -1,14 +1,18 @@
-import { ActionType, createAction, createReducer } from 'typesafe-actions'
-import { Filter, FilterAppStore } from './Filter.interface'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Filter } from './Filter.interface'
 import { mapQueryStringToFilter } from './Filter.utils'
+import { RootState } from '../../store'
 
-const initialState: FilterAppStore = mapQueryStringToFilter()
-const set = createAction('Filter:set')<Filter>()
-type Actions = ActionType<typeof filterActions>
+const initialState = mapQueryStringToFilter()
 
-export const filterActions = { set }
+const filter = createSlice({
+  name: 'filter',
+  initialState,
+  reducers: {
+    set: (state, { payload }: PayloadAction<Filter>) => payload,
+  },
+})
 
-export const filterReducer = createReducer<FilterAppStore, Actions>(initialState).handleAction(
-  set,
-  (state, { payload }) => payload,
-)
+export const filterActions = filter.actions
+export const filterReducer = filter.reducer
+export const filterSelector = (state: RootState) => state.filter

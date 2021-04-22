@@ -1,17 +1,17 @@
-import { Epic } from 'redux-observable'
+import { combineEpics } from 'redux-observable'
 import { from, of } from 'rxjs'
-import { catchError, map, mergeMap, filter } from 'rxjs/operators'
-import { isActionOf } from 'typesafe-actions'
-import { taxonomyActions, TaxonomyActions } from './Taxonomy.actions'
+import { catchError, map, switchMap, filter } from 'rxjs/operators'
+import { taxonomyActions } from './Taxonomy.actions'
 import { apiRequestTaxonomy } from './Taxonomy.api'
 
-export const taxonomyEpic: Epic<TaxonomyActions> = action$ =>
+export const taxonomyEpic = combineEpics(action$ =>
   action$.pipe(
-    filter(isActionOf(taxonomyActions.requestTaxonomy.request)),
-    mergeMap(() =>
+    filter(taxonomyActions.request.match),
+    switchMap(() =>
       from(apiRequestTaxonomy()).pipe(
-        map(taxonomyActions.requestTaxonomy.success),
-        catchError(() => of(taxonomyActions.requestTaxonomy.failure())),
+        map(taxonomyActions.success),
+        catchError(() => of(taxonomyActions.failure())),
       ),
     ),
-  )
+  ),
+)

@@ -3,11 +3,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import App from './components/App'
 import './index.css'
-import store from './store'
-
-if (!Intl.PluralRules) {
-  require('intl-pluralrules')
-}
+import { store } from './store'
 
 ReactDOM.render(
   <BrowserRouter>

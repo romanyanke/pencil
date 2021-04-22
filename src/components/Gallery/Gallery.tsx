@@ -1,7 +1,7 @@
 import last from 'lodash/last'
 import throttle from 'lodash/throttle'
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { isNumber } from 'lodash'
+import isNumber from 'lodash/isNumber'
 import { checkWindowScroll, requestFirstPage } from './Gallery.utils'
 import Grid from './Grid'
 import { useFilter } from '../Filter/Filter.hooks'

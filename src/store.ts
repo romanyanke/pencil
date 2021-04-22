@@ -1,20 +1,20 @@
-import { applyMiddleware, createStore, Store } from 'redux'
-import { composeWithDevTools } from 'redux-devtools-extension'
+import { configureStore, DeepPartial } from '@reduxjs/toolkit'
 import { createEpicMiddleware } from 'redux-observable'
 import { rootEpic } from './rootEpic'
 import { rootReducer } from './rootReducer'
 
+export type RootState = ReturnType<typeof store.getState>
+
 const epicMiddleware = createEpicMiddleware()
-const store: Store<AppStore> = createStore(
-  rootReducer,
-  {},
-  composeWithDevTools(applyMiddleware(epicMiddleware)),
-)
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: [epicMiddleware],
+})
+
 epicMiddleware.run(rootEpic)
 
-export type AppStore = ReturnType<typeof rootReducer>
-
-export const createTestStore = (initialState?: RecursivePartial<AppStore>) =>
-  createStore(rootReducer, initialState as AppStore)
-
-export default store
+export const createTestStore = (preloadedState?: DeepPartial<RootState>) =>
+  configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  })

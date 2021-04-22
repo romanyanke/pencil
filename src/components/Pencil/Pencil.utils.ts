@@ -6,10 +6,10 @@ import {
   PencilListResponse,
   PencilPages,
   PencilQuery,
-  PencilRequest,
   PencilSingleRequest,
   PencilsNormalized,
-  PencilAppStore,
+  PencilRootState,
+  PencilRequest,
 } from './Pencil.interface'
 
 const getEmptyPencilCacheItem = (): PencilCacheItem => ({
@@ -67,12 +67,12 @@ export const mapRequestToCacheId = (request: PencilRequest): string => {
   return cahceIdParts.join('/')
 }
 
-export const mapPancilsResponseToStore = ({
+export const mapPencilsResponseToStore = ({
   cacheId,
   pages,
   data: pencils,
   geo,
-}: PencilListResponse): PencilAppStore => {
+}: PencilListResponse): PencilRootState => {
   const ids = pencils.map(({ id }) => id)
   const data = mapKeys(pencils, item => item.id)
 
