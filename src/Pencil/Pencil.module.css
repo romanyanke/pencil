@@ -1,16 +1,21 @@
+:root {
+  --side: 90vmin;
+  --aside: 10vmin;
+  --full: calc(var(--side) + var(--aside));
+}
+
 .backdrop {
   position: fixed;
   top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
   z-index: 5;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: rgba(0, 0, 0, 0.3);
   -webkit-overflow-scrolling: touch;
   overflow: hidden;
   animation: pencil-backdrop-fade-in 0.2s ease-in;
   cursor: zoom-out;
-  padding: 5vmin;
 }
 
 @keyframes pencil-backdrop-fade-in {
@@ -31,8 +36,8 @@
   animation: pencil-content-roll-out 0.2s ease-in;
   will-change: transform;
   cursor: initial;
-  width: 90vmin;
-  height: 90vmin;
+  width: var(--side);
+  height: var(--side);
   position: absolute;
   top: 0;
   right: 0;
@@ -42,13 +47,13 @@
 
 @media (orientation: landscape) {
   .modal {
-    width: 100vmin;
+    width: var(--full);
   }
 }
 
 @media (orientation: portrait) {
   .modal {
-    height: 100vmin;
+    height: var(--full);
   }
 }
 
@@ -70,14 +75,25 @@
 }
 .info h1 {
   font-size: larger;
+  margin: 0.5rem 0;
+}
+.info h2 {
+  font-size: smaller;
+  margin: 0;
 }
 
-.thumbs {
-  flex: 0 0 10vmin;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+@media screen and (max-width: 600px), (max-height: 600px) {
+  .info h1,
+  .info p,
+  .info h2 {
+    margin: 0;
+    font-size: medium;
+  }
+  .tag,
+  .main {
+    font-size: small;
+    line-height: 1.2;
+  }
 }
 
 .scroller {
@@ -120,6 +136,7 @@
   flex: 1;
   overflow-y: auto;
   position: relative;
+  text-align: left;
 }
 
 .main::before,
@@ -155,11 +172,19 @@
   display: inline-block;
 }
 
+.thumbs {
+  flex: 0 0 var(--aside);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .thumb {
   cursor: pointer;
-  flex: 0 1 10vmin;
-  height: 10vmin;
-  width: 10vmin;
+  flex: 0 1 var(--aside);
+  height: var(--aside);
+  width: var(--aside);
   display: block;
   font-size: 2rem;
   line-height: 1;
@@ -175,6 +200,22 @@
   background-repeat: no-repeat;
 }
 
+@media (orientation: portrait) {
+  .info {
+    flex-direction: column-reverse;
+  }
+  .thumbs {
+    flex-direction: row;
+    flex-basis: var(--aside);
+  }
+
+  .thumb {
+    flex: 0 1 var(--aside);
+    width: var(--aside);
+    height: var(--aside);
+  }
+}
+
 .highlight {
   opacity: 1;
   background-size: 150%;
@@ -184,20 +225,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (orientation: portrait) {
-  .info {
-    flex-direction: column-reverse;
-  }
-  .thumbs {
-    flex-direction: row;
-    flex-basis: 10vh;
-  }
-
-  .thumb {
-    flex: 0 1 10vh;
-    width: 10vh;
-    height: 10vh;
-  }
 }

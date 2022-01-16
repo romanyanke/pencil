@@ -127,7 +127,9 @@ const Pencil = ({ data }: { data: PencilData }) => {
           onClick={handlePseudoLink}
         >
           <h1>{title}</h1>
-          <b>{city && country ? `${country.flag} ${country.name}, ${city}` : city ? city : null}</b>
+          <h2>
+            {city && country ? `${country.flag} ${country.name}, ${city}` : city ? city : null}
+          </h2>
           <article className={classes.main} dangerouslySetInnerHTML={{ __html: content }} />
           <p>
             🏷
