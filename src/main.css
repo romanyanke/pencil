@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  text-align: center;
+}
+body,
+button,
+select {
+  font-size: 1.6rem;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
+    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+select {
+  max-width: 100%;
+  text-align: center;
+}
+
+a {
+  color: #309cd0;
+}
+a:visited {
+  color: #226a8c;
+}
+a:hover {
+  color: #ff5722;
+}

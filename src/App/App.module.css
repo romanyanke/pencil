@@ -1,0 +1,8 @@
+.root > * {
+  margin: 1rem 0;
+}
+
+.root header,
+.root footer {
+  padding: 0 1rem;
+}

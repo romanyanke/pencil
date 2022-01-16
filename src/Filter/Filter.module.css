@@ -1,0 +1,10 @@
+.root {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.root span {
+  margin: 1rem;
+  display: inline-block;
+  text-align: center;
+}
