@@ -9,6 +9,7 @@ const Country = () => {
 
   return (
     <select
+      autoFocus
       value={value}
       onChange={e => {
         const newValue = e.target.value
