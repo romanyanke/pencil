@@ -1,12 +1,14 @@
 import { useRef, useEffect, useState } from 'react'
 import debounce from 'lodash/debounce'
 import classnames from 'classnames'
-import { usePseudoClick } from './Pencil.hooks'
+import { usePencilSiblings, usePseudoClick } from './Pencil.hooks'
 import classes from './Pencil.module.css'
+import Siblings from './Siblings'
 import { PencilData } from '../Feed/Feed.interface'
 import { usePencilQuery } from '../api'
 import { useAppState } from '../State/State.hooks'
 import { mapAppStateToQuery } from '../State/State.utils'
+import { useFeed } from '../Feed/Feed.hooks'
 
 const Wrapper = () => {
   const {
@@ -98,6 +100,9 @@ const Pencil = ({ data }: { data: PencilData }) => {
 
   return (
     <div className={classes.info}>
+      <div className={classes.siblings}>
+        <Siblings />
+      </div>
       <div className={classes.thumbs} onClick={e => e.stopPropagation()}>
         {photos.map((src, index) => (
           <a

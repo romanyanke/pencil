@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+}
+
+.root a {
+  display: block;
+  height: var(--aside);
+  width: var(--aside);
+  background-size: cover;
+  background-position: 50%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.root a:nth-child(1) {
+  transform: rotate(90deg);
+}
+
+.root a:nth-child(2) {
+  transform: rotate(-90deg);
+}

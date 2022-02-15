@@ -226,3 +226,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.siblings {
+  position: absolute;
+  z-index: 10;
+  bottom: 1rem;
+  right: 1rem;
+}
