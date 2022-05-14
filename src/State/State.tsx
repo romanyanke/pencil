@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { PropsWithChildren } from 'react'
 import { StateContext, useStateContextValue } from './State.hooks'
 
-const State: FC = ({ children }) => {
+const State = ({ children }: PropsWithChildren<{}>) => {
   const value = useStateContextValue()
 
   return <StateContext.Provider value={value}> {children}</StateContext.Provider>

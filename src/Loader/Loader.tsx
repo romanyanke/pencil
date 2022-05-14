@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { PropsWithChildren } from 'react'
 import classes from './Loader.module.css'
 import Globe from '../Globe'
 import { useTaxonomyQuery } from '../api'
 
-const Loader: FC = ({ children }) => {
+const Loader = ({ children }: PropsWithChildren<{}>) => {
   const { isError, isSuccess } = useTaxonomyQuery()
 
   if (isSuccess) {
