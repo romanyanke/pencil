@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 import Feed from './Feed'
 import { store } from './store'
@@ -8,7 +8,10 @@ import Loader from './Loader'
 import State from './State'
 import './main.css'
 
-ReactDOM.render(
+const container = document.getElementById('root')
+const root = createRoot(container!)
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
       <State>
@@ -20,5 +23,4 @@ ReactDOM.render(
       </State>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root'),
 )
