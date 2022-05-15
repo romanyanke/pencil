@@ -216,7 +216,9 @@
   }
 }
 
-.highlight {
+.highlight,
+.thumb:active,
+.thumb:hover {
   opacity: 1;
   background-size: 150%;
 }
