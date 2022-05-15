@@ -4,7 +4,7 @@ import { useAppState } from '../State/State.hooks'
 import { mapQueryToAppState } from '../State/State.utils'
 
 export const usePseudoClick = () => {
-  const { setState } = useAppState()
+  const { resetFilter } = useAppState()
   const handlePseudoLink = useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation()
@@ -15,12 +15,12 @@ export const usePseudoClick = () => {
           const filterFromLink = mapQueryToAppState(link)
           if (!isEmpty(filterFromLink)) {
             e.preventDefault()
-            setState(filterFromLink)
+            resetFilter(filterFromLink)
           }
         }
       }
     },
-    [setState],
+    [resetFilter],
   )
 
   return handlePseudoLink

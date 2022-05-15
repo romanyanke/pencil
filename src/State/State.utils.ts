@@ -1,9 +1,42 @@
 import qs from 'qs'
-import { AppState } from './State.interface'
+import { Reducer } from 'react'
+import omitBy from 'lodash/omitBy'
+import { AppState, AppStateActions } from './State.interface'
+
+export const omitStateKey = (state: AppState, omitKey: keyof AppState): AppState =>
+  omitBy(state, (value, key) => key === omitKey)
+
+export const stateReducer: Reducer<AppState, AppStateActions> = (state, action) => {
+  switch (action.type) {
+    case 'reset':
+      return action.state || {}
+
+    case 'open:pencil':
+      return { ...state, display: action.pencilId }
+
+    case 'open:country':
+      return { country: action.geoId }
+
+    case 'open:tag':
+      return { tag: action.tag }
+
+    case 'close:pencil':
+      return omitStateKey(state, 'display')
+
+    case 'close:country':
+      return omitStateKey(state, 'country')
+
+    case 'close:tag':
+      return omitStateKey(state, 'tag')
+
+    default:
+      return state
+  }
+}
 
 export const mapAppStateToQuery = (state: AppState) => qs.stringify(state, { addQueryPrefix: true })
 
-export const mapQueryToAppState = (search = window.location.search) => {
+export const mapQueryToAppState = (search = window.location.search): AppState => {
   const state = qs.parse(search, { ignoreQueryPrefix: true })
 
   return validate(state)
