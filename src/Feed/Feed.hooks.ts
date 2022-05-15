@@ -19,25 +19,28 @@ export const useFeedContextValue = () => {
   useEffect(() => {
     const args = query.originalArgs
     const { tag, country } = state
+    const stateUnchanged = args ? args.tag === tag && args.country === country : false
 
-    if (!args || args.tag !== tag || args.country !== country) {
-      trigger({ page: 1, tag, country })
-        .unwrap()
-        .then(({ data, geo = [] }) => {
-          setPencils(data)
-          setActiveGeo(geo)
-        })
-    }
-  }, [trigger, query.originalArgs, state, activeGeo.length])
-
-  const loadNextPage = useCallback(async () => {
-    if (!hasNextPage || query.isLoading) {
+    if (stateUnchanged || query.isFetching) {
       return
     }
-    const { data } = await trigger({ ...state, page: nextPage }).unwrap()
 
-    setPencils(current => [...current, ...data])
-  }, [hasNextPage, query.isLoading, trigger, state, nextPage])
+    trigger({ tag, country, page: 1 })
+      .unwrap()
+      .then(({ data, geo = [] }) => {
+        setPencils(data)
+        setActiveGeo(geo)
+      })
+  }, [query.isFetching, query.originalArgs, state, trigger])
+
+  const loadNextPage = useCallback(() => {
+    if (!hasNextPage || query.isFetching) {
+      return
+    }
+    trigger({ ...state, page: nextPage })
+      .unwrap()
+      .then(({ data }) => setPencils(current => [...current, ...data]))
+  }, [hasNextPage, query.isFetching, trigger, state, nextPage])
 
   return { query, loadNextPage, pencils, activeGeo, hasNextPage }
 }
