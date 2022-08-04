@@ -16,6 +16,7 @@ export const usePseudoClick = () => {
           if (!isEmpty(filterFromLink)) {
             e.preventDefault()
             resetFilter(filterFromLink)
+            window.scrollTo(0, 0)
           }
         }
       }
