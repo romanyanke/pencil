@@ -24,7 +24,7 @@ export const Title = () => {
             resetFilter()
           }}
         >
-          Показать все
+          Сбросить фильтр
         </a>
       )}
     </h2>

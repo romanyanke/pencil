@@ -9,12 +9,14 @@ import Title from '../Title'
 
 const App = () => (
   <main className={classes.root}>
+    <Map />
+
     <header>
       <Filter />
     </header>
 
-    <Map />
     <Title />
+
     <Grid />
 
     <aside>

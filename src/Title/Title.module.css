@@ -4,12 +4,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 300;
 }
 
 .clear {
-  margin-left: 0.4rem;
+  margin: 0 0.4rem;
   font-size: 1rem;
   text-decoration: none;
-  border-bottom: 2px dashed;
+  border-bottom: 2px dotted;
   font-weight: 300;
 }
