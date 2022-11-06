@@ -19,7 +19,6 @@ export interface FeedPencil {
   grid: PencilGridSize
   id: string
   photos: string[]
-  preview: string
   title: string
 }
 

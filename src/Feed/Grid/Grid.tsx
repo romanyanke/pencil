@@ -1,5 +1,4 @@
 import classnames from 'classnames'
-import { getGridImageSources } from './Grid.utils'
 import classes from './Grid.module.css'
 import { useFeed } from '../Feed.hooks'
 import { mapAppStateToQuery } from '../../State/State.utils'
@@ -13,8 +12,7 @@ const Grid = () => {
     <div className={classes.root}>
       {pencils.map(pencil => {
         const size = pencil.grid
-        const thumbSrc = pencil.preview
-        const fullSrc = pencil.photos[0]
+        const preview = pencil.photos[0]
 
         return (
           <a
@@ -31,11 +29,7 @@ const Grid = () => {
             key={pencil.id}
             title={pencil.title}
           >
-            <img
-              alt={pencil.title}
-              loading="lazy"
-              {...getGridImageSources(size, fullSrc, thumbSrc)}
-            />
+            <img alt={pencil.title} loading="lazy" src={preview} />
           </a>
         )
       })}
