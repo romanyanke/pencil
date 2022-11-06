@@ -1,4 +1,25 @@
+.day {
+  --background: #f1eded;
+  --text: #2c2d30;
+  --caption: #333;
+  --link: #1264a3;
+  --link-hover: #0b4c8c;
+  --delimiter: #949494;
+  --image-filter: none;
+}
+
+.night {
+  --background: #150708;
+  --text: #ffffe0;
+  --caption: #b7b7b7;
+  --link: #e88030;
+  --link-hover: #ff9c52;
+  --delimiter: #808080;
+  --image-filter: brightness(0.85);
+}
+
 body {
+  background-color: var(--background);
   margin: 0;
   text-align: center;
 }
@@ -15,13 +36,10 @@ select {
 }
 
 a {
-  color: #309cd0;
-}
-a:visited {
-  color: #226a8c;
+  color: var(--link);
 }
 a:hover {
-  color: #ff5722;
+  color: var(--link-hover);
 }
 
 :root {

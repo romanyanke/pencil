@@ -68,8 +68,9 @@
 
 .info {
   height: 100%;
-  --bg-color: #f1f1f1;
-  --bg-color-transparent: rgb(241 241 241 / 0%);
+  /* --bg-color: #f1f1f1; */
+  /* --bg-color-transparent: rgb(241 241 241 / 0%); */
+  background-color: var(--background);
 
   display: flex;
 }
@@ -121,7 +122,7 @@
 .content {
   background-color: var(--bg-color);
   padding: 1rem;
-  color: #242424;
+  color: var(--text);
   word-break: break-word;
   display: flex;
   flex-direction: column;
@@ -191,7 +192,7 @@
   text-align: center;
   text-decoration: none;
 
-  opacity: 0.3;
+  /* opacity: 0.3; */
   transition: all 0.1s ease-in;
 
   background-size: cover;
