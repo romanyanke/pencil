@@ -1,16 +1,17 @@
+import { useTranslation } from 'react-i18next'
 import Country from './Country'
 import classes from './Filter.module.css'
-import { formatPlural } from '../App/App.utils'
 import { useStatistic } from '../Taxonomy/Taxonomy.hooks'
 
 const Filter = () => {
+  const { t } = useTranslation()
   const stat = useStatistic()
 
   return (
     <h1 className={classes.root}>
-      <span>{formatPlural.pencil(stat.pencils)}</span>
+      <span>{t('pencils', { count: stat.pencils })}</span>
       <Country />
-      <span>{formatPlural.country(stat.countries)}</span>
+      <span>{t('countries', { count: stat.countries })}</span>
     </h1>
   )
 }

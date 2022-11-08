@@ -2,6 +2,7 @@ import qs from 'qs'
 import { Reducer } from 'react'
 import omitBy from 'lodash/omitBy'
 import { AppState, AppStateActions } from './State.interface'
+import { mapToLanguage } from '../LanguageProvider/LanguageProvider.utils'
 
 export const omitStateKey = (state: AppState, omitKey: keyof AppState): AppState =>
   omitBy(state, (value, key) => key === omitKey)
@@ -10,6 +11,9 @@ export const stateReducer: Reducer<AppState, AppStateActions> = (state, action) 
   switch (action.type) {
     case 'reset':
       return action.state || {}
+
+    case 'language':
+      return { ...state, language: action.language }
 
     case 'open:pencil':
       return { ...state, display: action.pencilId }
@@ -44,7 +48,9 @@ export const mapQueryToAppState = (search = window.location.search): AppState =>
 
 const validate = (input: {}): AppState => {
   const inputAsState: AppState = input
-  const out: AppState = {}
+  const out: AppState = {
+    language: mapToLanguage(inputAsState.language),
+  }
 
   if (inputAsState.display) {
     out.display = inputAsState.display

@@ -1,0 +1,15 @@
+{
+  "theme-light": "Light theme",
+  "theme-dark": "Dark theme",
+  "error": "Error",
+  "loading": "Loading…",
+  "load-more": "Load more",
+  "title": "In a box of pencils",
+  "pencils_one": "{{count}} pencil",
+  "pencils_other": "{{count}} pencils",
+  "all-pencils": "All pencils",
+  "all-countries": "All countries",
+  "drop-filter": "Drop filter",
+  "countries_one": "{{count}} country",
+  "countries_other": "{{count}} countries"
+}

@@ -1,3 +1,6 @@
+.root {
+  position: relative;
+}
 .root > * + * {
   margin: 1rem 0;
 }
@@ -5,4 +8,13 @@
 .root header,
 .root footer {
   padding: 0 1rem;
+}
+
+.settings {
+  cursor: pointer;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  text-align: right;
 }

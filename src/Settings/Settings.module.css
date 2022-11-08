@@ -1,0 +1,5 @@
+.root button {
+  white-space: nowrap;
+  padding: 0.2rem 2rem;
+  margin-bottom: 0.5rem;
+}

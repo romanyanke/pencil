@@ -1,20 +1,22 @@
-import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 import classes from './Title.module.css'
-import { useTitle } from './Title.hooks'
+import { useSubtitle } from './Title.hooks'
 import { useAppState } from '../State/State.hooks'
 
 export const Title = () => {
-  const title = useTitle()
-  const originalTitle = useRef(document.title)
+  const { t } = useTranslation()
   const { isFilterApplied, resetFilter } = useAppState()
 
+  const subtitle = useSubtitle()
+
   useEffect(() => {
-    document.title = `${originalTitle.current}: ${title}`
-  }, [title])
+    document.title = `${t('title')}: ${subtitle}`
+  }, [subtitle, t])
 
   return (
     <h2 className={classes.root}>
-      {title}
+      {subtitle}
       {isFilterApplied && (
         <a
           className={classes.clear}
@@ -24,7 +26,7 @@ export const Title = () => {
             resetFilter()
           }}
         >
-          Сбросить фильтр
+          {t('drop-filter')}
         </a>
       )}
     </h2>

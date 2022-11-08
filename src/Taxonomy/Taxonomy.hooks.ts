@@ -1,14 +1,7 @@
-import { useTaxonomyQuery } from '../api'
+import { useContext } from 'react'
+import { TaxonomyContext } from './Taxonomy'
 
-const useTaxonomyData = () => {
-  const { data } = useTaxonomyQuery()
-
-  if (!data) {
-    throw new Error('Taxonomy is not ready')
-  }
-
-  return data
-}
+const useTaxonomyData = () => useContext(TaxonomyContext)
 
 export const useCountries = () => useTaxonomyData().countries || []
 export const useTags = () => useTaxonomyData().tags || []

@@ -1,7 +1,7 @@
 import isEmpty from 'lodash/isEmpty'
 import { useCallback } from 'react'
-import { useAppState } from '../State/State.hooks'
-import { mapQueryToAppState } from '../State/State.utils'
+import { useAppState } from '../../State/State.hooks'
+import { mapQueryToAppState } from '../../State/State.utils'
 
 export const usePseudoClick = () => {
   const { resetFilter } = useAppState()

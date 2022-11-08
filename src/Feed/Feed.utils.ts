@@ -1,8 +1,11 @@
 import compact from 'lodash/compact'
 import { FeedApiPayload } from './Feed.interface'
 
-export const mapPayloadToPath = ({ page = 1, tag, country }: FeedApiPayload = {}) => {
+export const mapPayloadToPath = (
+  { page = 1, tag, country, locale }: FeedApiPayload = { locale: 'ru' },
+) => {
   const paths = [
+    locale === 'en' && `/${locale}/`,
     tag && `/tags/${tag}/`,
     country && `/geo/${country}/`,
     page > 1 && `/page/${page}/`,

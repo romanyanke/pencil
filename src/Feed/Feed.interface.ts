@@ -6,6 +6,7 @@ export interface FeedFilter {
 }
 
 export interface FeedApiPayload extends FeedFilter {
+  locale: string
   page?: number
 }
 

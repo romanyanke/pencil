@@ -1,4 +1,5 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FeedContext } from './Feed'
 import { FeedPencil } from './Feed.interface'
 import { useLazyFeedQuery } from '../api'
@@ -8,6 +9,8 @@ export const useFeed = () => useContext(FeedContext)
 
 export const useFeedContextValue = () => {
   const [trigger, query] = useLazyFeedQuery()
+  const { i18n } = useTranslation()
+
   const { state } = useAppState()
   const [pencils, setPencils] = useState<FeedPencil[]>([])
   const [activeGeo, setActiveGeo] = useState<string[]>([])
@@ -15,6 +18,7 @@ export const useFeedContextValue = () => {
   const pages = query.data?.pages || { currentPage: 1, totalPages: 1 }
   const hasNextPage = pages.currentPage < pages.totalPages
   const nextPage = hasNextPage ? pages.currentPage + 1 : pages.currentPage
+  const locale = i18n.language
 
   useEffect(() => {
     const args = query.originalArgs
@@ -25,22 +29,22 @@ export const useFeedContextValue = () => {
       return
     }
 
-    trigger({ tag, country, page: 1 })
+    trigger({ tag, country, page: 1, locale })
       .unwrap()
       .then(({ data, geo = [] }) => {
         setPencils(data)
         setActiveGeo(geo)
       })
-  }, [query.isFetching, query.originalArgs, state, trigger])
+  }, [locale, query.isFetching, query.originalArgs, state, trigger])
 
   const loadNextPage = useCallback(() => {
     if (!hasNextPage || query.isFetching) {
       return
     }
-    trigger({ ...state, page: nextPage })
+    trigger({ ...state, page: nextPage, locale })
       .unwrap()
       .then(({ data }) => setPencils(current => [...current, ...data]))
-  }, [hasNextPage, query.isFetching, trigger, state, nextPage])
+  }, [hasNextPage, query.isFetching, trigger, state, nextPage, locale])
 
   return { query, loadNextPage, pencils, activeGeo, hasNextPage }
 }

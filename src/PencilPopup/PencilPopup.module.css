@@ -1,0 +1,80 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  animation: backdrop-in 0.2s ease-in;
+  cursor: zoom-out;
+}
+
+.modal {
+  box-shadow: var(--shadow);
+  border-radius: 1rem;
+  margin: auto;
+  overflow-y: scroll;
+  animation: modal-in 0.2s ease-in;
+  will-change: transform;
+  cursor: initial;
+  width: var(--pencil-frame);
+  height: var(--pencil-frame);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.close {
+  animation: backdrop-out 0.2s ease-in;
+}
+.close .modal {
+  animation: modal-out 0.2s ease-in;
+}
+
+@media (orientation: landscape) {
+  .modal {
+    width: var(--pencil-full);
+  }
+}
+
+@media (orientation: portrait) {
+  .modal {
+    height: var(--pencil-full);
+  }
+}
+
+@keyframes modal-in {
+  from {
+    transform: scale(0.98) translateY(10px);
+  }
+  to {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modal-out {
+  to {
+    transform: scale(0.98) translateY(10px);
+    opacity: 0;
+  }
+}
+
+@keyframes backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes backdrop-out {
+  to {
+    opacity: 0;
+  }
+}

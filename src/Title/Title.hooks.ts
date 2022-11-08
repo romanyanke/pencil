@@ -1,10 +1,11 @@
 import startCase from 'lodash/startCase'
-import { formatPlural } from '../App/App.utils'
+import { useTranslation } from 'react-i18next'
 import { useFeed } from '../Feed/Feed.hooks'
 import { useAppState } from '../State/State.hooks'
 import { useCountries, useTags } from '../Taxonomy/Taxonomy.hooks'
 
-export const useTitle = () => {
+export const useSubtitle = () => {
+  const { t } = useTranslation()
   const { state } = useAppState()
   const { query } = useFeed()
   const countries = useCountries()
@@ -13,19 +14,19 @@ export const useTitle = () => {
   const country = countries.find(country => country.geo === state.country)
   const tag = tags.find(tag => startCase(tag.name) === startCase(state.tag))
 
-  const title = (() => {
+  const subtitle = (() => {
     if (query.isLoading) {
-      return 'Загрузка…'
+      return t('loading')
     }
     if (country) {
-      return `${country.name}. ${formatPlural.pencil(country.pencils)}`
+      return `${country.name}. ${t('pencils', { count: country.pencils })}`
     }
     if (tag) {
-      return `${startCase(tag.name)}. ${formatPlural.pencil(tag.pencils)}`
+      return `${startCase(tag.name)}. ${t('pencils', { count: tag.pencils })}`
     }
 
-    return 'Все карандаши'
+    return t('all-pencils')
   })()
 
-  return title
+  return subtitle
 }

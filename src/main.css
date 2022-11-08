@@ -26,6 +26,12 @@
   --selected-country: #c25736;
 }
 
+:root {
+  --pencil-frame: 90vmin;
+  --pencil-aside: 10vmin;
+  --pencil-full: calc(var(--pencil-frame) + var(--pencil-aside));
+}
+
 body {
   margin: 0;
   text-align: center;

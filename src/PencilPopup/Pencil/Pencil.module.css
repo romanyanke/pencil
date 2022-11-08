@@ -1,75 +1,5 @@
-:root {
-  --side: 90vmin;
-  --aside: 10vmin;
-  --full: calc(var(--side) + var(--aside));
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 5;
-  height: calc(var(--vh, 1vh) * 100);
-  background-color: rgba(0, 0, 0, 0.3);
-  -webkit-overflow-scrolling: touch;
-  overflow: hidden;
-  animation: pencil-backdrop-fade-in 0.2s ease-in;
-  cursor: zoom-out;
-}
-
-@keyframes pencil-backdrop-fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.modal {
-  background: #fff;
-  box-shadow: var(--shadow);
-  border-radius: 1rem;
-  margin: auto;
-  overflow-y: scroll;
-  animation: pencil-content-roll-out 0.2s ease-in;
-  will-change: transform;
-  cursor: initial;
-  width: var(--side);
-  height: var(--side);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-@media (orientation: landscape) {
-  .modal {
-    width: var(--full);
-  }
-}
-
-@media (orientation: portrait) {
-  .modal {
-    height: var(--full);
-  }
-}
-
-@keyframes pencil-content-roll-out {
-  from {
-    transform: scale(0.98) translateY(10px);
-  }
-  to {
-    transform: scale(1) translateY(0);
-  }
-}
-
 .info {
   height: 100%;
-  /* --bg-color: #f1f1f1; */
-  /* --bg-color-transparent: rgb(241 241 241 / 0%); */
   background-color: var(--background);
 
   display: flex;
@@ -174,18 +104,25 @@
 }
 
 .thumbs {
-  flex: 0 0 var(--aside);
+  flex: 0 0 var(--pencil-aside);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+button.thumb {
+  font-size: 1rem;
+  word-break: break-word;
+  overflow: hidden;
+  border: none;
+}
+
 .thumb {
   cursor: pointer;
-  flex: 0 1 var(--aside);
-  height: var(--aside);
-  width: var(--aside);
+  flex: 0 1 var(--pencil-aside);
+  height: var(--pencil-aside);
+  width: var(--pencil-aside);
   display: block;
   font-size: 2rem;
   line-height: 1;
@@ -207,13 +144,13 @@
   }
   .thumbs {
     flex-direction: row;
-    flex-basis: var(--aside);
+    flex-basis: var(--pencil-aside);
   }
 
   .thumb {
-    flex: 0 1 var(--aside);
-    width: var(--aside);
-    height: var(--aside);
+    flex: 0 1 var(--pencil-aside);
+    width: var(--pencil-aside);
+    height: var(--pencil-aside);
   }
 }
 

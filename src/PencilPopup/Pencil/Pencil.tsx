@@ -3,43 +3,10 @@ import debounce from 'lodash/debounce'
 import classnames from 'classnames'
 import { usePseudoClick } from './Pencil.hooks'
 import classes from './Pencil.module.css'
-import { PencilData } from '../Feed/Feed.interface'
-import { usePencilQuery } from '../api'
-import { useAppState } from '../State/State.hooks'
-import { mapAppStateToQuery } from '../State/State.utils'
+import { PencilData } from '../../Feed/Feed.interface'
+import { mapAppStateToQuery } from '../../State/State.utils'
 
-const Wrapper = () => {
-  const {
-    state: { display },
-  } = useAppState()
-  const { data: pencil } = usePencilQuery(display!, { skip: !display })
-  const { closePencil } = useAppState()
-
-  const scroller = useRef<HTMLDivElement>(null)
-  const showPopup = display && display === pencil?.id
-
-  useEffect(() => {
-    if (showPopup) {
-      document.body.style.overflow = 'hidden'
-
-      if (scroller.current) {
-        scroller.current.scrollTop = 0
-      }
-    } else {
-      document.body.style.overflow = 'initial'
-    }
-  }, [scroller, showPopup])
-
-  return showPopup ? (
-    <div className={classes.backdrop} onClick={closePencil} ref={scroller}>
-      <div className={classes.modal}>
-        <Pencil data={pencil} />
-      </div>
-    </div>
-  ) : null
-}
-
-const Pencil = ({ data }: { data: PencilData }) => {
+export const Pencil = ({ data, onClose }: { data: PencilData; onClose(): void }) => {
   const { country, city, photos, title, content, tags } = data
   const handlePseudoLink = usePseudoClick()
   const scroller = useRef<HTMLDivElement | null>(null)
@@ -112,6 +79,9 @@ const Pencil = ({ data }: { data: PencilData }) => {
             <span>{country.flag}</span>
           </a>
         )}
+        <button className={classes.thumb} onClick={onClose}>
+          <span>&#10006;</span>
+        </button>
       </div>
 
       <div className={classes.scroller} ref={scroller}>
@@ -131,6 +101,7 @@ const Pencil = ({ data }: { data: PencilData }) => {
             {city && country ? `${country.flag} ${country.name}, ${city}` : city ? city : null}
           </h2>
           <article className={classes.main} dangerouslySetInnerHTML={{ __html: content }} />
+
           <p>
             🏷
             {tags.map(tag => (
@@ -144,5 +115,3 @@ const Pencil = ({ data }: { data: PencilData }) => {
     </div>
   )
 }
-
-export default Wrapper

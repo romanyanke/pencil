@@ -1,6 +1,8 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { AppState, AppStateControls } from './State.interface'
 import { mapAppStateToQuery, mapQueryToAppState, stateReducer } from './State.utils'
+import { useLanguage } from '../LanguageProvider/LanguageProvider.hooks'
+import { Language } from '../LanguageProvider/LanguageProvider.interface'
 
 export const StateContext = createContext<AppStateControls>(null as any)
 
@@ -15,6 +17,7 @@ export const useStateContextValue = () => {
   const openPencil = (pencilId: string) => dispatch({ type: 'open:pencil', pencilId })
   const openCountry = (geoId: string) => dispatch({ type: 'open:country', geoId })
   const openTag = (tag: string) => dispatch({ type: 'open:tag', tag })
+  const setLanguage = (language: Language) => dispatch({ type: 'language', language })
 
   const closePencil = () => dispatch({ type: 'close:pencil' })
   const closeCountry = () => dispatch({ type: 'close:country' })
@@ -29,19 +32,27 @@ export const useStateContextValue = () => {
     openPencil,
     openTag,
     resetFilter,
+    setLanguage,
     state,
   }
 }
 
 export const useStateInUrl = ({ state, resetFilter }: AppStateControls) => {
+  const { toggleLanguage } = useLanguage()
   useEffect(() => {
-    const cb = () => resetFilter(mapQueryToAppState())
+    const cb = () => {
+      const state = mapQueryToAppState()
+      if (state.language) {
+        toggleLanguage(state.language)
+      }
+      resetFilter(state)
+    }
     window.addEventListener('popstate', cb)
 
     return () => {
       window.removeEventListener('popstate', cb)
     }
-  }, [resetFilter])
+  }, [resetFilter, toggleLanguage])
 
   useEffect(() => {
     const newSearch = mapAppStateToQuery(state)

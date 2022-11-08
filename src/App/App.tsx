@@ -1,30 +1,30 @@
 import classes from './App.module.css'
 import Grid from '../Feed/Grid'
 import Filter from '../Filter'
-import Pencil from '../Pencil'
 import Map from '../Map'
 import InfiniteScroll from '../Feed/InfiniteScroll'
 import LoadMoreButton from '../Feed/LoadMoreButton'
 import Title from '../Title'
-import { Theme } from '../Theme/Theme'
+import { Settings } from '../Settings/Settings'
+import { PencilPopup } from '../PencilPopup/PencilPopup'
 
 const App = () => (
   <main className={classes.root}>
-    <div>
-      <Theme />
-      <Map />
-    </div>
+    <Map />
 
     <header>
       <Filter />
+      <Title />
     </header>
 
-    <Title />
+    <div className={classes.settings}>
+      <Settings />
+    </div>
 
     <Grid />
 
     <aside>
-      <Pencil />
+      <PencilPopup />
     </aside>
 
     <footer>

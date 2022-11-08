@@ -1,0 +1,17 @@
+{
+  "theme-light": "Светлая тема",
+  "theme-dark": "Темная тема",
+  "error": "Ошибка",
+  "loading": "Загрузка…",
+  "load-more": "Загрузить еще",
+  "title": "В коробке с карандашами",
+  "all-pencils": "Все карандаши",
+  "all-countries": "Все страны",
+  "drop-filter": "Сбросить фильтр",
+  "countries_one": "{{count}} страна",
+  "countries_few": "{{count}} страны",
+  "countries_many": "{{count}} стран",
+  "pencils_one": "{{count}} карандаш",
+  "pencils_few": "{{count}} карандаша",
+  "pencils_many": "{{count}} карандашей"
+}
