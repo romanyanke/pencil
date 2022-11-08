@@ -6,10 +6,14 @@ import Map from '../Map'
 import InfiniteScroll from '../Feed/InfiniteScroll'
 import LoadMoreButton from '../Feed/LoadMoreButton'
 import Title from '../Title'
+import { Theme } from '../Theme/Theme'
 
 const App = () => (
   <main className={classes.root}>
-    <Map />
+    <div>
+      <Theme />
+      <Map />
+    </div>
 
     <header>
       <Filter />

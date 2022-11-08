@@ -1,31 +1,40 @@
 .day {
-  --background: #f1eded;
+  --background: #fefefe;
   --text: #2c2d30;
-  --caption: #333;
   --link: #1264a3;
   --link-hover: #0b4c8c;
-  --delimiter: #949494;
-  --image-filter: none;
+  --shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  --ocean: rgba(47, 156, 208, 0.12);
+  --empty-country: #fff;
+  --country: #309cd0;
+  --hover-country: #226a8c;
+  --selected-country: #ff5722;
 }
 
 .night {
-  --background: #150708;
+  --background: #132934;
   --text: #ffffe0;
-  --caption: #b7b7b7;
   --link: #e88030;
   --link-hover: #ff9c52;
-  --delimiter: #808080;
-  --image-filter: brightness(0.85);
+  --shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+
+  --ocean: rgba(47, 156, 208, 0.12);
+  --empty-country: #ffffff17;
+  --country: #127db0;
+  --hover-country: #169ad8;
+  --selected-country: #c25736;
 }
 
 body {
-  background-color: var(--background);
   margin: 0;
   text-align: center;
 }
 body,
 button,
 select {
+  background-color: var(--background);
+  color: var(--text);
   font-size: 1.6rem;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
     Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -40,8 +49,4 @@ a {
 }
 a:hover {
   color: var(--link-hover);
-}
-
-:root {
-  --shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
