@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
 import classes from './PencilPopup.module.css'
 import { Pencil } from './Pencil/Pencil'
 import { usePencil } from '../api'
@@ -12,17 +12,17 @@ export const PencilPopup = () => {
   const { closePencil } = useAppState()
 
   const scroller = useRef<HTMLDivElement>(null)
-  const showPopup = display && display === pencil?.id
+  const open = display && display === pencil?.id
 
-  const closeWithAnimation = () => {
+  const closeWithAnimation = useCallback(() => {
     scroller.current?.classList?.add(classes.close)
     setTimeout(() => {
       closePencil()
     }, 180)
-  }
+  }, [closePencil])
 
   useEffect(() => {
-    if (showPopup) {
+    if (open) {
       document.body.style.overflow = 'hidden'
 
       if (scroller.current) {
@@ -31,9 +31,25 @@ export const PencilPopup = () => {
     } else {
       document.body.style.overflow = 'initial'
     }
-  }, [showPopup])
+  }, [open])
 
-  return showPopup ? (
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const close = event.key === 'Escape'
+
+      if (open && close) {
+        closeWithAnimation()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [closeWithAnimation, open])
+
+  return open ? (
     <div className={classes.backdrop} onClick={closeWithAnimation} ref={scroller}>
       <div className={classes.modal}>
         <Pencil data={pencil} onClose={closeWithAnimation} />
