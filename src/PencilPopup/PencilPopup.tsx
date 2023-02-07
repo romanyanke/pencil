@@ -21,23 +21,20 @@ export const PencilPopup = () => {
     }, 180)
   }, [closePencil])
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-
+  useEffect(
+    () => () => {
       if (scroller.current) {
         scroller.current.scrollTop = 0
       }
-    } else {
-      document.body.style.overflow = 'initial'
-    }
-  }, [open])
+    },
+    [open],
+  )
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const close = event.key === 'Escape'
+      const isEsc = event.key === 'Escape'
 
-      if (open && close) {
+      if (open && isEsc) {
         closeWithAnimation()
       }
     }

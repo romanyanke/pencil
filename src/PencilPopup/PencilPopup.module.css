@@ -16,7 +16,6 @@
   box-shadow: var(--shadow);
   border-radius: 1rem;
   margin: auto;
-  overflow-y: scroll;
   animation: modal-in 0.2s ease-in;
   will-change: transform;
   cursor: initial;
