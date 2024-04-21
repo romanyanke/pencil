@@ -37,6 +37,7 @@
   box-shadow: var(--shadow);
   transform: scale(1.02);
   z-index: 3;
+  background-color: var(--background);
 }
 
 .item:active {

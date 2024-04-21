@@ -13,7 +13,9 @@ export const Settings = () => {
   return (
     <details className={classes.root}>
       <summary>⚙️</summary>
-      <button onClick={toggleTheme}>{t(isDark ? 'theme-dark' : 'theme-light')}</button>
+      <button onClick={toggleTheme}>
+        {isDark ? <span>🌕 {t('theme-dark')}</span> : <span>🌞 {t('theme-light')}</span>}
+      </button>
       <br />
       <button
         onClick={() => {
@@ -21,7 +23,7 @@ export const Settings = () => {
           toggleLocale()
         }}
       >
-        {locale === 'en' ? 'English' : 'Русский'}
+        {locale === 'en' ? <span>🇺🇸 Eng</span> : <span>🇷🇺 Рус</span>}
       </button>
     </details>
   )

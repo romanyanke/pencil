@@ -1,6 +1,6 @@
 {
-  "theme-light": "Light theme",
-  "theme-dark": "Dark theme",
+  "theme-light": "Day",
+  "theme-dark": "Night",
   "error": "Error",
   "loading": "Loading…",
   "load-more": "Load more",
@@ -9,7 +9,7 @@
   "pencils_other": "{{count}} pencils",
   "all-pencils": "All pencils",
   "all-countries": "All countries",
-  "drop-filter": "Drop filter",
+  "drop-filter": "Clear filter",
   "countries_one": "{{count}} country",
   "countries_other": "{{count}} countries"
 }

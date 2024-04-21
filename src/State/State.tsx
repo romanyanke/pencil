@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect } from 'react'
 import { StateContext, useStateContextValue, useStateInUrl } from './State.hooks'
 import { useLanguage } from '../LanguageProvider/LanguageProvider.hooks'
 
-const State = ({ children }: PropsWithChildren<{}>) => {
+export const State = ({ children }: PropsWithChildren<{}>) => {
   const { language } = useLanguage()
   const value = useStateContextValue()
 
@@ -16,5 +16,3 @@ const State = ({ children }: PropsWithChildren<{}>) => {
 
   return <StateContext.Provider value={value}>{children}</StateContext.Provider>
 }
-
-export default State

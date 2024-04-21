@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import classes from './LoadMoreButton.module.css'
-import Globe from '../../Globe'
 import { useFeed } from '../Feed.hooks'
+import { Globe } from '../../Globe/Globe'
 
-const LoadMoreButton = () => {
+export const LoadMoreButton = () => {
   const { t } = useTranslation()
   const { hasNextPage, loadNextPage, query } = useFeed()
   const { isFetching } = query
@@ -14,5 +14,3 @@ const LoadMoreButton = () => {
     </button>
   ) : null
 }
-
-export default LoadMoreButton

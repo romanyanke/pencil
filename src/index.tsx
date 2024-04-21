@@ -1,13 +1,13 @@
-import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
-import App from './App'
-import Feed from './Feed'
-import { store } from './store'
-import State from './State'
-import './main.css'
+import { Provider } from 'react-redux'
+import { App } from './App/App'
+import { Feed } from './Feed/Feed'
+import { LanguageProvider } from './LanguageProvider/LanguageProvider'
+import { State } from './State/State'
 import { Taxonomy } from './Taxonomy/Taxonomy'
 import { Theme } from './Theme/Theme'
-import { LanguageProvider } from './LanguageProvider/LanguageProvider'
+import { store } from './store'
+import './main.css'
 
 const container = document.getElementById('root')
 const root = createRoot(container!)

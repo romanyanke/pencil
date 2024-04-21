@@ -2,7 +2,7 @@ import { createContext, PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { TaxonomyApiResponse } from './Taxonomy.interface'
 import { useTaxonomyQuery } from '../api'
-import Loader from '../Theme/Loader'
+import { Loader } from '../Theme/Loader/Loader'
 
 export const TaxonomyContext = createContext<TaxonomyApiResponse>(null as any)
 

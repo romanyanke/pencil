@@ -32,4 +32,3 @@ export const Title = () => {
     </h2>
   )
 }
-export default Title

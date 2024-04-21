@@ -7,7 +7,7 @@ import { useCountries } from '../Taxonomy/Taxonomy.hooks'
 import { useAppState } from '../State/State.hooks'
 import { useFeed } from '../Feed/Feed.hooks'
 
-const Map = () => {
+export const Map = () => {
   const counties = useCountries()
   const { openCountry, closeCountry } = useAppState()
   const { activeGeo } = useFeed()
@@ -63,5 +63,3 @@ const Map = () => {
     </div>
   )
 }
-
-export default Map

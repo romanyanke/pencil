@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 
-export interface GlobeProps {
+interface GlobeProps {
   animated?: boolean
 }
 
-const Globe = ({ animated = false }: GlobeProps) => {
+export const Globe = ({ animated = false }: GlobeProps) => {
   const [frames] = useState(['🌍', '🌏', '🌎'])
   const speed = 400
   const [index, setIndex] = useState(0)
@@ -23,5 +23,3 @@ const Globe = ({ animated = false }: GlobeProps) => {
 
   return <>{frames[index]}</>
 }
-
-export default Globe

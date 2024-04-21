@@ -3,7 +3,7 @@ import throttle from 'lodash/throttle'
 import { checkWindowScroll } from './InfiniteScroll.utils'
 import { useFeed } from '../Feed.hooks'
 
-const InfiniteScroll = () => {
+export const InfiniteScroll = () => {
   const { loadNextPage, hasNextPage } = useFeed()
 
   useEffect(() => {
@@ -26,5 +26,3 @@ const InfiniteScroll = () => {
 
   return null
 }
-
-export default InfiniteScroll

@@ -2,23 +2,43 @@ html {
   overflow-y: scroll;
 }
 
-.root {
-  position: relative;
-}
-.root > * + * {
-  margin: 1rem 0;
+.map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
-.root header,
-.root footer {
-  padding: 0 1rem;
+:root main {
+  width: 100%;
+  flex: 1;
+  background-color: var(--background);
+  margin-top: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+@media screen and (max-width: 600px) {
+  :root main {
+    margin-top: 220px;
+  }
+}
+
+header,
+footer {
+  padding: 0.5rem 1rem 1rem;
+}
+
+.grid {
+  z-index: 2;
+  position: relative;
 }
 
 .settings {
   cursor: pointer;
   z-index: 2;
   position: absolute;
-  top: 0;
+  top: 1rem;
   right: 1rem;
   text-align: right;
 }

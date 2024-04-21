@@ -19,7 +19,7 @@ export const api = createApi({
       query: mapPayloadToPath,
     }),
     pencil: builder.query<PencilData, Localized<{ id: string }>>({
-      query: ({ id, language: locale }) => getPrefixedApi(locale, `pencil/${id}/`),
+      query: ({ id, language: locale }) => getPrefixedApi(locale, `pencil/${id}`),
     }),
   }),
 })

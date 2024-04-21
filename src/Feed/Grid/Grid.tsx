@@ -4,7 +4,7 @@ import { useFeed } from '../Feed.hooks'
 import { mapAppStateToQuery } from '../../State/State.utils'
 import { useAppState } from '../../State/State.hooks'
 
-const Grid = () => {
+export const Grid = () => {
   const { pencils } = useFeed()
   const { openPencil } = useAppState()
 
@@ -36,5 +36,3 @@ const Grid = () => {
     </div>
   )
 }
-
-export default Grid

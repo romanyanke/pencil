@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import classes from './Loader.module.css'
-import Globe from '../../Globe'
+import { Globe } from '../../Globe/Globe'
 
-const Loader = ({ isError }: { isError: boolean }) => {
+export const Loader = ({ isError }: { isError: boolean }) => {
   const { t } = useTranslation()
 
   return (
@@ -17,5 +17,3 @@ const Loader = ({ isError }: { isError: boolean }) => {
     </div>
   )
 }
-
-export default Loader

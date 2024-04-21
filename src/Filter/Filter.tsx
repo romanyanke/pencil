@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
-import Country from './Country'
 import classes from './Filter.module.css'
+import { Country } from './Country/Country'
 import { useStatistic } from '../Taxonomy/Taxonomy.hooks'
 
-const Filter = () => {
+export const Filter = () => {
   const { t } = useTranslation()
   const stat = useStatistic()
 
@@ -15,5 +15,3 @@ const Filter = () => {
     </h1>
   )
 }
-
-export default Filter
