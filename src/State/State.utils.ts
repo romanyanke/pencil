@@ -41,7 +41,8 @@ export const stateReducer: Reducer<AppState, AppStateActions> = (state, action) 
 export const mapAppStateToQuery = (state: AppState) => qs.stringify(state, { addQueryPrefix: true })
 
 export const mapQueryToAppState = (search = window.location.search): AppState => {
-  const state = qs.parse(search, { ignoreQueryPrefix: true })
+  const queryPart= search.split('?')[1] || ''
+  const state = qs.parse(queryPart, { ignoreQueryPrefix: true })
 
   return validate(state)
 }

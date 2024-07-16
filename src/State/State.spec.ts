@@ -1,4 +1,4 @@
-import { transformState } from './State.utils'
+import { mapQueryToAppState, transformState } from './State.utils'
 
 describe('State', () => {
   describe('transformState', () => {
@@ -21,6 +21,17 @@ describe('State', () => {
       expect(
         transformState({ display: 'one' }).add({ country: 'RUS' }).omit('display').get(),
       ).toEqual({ country: 'RUS' })
+    })
+  })
+
+  describe('mapQueryToAppState', () => {
+    it('should parse query string to state', () => {
+      const language = 'en'
+      expect(mapQueryToAppState('?display=one')).toEqual({ display: 'one', language })
+      expect(mapQueryToAppState('/?display=one')).toEqual({ display: 'one', language })
+      expect(mapQueryToAppState('path/?display=one')).toEqual({ display: 'one', language })
+      expect(mapQueryToAppState('/path/?display=one')).toEqual({ display: 'one', language })
+      expect(mapQueryToAppState('http://localhost:3000/path/?display=one')).toEqual({ display: 'one', language })
     })
   })
 })
