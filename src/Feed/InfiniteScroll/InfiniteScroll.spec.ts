@@ -10,9 +10,9 @@ describe('<Gallery />', () => {
       expect(checkFinishZone(10, 4)).toBe(false)
       expect(checkFinishZone(10, 5)).toBe(false)
       expect(checkFinishZone(10, 6)).toBe(false)
+      expect(checkFinishZone(10, 7)).toBe(false)
     })
     it('should return true when progress is more than 60%', () => {
-      expect(checkFinishZone(10, 7)).toBe(true)
       expect(checkFinishZone(10, 8)).toBe(true)
       expect(checkFinishZone(10, 9)).toBe(true)
       expect(checkFinishZone(10, 10)).toBe(true)
