@@ -3,7 +3,7 @@ import { geoProjection } from 'd3-geo'
 import { FeatureCollection, GeoJsonProperties, Geometry } from 'geojson'
 import { feature } from 'topojson-client'
 import { Topology } from 'topojson-specification'
-import { TopologyItem } from './Map.interface.js'
+import { TopologyItem } from './Map.interface'
 import geography from './world.json'
 
 export const mapWidth = 800
