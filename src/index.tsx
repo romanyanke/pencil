@@ -9,6 +9,7 @@ import { Theme } from './Theme/Theme'
 import { store } from './store'
 import './main.css'
 
+import './style'
 const container = document.getElementById('root')
 const root = createRoot(container!)
 
