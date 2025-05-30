@@ -53,13 +53,26 @@ export const Map = () => {
               key={geoId}
               className={className}
               d={topology.pathD}
-              onClick={onClick}
+              onClick={hasPencil ? onClick : () => alert(geoId)}
+              style={{ fill: hasPencil ? undefined : getRandomColor() }}
             >
-              <title>{country?.name}</title>
+              <title>
+                {country?.name} {geoId}
+              </title>
             </path>
           )
         })}
       </svg>
     </div>
   )
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF'
+  let color = '#'
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)]
+  }
+
+  return color
 }
