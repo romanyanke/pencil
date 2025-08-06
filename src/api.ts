@@ -11,7 +11,7 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_PENCIL_BOX_URL }),
   endpoints: builder => ({
     taxonomy: builder.query<TaxonomyApiResponse, Localized>({
-      query: ({ language: locale }) => getPrefixedApi(locale, 'taxonomy'),
+      query: ({ language: locale }) => getPrefixedApi(locale, 'collection'),
     }),
     feed: builder.query<FeedApiResponse, void | FeedApiPayload>({
       query: mapPayloadToPath,
