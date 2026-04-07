@@ -32,6 +32,7 @@
   height: 100%;
   scroll-snap-type: both mandatory;
   overflow-y: scroll;
+  overscroll-behavior: contain;
   scroll-behavior: smooth;
 }
 
@@ -66,6 +67,7 @@
 .main {
   flex: 1;
   overflow-y: auto;
+  overscroll-behavior: contain;
   position: relative;
   text-align: left;
 }
@@ -96,6 +98,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow-x: auto;
+  overscroll-behavior: contain;
 }
 .tag {
   margin-left: 0.5rem;
