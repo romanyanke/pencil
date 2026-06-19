@@ -1,0 +1,265 @@
+.select,
+.select::picker(select) {
+  appearance: base-select;
+}
+
+/* ---------- Trigger: a glossy capsule with a conic-gradient ring ---------- */
+
+.select {
+  position: relative;
+  font: inherit;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background:
+    linear-gradient(var(--background), var(--background)) padding-box,
+    conic-gradient(
+        from var(--angle, 0deg),
+        #ff5722,
+        #ffb300,
+        #2fc4b2,
+        #1264a3,
+        #b34dff,
+        #ff5722
+      )
+      border-box;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  padding: 0.55em 1.25em 0.55em 1.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  cursor: pointer;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 35%, transparent),
+    0 2px 10px color-mix(in srgb, var(--text) 15%, transparent);
+  transition:
+    transform 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4),
+    box-shadow 220ms ease,
+    --angle 800ms linear;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.select::before {
+  content: '';
+  position: absolute;
+  inset: 2px 2px auto 2px;
+  height: 45%;
+  border-radius: 999px 999px 50% 50% / 999px 999px 100% 100%;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, white 28%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.select:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 45%, transparent),
+    0 8px 22px color-mix(in srgb, var(--link) 35%, transparent);
+  --angle: 360deg;
+}
+
+.select:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, white 45%, transparent),
+    0 0 0 4px color-mix(in srgb, var(--link) 40%, transparent);
+}
+
+.select:open {
+  transform: translateY(-1px) scale(1.03);
+  --angle: 360deg;
+}
+
+/* ---------- Picker icon: morphs to a pointing chevron ---------- */
+
+.select::picker-icon {
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+  transition: rotate 320ms cubic-bezier(0.5, -0.5, 0.3, 1.5), color 220ms ease, scale 220ms ease;
+}
+
+.select:open::picker-icon {
+  rotate: 180deg;
+  scale: 1.2;
+  color: #ff5722;
+}
+
+/* ---------- Picker: frosted glass with a moving aurora ---------- */
+
+.select::picker(select) {
+  box-sizing: border-box;
+  position-area: bottom center;
+  margin-top: 0.75rem;
+  min-width: calc(anchor-size(width) + 4rem);
+  max-width: min(92vw, 28rem);
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+  border-radius: 22px;
+  color: var(--text);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in srgb, #ff5722 22%, transparent), transparent 60%),
+    radial-gradient(120% 80% at 100% 100%, color-mix(in srgb, #1264a3 28%, transparent), transparent 60%),
+    color-mix(in srgb, var(--background) 78%, transparent);
+  backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, white 30%, transparent) inset,
+    0 24px 60px -10px color-mix(in srgb, var(--text) 55%, transparent),
+    0 8px 20px -8px color-mix(in srgb, var(--link) 40%, transparent);
+
+  opacity: 0;
+  translate: 0 -14px;
+  scale: 0.96;
+  transform-origin: top center;
+  filter: blur(6px);
+  transition:
+    opacity 260ms ease,
+    translate 320ms cubic-bezier(0.2, 0.9, 0.3, 1.3),
+    scale 320ms cubic-bezier(0.2, 0.9, 0.3, 1.3),
+    filter 260ms ease,
+    display 320ms allow-discrete,
+    overlay 320ms allow-discrete;
+}
+
+.select:open::picker(select) {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  filter: blur(0);
+}
+
+@starting-style {
+  .select:open::picker(select) {
+    opacity: 0;
+    translate: 0 -14px;
+    scale: 0.96;
+    filter: blur(6px);
+  }
+}
+
+/* Custom scrollbar in the picker */
+.select::picker(select)::-webkit-scrollbar {
+  width: 8px;
+}
+.select::picker(select)::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--text) 25%, transparent);
+  border-radius: 999px;
+}
+
+/* ---------- Options: pencil-strip rows ---------- */
+
+.select option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin: 0.15rem 0;
+  padding: 0.55em 0.9em 0.55em 1.1em;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  color: var(--text);
+  background: transparent;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 200ms cubic-bezier(0.2, 0.9, 0.3, 1.4),
+    padding-inline-start 200ms ease;
+}
+
+/* The colored "pencil core" stripe on the left edge */
+.select option::before {
+  content: '';
+  position: absolute;
+  left: 0.35rem;
+  top: 50%;
+  width: 4px;
+  height: 0;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, #ff5722, #ffb300);
+  translate: 0 -50%;
+  transition: height 220ms cubic-bezier(0.2, 0.9, 0.3, 1.4);
+}
+
+.select option:hover,
+.select option:focus {
+  background: color-mix(in srgb, var(--link) 14%, transparent);
+  transform: translateX(4px);
+  padding-inline-start: 1.4em;
+}
+
+.select option:hover::before,
+.select option:focus::before {
+  height: 60%;
+}
+
+.select option:checked {
+  color: white;
+  font-weight: 700;
+  background: linear-gradient(
+    100deg,
+    #ff5722,
+    #ff8a3d 35%,
+    #ffb300 70%,
+    #ff5722
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  box-shadow:
+    0 6px 18px -6px color-mix(in srgb, #ff5722 70%, transparent),
+    inset 0 1px 0 color-mix(in srgb, white 40%, transparent);
+  animation: countryShimmer 4s linear infinite;
+}
+
+.select option:checked::before {
+  height: 70%;
+  background: white;
+}
+
+@keyframes countryShimmer {
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+/* ---------- Checkmark: a tiny pencil ---------- */
+
+.select option::checkmark {
+  content: '✏️';
+  margin-inline-end: 0.2em;
+  scale: 1.1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+/* Make flag emoji feel like a coin */
+.select option > span[aria-hidden='true'],
+.select > button > selectedcontent > option > span[aria-hidden='true'] {
+  display: inline-grid;
+  place-items: center;
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 12%, transparent);
+  font-size: 0.95em;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select,
+  .select *,
+  .select::picker(select),
+  .select::picker-icon {
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
+}
